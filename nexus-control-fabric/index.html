@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Nexus is the control fabric for connected systems: APIs, agents, apps, queues, clouds, identity, policy, traceability, and deployment control."
+    />
+    <title>Nexus | Control Fabric for Connected Systems</title>
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Nexus home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Nexus</span>
+      </a>
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#model">Model</a>
+        <a href="#modes">Modes</a>
+        <a href="#proof">Proof</a>
+        <a href="#contact">Intake</a>
+      </nav>
+      <a class="header-cta" href="#contact">Map stack</a>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">CONTROL PLANE / CONNECTED SYSTEMS</p>
+          <h1 id="hero-title">Nexus is the control fabric for connected systems.</h1>
+          <p class="hero-lede">
+            One control plane for the systems your business already depends on. Connect APIs,
+            agents, apps, queues, and clouds without losing policy or visibility.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="#contact">Map your stack</a>
+            <a class="button button-secondary" href="#model">View operating model</a>
+          </div>
+          <div class="hero-status" aria-label="Fabric status">
+            <span><strong>policy</strong> verified</span>
+            <span><strong>SLO</strong> 99.95</span>
+            <span><strong>audit</strong> sealed</span>
+          </div>
+        </div>
+
+        <div class="fabric-stage" data-fabric-stage aria-label="Nexus Fabric Interface">
+          <div class="stage-topbar">
+            <span>Nexus Fabric Interface</span>
+            <span>route nx-1842</span>
+          </div>
+          <div class="stage-grid" aria-hidden="true"></div>
+
+          <svg class="fabric-svg" viewBox="0 0 1000 625" role="img" aria-labelledby="fabric-title fabric-desc">
+            <title id="fabric-title">Nexus routed control fabric</title>
+            <desc id="fabric-desc">
+              System nodes route through identity checks, policy gates, workload execution, trace return, and deployment confirmation.
+            </desc>
+            <defs>
+              <linearGradient id="routeGradient" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#28D7FF" stop-opacity=".05" />
+                <stop offset="48%" stop-color="#28D7FF" stop-opacity=".96" />
+                <stop offset="100%" stop-color="#56F39A" stop-opacity=".84" />
+              </linearGradient>
+              <linearGradient id="traceGradient" x1="0" x2="1" y1="1" y2="0">
+                <stop offset="0%" stop-color="#56F39A" stop-opacity=".08" />
+                <stop offset="62%" stop-color="#56F39A" stop-opacity=".92" />
+                <stop offset="100%" stop-color="#28D7FF" stop-opacity=".4" />
+              </linearGradient>
+            </defs>
+
+            <g class="route-bed">
+              <path d="M126 104 C265 106 320 198 448 245" />
+              <path d="M858 105 C704 118 657 190 552 245" />
+              <path d="M122 307 C244 307 315 307 430 307" />
+              <path d="M872 309 C736 309 674 309 570 309" />
+              <path d="M156 510 C278 464 350 405 455 361" />
+              <path d="M840 508 C704 461 645 404 545 361" />
+              <path d="M500 395 C500 455 500 492 500 544" />
+              <path d="M500 229 C500 184 500 145 500 92" />
+            </g>
+
+            <g class="active-routes">
+              <path class="route-line route-ingress" data-route="ingress" d="M126 104 C265 106 320 198 448 245" />
+              <path class="route-line route-policy" data-route="policy" d="M122 307 C244 307 315 307 430 307" />
+              <path class="route-line route-workload" data-route="workload" d="M500 229 C500 184 500 145 500 92" />
+              <path class="route-line route-trace" data-route="trace" d="M545 361 C645 404 704 461 840 508" />
+              <path class="route-line route-deploy" data-route="deploy" d="M500 395 C500 455 500 492 500 544" />
+            </g>
+
+            <g class="gates">
+              <rect class="gate gate-identity" data-gate="identity" x="324" y="213" width="78" height="34" rx="3" />
+              <rect class="gate gate-policy" data-gate="policy" x="298" y="289" width="84" height="36" rx="3" />
+              <rect class="gate gate-deploy" data-gate="deploy" x="459" y="456" width="82" height="36" rx="3" />
+            </g>
+          </svg>
+
+          <div class="fabric-node node-core" data-node="nexus">
+            <span class="node-kicker">CORE</span>
+            <strong>Nexus</strong>
+            <span>control fabric</span>
+          </div>
+          <div class="fabric-node node-cloud" data-node="cloud"><strong>Cloud</strong><span>hybrid estate</span></div>
+          <div class="fabric-node node-k8s" data-node="kubernetes"><strong>Kubernetes</strong><span>runtime</span></div>
+          <div class="fabric-node node-agents" data-node="agents"><strong>Agents</strong><span>AI execution</span></div>
+          <div class="fabric-node node-apis" data-node="apis"><strong>APIs</strong><span>service mesh</span></div>
+          <div class="fabric-node node-identity" data-node="identity"><strong>Identity</strong><span>bound</span></div>
+          <div class="fabric-node node-queue" data-node="queue"><strong>Queue</strong><span>depth 37</span></div>
+          <div class="fabric-node node-database" data-node="database"><strong>Database</strong><span>trace spine</span></div>
+          <div class="fabric-node node-edge" data-node="edge"><strong>Edge</strong><span>deploy route</span></div>
+
+          <div class="telemetry telemetry-a" data-state-label>policy verified</div>
+          <div class="telemetry telemetry-b">deploy gate armed</div>
+          <div class="telemetry telemetry-c">trace returned</div>
+          <div class="telemetry telemetry-d">rollback ready</div>
+          <div class="telemetry telemetry-e">drift detected</div>
+          <div class="telemetry telemetry-f">tenant isolated</div>
+        </div>
+      </section>
+
+      <section class="flow-band section-shell" id="model" aria-labelledby="flow-title">
+        <div class="section-heading">
+          <p class="eyebrow">FROM SPRAWL TO GOVERNED FLOW</p>
+          <h2 id="flow-title">From brittle integrations to governed execution.</h2>
+        </div>
+        <div class="flow-spine" aria-label="Governed flow progression">
+          <article class="flow-step">
+            <span class="step-index">01</span>
+            <h3>Connect systems</h3>
+            <p>APIs, SaaS apps, internal tools, agents, queues, and cloud services join one routable map.</p>
+          </article>
+          <div class="flow-link" aria-hidden="true"></div>
+          <article class="flow-step">
+            <span class="step-index">02</span>
+            <h3>Govern flows</h3>
+            <p>Identity-aware routes, policy checks, approvals, and audit trails bind each request before execution.</p>
+          </article>
+          <div class="flow-link" aria-hidden="true"></div>
+          <article class="flow-step">
+            <span class="step-index">03</span>
+            <h3>Deploy with visibility</h3>
+            <p>See drift, retries, approvals, incidents, deployments, traces, logs, metrics, and queue depth in one fabric.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="modes section-shell" id="modes" aria-labelledby="modes-title">
+        <div class="section-heading">
+          <p class="eyebrow">PRODUCT SURFACE / THREE MODES</p>
+          <h2 id="modes-title">Operate the fabric from the mode that matches the work.</h2>
+        </div>
+        <div class="mode-console">
+          <div class="mode-tabs" role="tablist" aria-label="Product modes">
+            <button class="mode-tab is-active" id="tab-integrate" role="tab" aria-selected="true" aria-controls="panel-integrate" data-mode="integrate">
+              <span>Integrate</span>
+              <small>Connector Mesh</small>
+            </button>
+            <button class="mode-tab" id="tab-orchestrate" role="tab" aria-selected="false" aria-controls="panel-orchestrate" data-mode="orchestrate">
+              <span>Orchestrate</span>
+              <small>Workflow Runtime</small>
+            </button>
+            <button class="mode-tab" id="tab-secure" role="tab" aria-selected="false" aria-controls="panel-secure" data-mode="secure">
+              <span>Secure</span>
+              <small>Policy Gates</small>
+            </button>
+          </div>
+
+          <div class="mode-body">
+            <div class="mode-panels">
+              <article class="mode-panel is-active" id="panel-integrate" role="tabpanel" aria-labelledby="tab-integrate" data-panel="integrate">
+                <p class="mono-label">INTEGRATE</p>
+                <h3>Connector Mesh routes live systems without hiding their contracts.</h3>
+                <p>
+                  Normalize SaaS/API connectors, internal tools, data transforms, task queues, and cloud services into one governed route inventory.
+                </p>
+              </article>
+              <article class="mode-panel" id="panel-orchestrate" role="tabpanel" aria-labelledby="tab-orchestrate" data-panel="orchestrate" hidden>
+                <p class="mono-label">ORCHESTRATE</p>
+                <h3>Durable execution across workflows, retries, and deployment environments.</h3>
+                <p>
+                  Route long-running work through checkpoints, retry budgets, rollback gates, and environment-aware releases.
+                </p>
+              </article>
+              <article class="mode-panel" id="panel-secure" role="tabpanel" aria-labelledby="tab-secure" data-panel="secure" hidden>
+                <p class="mono-label">SECURE</p>
+                <h3>Policy gates bind identity, approval state, and audit history before execution.</h3>
+                <p>
+                  Zero-trust identity, tenant isolation, approval evidence, and an audit stream are native to every route.
+                </p>
+              </article>
+            </div>
+
+            <div class="mini-interface" data-mini-interface aria-live="polite">
+              <div class="feed-image feed-integrate" aria-hidden="true">
+                <img src="assets/dark-macro-photograph-of-fiber-optic-network-patch-panel-with-cyan-and-green-cable-highlights.jpg" alt="" />
+              </div>
+              <div class="feed-image feed-secure" aria-hidden="true">
+                <img src="assets/security-operations-center-network-monitoring-screens-abstracted-cropped.jpg" alt="" />
+              </div>
+              <div class="mini-topline">
+                <span data-mini-title>Connector rail</span>
+                <span data-mini-status>7 routes active</span>
+              </div>
+              <div class="mini-visual" data-mini-visual="integrate">
+                <span class="rail rail-a"></span>
+                <span class="rail rail-b"></span>
+                <span class="rail rail-c"></span>
+                <span class="mini-chip chip-a">api.gateway</span>
+                <span class="mini-chip chip-b">crm.sync</span>
+                <span class="mini-chip chip-c">agent.task</span>
+                <span class="mini-chip chip-d">queue.ingress</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="components section-shell" id="capabilities" aria-labelledby="cap-title">
+        <div class="section-heading">
+          <p class="eyebrow">THE FABRIC COMPONENTS</p>
+          <h2 id="cap-title">Dense infrastructure parts, held in one traceable topology.</h2>
+        </div>
+        <div class="topology-strip">
+          <article class="capability" data-capability="mesh">
+            <h3>Connector Mesh</h3>
+            <p>Every source system lands in inventory with ownership, schema, auth, and route health.</p>
+          </article>
+          <article class="capability" data-capability="identity">
+            <h3>Identity-Aware Routes</h3>
+            <p>Every route binds service identity, approval state, and event history before execution.</p>
+          </article>
+          <article class="capability" data-capability="policy">
+            <h3>Policy Engine</h3>
+            <p>Policy checks run at ingress, workflow transition, deploy gate, and rollback boundary.</p>
+          </article>
+          <article class="capability" data-capability="runtime">
+            <h3>Workflow Runtime</h3>
+            <p>Durable jobs carry retries, timeouts, queue state, and execution history across environments.</p>
+          </article>
+          <article class="capability" data-capability="trace">
+            <h3>Trace Spine</h3>
+            <p>Metrics, logs, traces, incidents, and drift events attach to the same route timeline.</p>
+          </article>
+          <article class="capability" data-capability="deploy">
+            <h3>Deployment Guardrails</h3>
+            <p>Promotion requires visible checks for SLO risk, drift, policy state, and rollback readiness.</p>
+          </article>
+          <article class="capability" data-capability="audit">
+            <h3>Audit Stream</h3>
+            <p>Actions are sealed into human-readable records built for regulated teams and reviews.</p>
+          </article>
+          <article class="capability" data-capability="rollback">
+            <h3>Rollback Gates</h3>
+            <p>Release controls keep fallback paths ready before high-impact automations execute.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="proof section-shell" id="proof" aria-labelledby="proof-title">
+        <div class="section-heading">
+          <p class="eyebrow">OPERATING MODEL</p>
+          <h2 id="proof-title">Control plane clarity over data plane execution.</h2>
+        </div>
+        <div class="plane-diagram">
+          <div class="plane control-plane">
+            <div class="plane-label">CONTROL PLANE</div>
+            <ul>
+              <li>policy</li>
+              <li>identity</li>
+              <li>workflow definitions</li>
+              <li>approvals</li>
+              <li>audit</li>
+            </ul>
+          </div>
+          <div class="plane-bridge" aria-hidden="true">
+            <span>verified route</span>
+          </div>
+          <div class="plane data-plane">
+            <div class="plane-label">DATA PLANE</div>
+            <ul>
+              <li>connectors</li>
+              <li>event streams</li>
+              <li>task queues</li>
+              <li>runtime execution</li>
+              <li>edge/cloud routes</li>
+            </ul>
+          </div>
+          <figure class="proof-feed">
+            <img
+              src="assets/modern-cloud-data-center-server-racks-with-cool-blue-status-lights.jpg"
+              alt="Cloud data center server racks with blue status lights"
+            />
+            <figcaption>hybrid estate / k8s + cloud routes</figcaption>
+          </figure>
+        </div>
+        <div class="proof-callouts">
+          <p>Built for hybrid cloud and Kubernetes-era infrastructure.</p>
+          <p>Auditability by default: every action leaves a trace.</p>
+          <p>Designed for AI-agent workflows where execution needs policy, rollback, and human-readable history.</p>
+          <p>Observability spans metrics, logs, traces, queue depth, incidents, and drift.</p>
+        </div>
+      </section>
+
+      <section class="pricing section-shell" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-heading">
+          <p class="eyebrow">ENTRY PATHS</p>
+          <h2 id="pricing-title">Pick the operating tier your stack needs next.</h2>
+        </div>
+        <div class="tier-grid">
+          <article class="tier">
+            <p class="mono-label">START</p>
+            <h3>Map the estate</h3>
+            <p>Map up to 20 systems, build connector inventory, and define basic workflow routes.</p>
+            <a href="#contact">Start mapping</a>
+          </article>
+          <article class="tier tier-featured">
+            <p class="mono-label">SCALE</p>
+            <h3>Govern execution</h3>
+            <p>Policy gates, deployment environments, audit stream, SLO views, and route-level observability.</p>
+            <a href="#contact">Plan rollout</a>
+          </article>
+          <article class="tier">
+            <p class="mono-label">ENTERPRISE FABRIC</p>
+            <h3>Architected control</h3>
+            <p>Tenant isolation, custom connectors, compliance exports, and architect-led implementation.</p>
+            <a href="#contact">Talk to an architect</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+        <div class="contact-copy">
+          <p class="eyebrow">STACK INTAKE</p>
+          <h2 id="contact-title">Send the systems. We’ll return a fabric map.</h2>
+          <p>
+            No sales theater. Just the integrations, clouds, queues, agents, and guardrails you need to bring under control.
+          </p>
+        </div>
+        <form class="intake-form" action="#" method="post">
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="stack">Current stack</label>
+            <input id="stack" name="stack" type="text" autocomplete="organization" required />
+          </div>
+          <div class="field">
+            <label for="cloud">Cloud/provider</label>
+            <input id="cloud" name="cloud" type="text" required />
+          </div>
+          <div class="field">
+            <label for="connect">What do you want Nexus to connect?</label>
+            <textarea id="connect" name="connect" rows="5" required></textarea>
+          </div>
+          <button class="button button-primary" type="submit">Map my stack</button>
+          <p class="form-note" role="status" data-form-note>No sales theater. Send the systems. We’ll return a fabric map.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Nexus</span>
+      <span>Every route has identity. Every action leaves a trace.</span>
+    </footer>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
