@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Gorillax | Command Deck for Live Game Infrastructure</title>
+    <meta
+      name="description"
+      content="Gorillax gives studios a command deck for multiplayer SDKs, session routing, matchmaking, telemetry, patch flow, and live game reliability."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to command deck content</a>
+
+    <header class="topbar" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Gorillax home">
+        <span class="brand-glyph" aria-hidden="true"></span>
+        <span>GORILLAX // COMMAND DECK</span>
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#loadout">Loadout</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#proof">Proof</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#demo">Demo</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="deck-shell" data-parallax>
+          <div class="hero-media" aria-hidden="true">
+            <img
+              src="assets/dark-game-development-workstation-with-multiple-monitors-showing-engine-editor-code-telemetry-and-performance-graphs-cinematic-low-light-cropped-as-background-texture.jpg"
+              alt=""
+            />
+          </div>
+
+          <div class="deck-label">
+            <span>GORILLAX COMMAND DECK</span>
+            <span>BUILD CHANNEL: LIVE-READY</span>
+          </div>
+
+          <div class="hero-copy">
+            <p class="eyebrow">HEAVY-LIFT MULTIPLAYER INFRASTRUCTURE</p>
+            <h1 id="hero-title">Ship the build before the lag catches up.</h1>
+            <p>
+              Gorillax gives studios a live game command deck for multiplayer, telemetry,
+              patch flow, and performance-critical operations.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button primary" href="#demo">Request Demo</a>
+              <a class="button" href="#integrations">View SDK</a>
+              <a class="button ghost" href="#proof">Run Latency Check</a>
+            </div>
+          </div>
+
+          <div class="beast-core" aria-label="The Beast Core telemetry glyph">
+            <svg viewBox="0 0 520 520" role="img" aria-labelledby="beast-title beast-desc">
+              <title id="beast-title">The Beast Core</title>
+              <desc id="beast-desc">A gorilla-coded engine glyph built from neon circuit paths and telemetry rings.</desc>
+              <defs>
+                <linearGradient id="core-stroke" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#7cff3a" />
+                  <stop offset="0.52" stop-color="#00e6ff" />
+                  <stop offset="1" stop-color="#7cff3a" />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <circle class="ring ring-a" cx="260" cy="260" r="204" />
+              <circle class="ring ring-b" cx="260" cy="260" r="154" />
+              <path class="lane" d="M56 267H149L198 214L260 312L318 214L371 267H464" />
+              <path class="lane" d="M106 162H174L219 126H304L348 162H414" />
+              <path class="lane" d="M116 380H188L226 416H294L332 380H404" />
+              <path class="ape" d="M158 217L209 144H311L362 217L345 338L305 389H215L175 338Z" />
+              <path class="ape" d="M207 242L241 214H279L313 242L300 297L282 320H238L220 297Z" />
+              <path class="jaw" d="M210 336H310L288 374H232Z" />
+              <path class="eye" d="M179 252H230" />
+              <path class="eye" d="M290 252H341" />
+              <circle class="node" cx="149" cy="267" r="6" />
+              <circle class="node" cx="371" cy="267" r="6" />
+              <circle class="node amber" cx="260" cy="312" r="8" />
+            </svg>
+          </div>
+
+          <div class="module-strip strip-left" aria-label="Build readouts">
+            <span>LIVE BUILD: ARMED</span>
+            <b>p95 LATENCY 38ms</b>
+            <b>PACKET LOSS 0.08%</b>
+            <b>SESSIONS LIVE 82,410</b>
+          </div>
+
+          <div class="module-strip strip-right" aria-label="Engine routes">
+            <span>ENGINE ROUTES</span>
+            <b>UNITY</b>
+            <b>UNREAL</b>
+            <b>CUSTOM SDK</b>
+            <b>FRAME BUDGET 16.6ms</b>
+          </div>
+        </div>
+      </section>
+
+      <section class="loadout section" id="loadout" aria-labelledby="loadout-title">
+        <div class="section-head">
+          <p class="label">LOADOUT SUITE // SOFTWARE SLOTS</p>
+          <h2 id="loadout-title">Lock a module. Reroute the launch signal.</h2>
+          <p>
+            Session routing, lobbies, relay, matchmaking, telemetry, and patch flow in one
+            operating layer for fast-moving game teams.
+          </p>
+        </div>
+
+        <div class="loadout-console">
+          <svg class="loadout-lanes" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="lane-path active" data-lane="0" d="M24 48 C38 27 47 17 62 16" />
+            <path class="lane-path" data-lane="1" d="M24 48 C38 30 48 19 76 16" />
+            <path class="lane-path" data-lane="2" d="M24 48 C45 34 62 20 91 16" />
+            <path class="lane-path" data-lane="3" d="M24 48 C36 44 43 36 58 40" />
+            <path class="lane-path" data-lane="4" d="M24 48 C47 48 65 40 91 40" />
+            <path class="lane-path" data-lane="5" d="M24 48 C36 62 44 69 58 64" />
+            <path class="lane-path" data-lane="6" d="M24 48 C48 63 67 65 91 64" />
+            <path class="lane-path" data-lane="7" d="M24 48 C42 74 55 84 76 84" />
+            <path class="rail-path" d="M62 16 L76 16 L91 16 M58 40 L74 50 L91 40 M58 64 L74 50 L91 64 M76 84 L74 50" />
+          </svg>
+
+          <div class="diagnostic-panel" aria-live="polite">
+            <span>ACTIVE MODULE</span>
+            <h3 id="diagnostic-title">Netcode Core</h3>
+            <p id="diagnostic-copy">Rollback/prediction routes, tick-rate tuning, and relay paths stay visible before a playtest turns into a blame loop.</p>
+            <code id="diagnostic-code">route.tick(rate: 60, rollback: enabled)</code>
+          </div>
+
+          <div class="slot-rail" aria-label="Gorillax software modules">
+            <button class="slot active" type="button" data-title="Netcode Core" data-copy="Rollback/prediction routes, tick-rate tuning, and relay paths stay visible before a playtest turns into a blame loop." data-code="route.tick(rate: 60, rollback: enabled)">
+              <span>01</span><b>Netcode Core</b><small>rollback / relay</small>
+            </button>
+            <button class="slot" type="button" data-title="Session Router" data-copy="Lobbies, regions, join flows, and reconnect states are routed before players hit the lobby." data-code="session.route(region: auto, reconnect: true)">
+              <span>02</span><b>Session Router</b><small>lobby state</small>
+            </button>
+            <button class="slot" type="button" data-title="Matchmaker" data-copy="Quality scoring, party logic, skill bands, and latency gates converge into one launch readout." data-code="match.score(skill: banded, ping: weighted)">
+              <span>03</span><b>Matchmaker</b><small>quality scoring</small>
+            </button>
+            <button class="slot" type="button" data-title="Patchflow" data-copy="Build channels, staged rollout, rollback lane, and release health stay tied to live signals." data-code="patchflow promote playtest -> live">
+              <span>04</span><b>Patchflow</b><small>staged rollout</small>
+            </button>
+            <div class="slot-core" aria-hidden="true">
+              <span>GORILLAX ROUTE RAIL</span>
+              <b>QUALITY SIGNAL</b>
+              <i></i>
+            </div>
+            <button class="slot" type="button" data-title="LiveOps Console" data-copy="Events, economy flags, and content toggles can be armed without losing sight of session quality." data-code="liveops.flag(event: raid, cohort: stable)">
+              <span>05</span><b>LiveOps Console</b><small>content toggles</small>
+            </button>
+            <button class="slot" type="button" data-title="Telemetry Grid" data-copy="Track p95 latency, packet loss, frame budget, build health, crash signals, and live session quality before players feel the fault." data-code="telemetry.watch(p95, loss, frame_budget)">
+              <span>06</span><b>Telemetry Grid</b><small>build health</small>
+            </button>
+            <button class="slot" type="button" data-title="Crash Signal" data-copy="Error clustering, release health, and hotfix priority move from scattered reports into a production signal." data-code="crash.cluster(build: live, priority: hotfix)">
+              <span>07</span><b>Crash Signal</b><small>release health</small>
+            </button>
+            <button class="slot" type="button" data-title="Studio API" data-copy="SDK hooks, webhooks, and custom engine adapters keep proprietary game tech inside the route." data-code="webhook.emit(session.quality.changed)">
+              <span>08</span><b>Studio API</b><small>custom hooks</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="integration section" id="integrations" aria-labelledby="integration-title">
+        <div class="route-grid">
+          <div class="route-copy">
+            <p class="label">ENGINE INTEGRATION ROUTE</p>
+            <h2 id="integration-title">Drop the SDK into the build path.</h2>
+            <p>
+              Drop Gorillax into Unity or Unreal, wire session state, ship to test regions,
+              and verify build health before players hit the lobby.
+            </p>
+            <div class="engine-badges" aria-label="Supported routes">
+              <span>Unity</span><span>Unreal</span><span>Custom Engine</span><span>PC</span><span>Console</span><span>Mobile</span>
+            </div>
+          </div>
+
+          <div class="deploy-route" aria-label="Four-node deploy path">
+            <div class="deploy-node"><span>01</span><b>Install SDK</b><code>gorillax sdk init --engine unreal</code></div>
+            <div class="deploy-node"><span>02</span><b>Hook Sessions</b><code>session.route(region: auto, rollback: enabled)</code></div>
+            <div class="deploy-node"><span>03</span><b>Deploy Region</b><code>region.deploy(playtest: west)</code></div>
+            <div class="deploy-node"><span>04</span><b>Verify Dashboard</b><code>build.health(min: 99.9)</code></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof section" id="proof" aria-labelledby="proof-title">
+        <div class="proof-shell">
+          <div class="proof-media" aria-hidden="true">
+            <img
+              src="assets/close-up-server-rack-and-network-cabling-with-blue-green-indicator-lights-premium-dark-operations-mood-reliability-section-texture.jpg"
+              alt=""
+            />
+          </div>
+          <div class="proof-copy">
+            <p class="label">PERFORMANCE // RELIABILITY PROOF</p>
+            <h2 id="proof-title">A launch deck for the parts players only notice when they break.</h2>
+            <p>
+              24/7 monitoring, DDoS-aware relay posture, crash/error reporting,
+              observability, and SLA-backed region visibility without hiding the failure modes.
+            </p>
+          </div>
+          <div class="instrument-grid" aria-label="Live reliability instruments">
+            <div><span>p95 LATENCY</span><b>38ms</b><i></i></div>
+            <div><span>PACKET LOSS</span><b>0.08%</b><i></i></div>
+            <div><span>REGIONS ONLINE</span><b>14</b><i></i></div>
+            <div><span>SESSIONS LIVE</span><b>82,410</b><i></i></div>
+            <div><span>BUILD HEALTH</span><b>99.98%</b><i></i></div>
+            <div><span>FRAME BUDGET</span><b>16.6ms</b><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pipeline section" id="pipeline" aria-labelledby="pipeline-title">
+        <div class="section-head">
+          <p class="label">PROTOTYPE TO LIVE OPS // ROUTE MAP</p>
+          <h2 id="pipeline-title">Prototype the loop. Wire the session. Patch without panic.</h2>
+          <p>
+            A multiplayer raycast path through production, from playable loop to monitored
+            launch region.
+          </p>
+        </div>
+        <div class="pipeline-map">
+          <img
+            class="pipeline-texture"
+            src="assets/abstract-global-network-routing-map-or-data-center-topology-visualization-with-glowing-paths-dark-cyan-green-palette-pipeline-background-texture.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="pipeline-track" aria-label="Production pipeline">
+            <article class="pipe-node active"><span>01</span><h3>Prototype the loop</h3><p>Input sample locked.</p><code>loop.latency: local</code></article>
+            <article class="pipe-node"><span>02</span><h3>Wire the session</h3><p>Lobby state routed.</p><code>join.flow: validated</code></article>
+            <article class="pipe-node"><span>03</span><h3>Run playtest</h3><p>Crash signal armed.</p><code>cohort: closed</code></article>
+            <article class="pipe-node"><span>04</span><h3>Scale test</h3><p>Relay lanes loaded.</p><code>regions: 6</code></article>
+            <article class="pipe-node"><span>05</span><h3>Launch region</h3><p>Build health passing.</p><code>SLA: online</code></article>
+            <article class="pipe-node"><span>06</span><h3>Patch without panic</h3><p>Rollback lane staged.</p><code>hotfix: ready</code></article>
+            <article class="pipe-node"><span>07</span><h3>Monitor and tune</h3><p>Live quality watched.</p><code>p95: stable</code></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="field section" aria-labelledby="field-title">
+        <div class="field-shell">
+          <div class="field-media" aria-hidden="true">
+            <img
+              src="assets/focused-game-studio-team-at-desks-in-a-dark-production-room-with-monitors-and-build-dashboards-non-stock-candid-mood-social-proof-masked-image.jpg"
+              alt=""
+            />
+          </div>
+          <div class="field-copy">
+            <p class="label">SIGNAL FROM THE FIELD</p>
+            <h2 id="field-title">Production and engineering see the same launch plan.</h2>
+          </div>
+          <div class="comm-stack">
+            <blockquote>“Gorillax gave our engineers one place to see sessions, crashes, patch state, and live tuning before the weekend spike.”</blockquote>
+            <blockquote>“We stopped guessing whether matchmaking, relay, or build health was the bottleneck.”</blockquote>
+            <blockquote>“The prototype-to-live route became visible enough for production and engineering to share the same launch plan.”</blockquote>
+          </div>
+          <div class="proof-strips" aria-label="Proof tags">
+            <span>USED BY MULTIPLAYER TEAMS</span>
+            <span>BUILT FOR LIVE OPS</span>
+            <span>UNITY / UNREAL / CUSTOM</span>
+            <span>OBSERVABILITY FIRST</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta section" id="demo" aria-labelledby="demo-title">
+        <div class="deploy-panel">
+          <p class="label">COMMAND DECK // FULLY ONLINE</p>
+          <h2 id="demo-title">Put your next launch on the deck.</h2>
+          <p>
+            Book a technical walkthrough and see how Gorillax routes sessions, patches,
+            telemetry, and performance signals from prototype to live ops.
+          </p>
+          <div class="deploy-actions" aria-label="Demo actions">
+            <a class="button primary" href="mailto:demo@gorillax.example">Request Demo</a>
+            <a class="button" href="#integrations">View SDK</a>
+            <a class="button ghost" href="#proof">Run Latency Check</a>
+          </div>
+          <div class="deploy-status" aria-hidden="true">
+            <span>BUILD ARMED</span>
+            <span>REGION ROUTES STABLE</span>
+            <span>SESSION QUALITY GREEN</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
