@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aurel designs reference-grade headphones, amplifiers, and portable DACs for precision listening."
+    />
+    <title>Aurel | The Listening Instrument</title>
+    <script type="module" crossorigin src="./assets/index-bZIsMtGY.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-kWpRbaUB.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="#" aria-label="Aurel home">AUREL</a>
+        <div class="nav-links">
+          <a href="#instrument">Instrument</a>
+          <a href="#acoustics">Acoustics</a>
+          <a href="#craft">Craft</a>
+          <a href="#audition">Audition</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero section-pad" id="instrument" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">The listening instrument</p>
+          <h1 id="hero-title">Built for the space between signal and silence.</h1>
+          <p class="hero-lede">
+            Aurel designs reference-grade audio hardware for listeners who care about
+            texture, headroom, and the physical feel of sound.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="mailto:studio@aurel.audio?subject=Aurel%20audition%20request">
+              Request an audition
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary" href="#acoustics">Explore the instrument</a>
+          </div>
+          <dl class="hero-notes" aria-label="Aurel product highlights">
+            <div>
+              <dt>Frame</dt>
+              <dd>6063 milled aluminum</dd>
+            </div>
+            <div>
+              <dt>Driver</dt>
+              <dd>Planar magnetic array</dd>
+            </div>
+            <div>
+              <dt>Finish</dt>
+              <dd>Stone, graphite, copper</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="product-stage-wrap" aria-labelledby="model-title">
+          <div class="product-stage">
+            <canvas
+              id="product-canvas"
+              aria-label="Interactive 3D render of Aurel over-ear headphones"
+            ></canvas>
+            <div class="webgl-fallback" aria-hidden="true">
+              <div class="fallback-band"></div>
+              <div class="fallback-cup left"></div>
+              <div class="fallback-cup right"></div>
+              <div class="fallback-amp"></div>
+            </div>
+            <div class="stage-vignette" aria-hidden="true"></div>
+            <ol class="callouts" aria-label="Product material callouts">
+              <li class="callout callout-driver">
+                <span class="pin"></span>
+                <strong>Planar magnetic driver</strong>
+                <span>low mass diaphragm</span>
+              </li>
+              <li class="callout callout-frame">
+                <span class="pin"></span>
+                <strong>Milled aluminum frame</strong>
+                <span>rigid, serviceable yoke</span>
+              </li>
+              <li class="callout callout-pads">
+                <span class="pin"></span>
+                <strong>Lambskin contact pads</strong>
+                <span>pressure balanced seal</span>
+              </li>
+              <li class="callout callout-path">
+                <span class="pin"></span>
+                <strong>Low-noise signal path</strong>
+                <span>shielded cable entry</span>
+              </li>
+            </ol>
+          </div>
+          <p class="model-copy" id="model-title">
+            The Aurel Reference pairs a milled aluminum yoke with lambskin contact
+            pads, planar magnetic diaphragms, and a shielded low-noise cable path.
+          </p>
+        </div>
+      </section>
+
+      <section class="acoustics section-pad" id="acoustics" aria-labelledby="acoustics-title">
+        <div class="section-heading">
+          <p class="eyebrow">Acoustics</p>
+          <h2 id="acoustics-title">Measured for control, voiced for attention.</h2>
+        </div>
+        <div class="measurement-panel">
+          <svg class="signal-graph" viewBox="0 0 900 180" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">Aurel measurement trace</title>
+            <desc id="graph-desc">A restrained frequency response style line with subtle grid marks.</desc>
+            <defs>
+              <linearGradient id="trace" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#496f82" />
+                <stop offset="52%" stop-color="#9b7a42" />
+                <stop offset="100%" stop-color="#5e7189" />
+              </linearGradient>
+            </defs>
+            <g class="grid-lines">
+              <path d="M0 40 H900 M0 90 H900 M0 140 H900" />
+              <path d="M80 0 V180 M210 0 V180 M380 0 V180 M570 0 V180 M760 0 V180" />
+            </g>
+            <path
+              class="trace-line"
+              d="M0 100 C70 92 105 104 150 94 C205 78 250 92 295 86 C370 76 410 80 470 82 C545 85 580 72 650 79 C710 87 760 103 820 91 C858 84 884 88 900 86"
+            />
+          </svg>
+          <div class="listening-grid">
+            <article>
+              <h3>Frequency response</h3>
+              <p>Even tonal balance with gentle upper-air extension and no spotlighted band.</p>
+            </article>
+            <article>
+              <h3>Transient control</h3>
+              <p>Start-stop behavior tuned for percussion, plucked strings, and room edges.</p>
+            </article>
+            <article>
+              <h3>Soundstage</h3>
+              <p>Precise lateral placement without widening tricks or synthetic bloom.</p>
+            </article>
+            <article>
+              <h3>Noise floor</h3>
+              <p>Quiet electronics preserve reverb tails and low-level texture.</p>
+            </article>
+            <article>
+              <h3>Headroom</h3>
+              <p>Clean reserve for high-dynamic recordings and demanding planar loads.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="craft section-pad" id="craft" aria-labelledby="craft-title">
+        <div class="section-heading">
+          <p class="eyebrow">Craft</p>
+          <h2 id="craft-title">Built like studio equipment, finished like an heirloom.</h2>
+        </div>
+        <div class="material-grid">
+          <article class="material-card aluminum">
+            <span class="material-swatch" aria-hidden="true"></span>
+            <h3>Brushed aluminum</h3>
+            <p>Low resonance cups, bead-blasted rails, and chamfered touch points.</p>
+          </article>
+          <article class="material-card damping">
+            <span class="material-swatch" aria-hidden="true"></span>
+            <h3>Tuned damping</h3>
+            <p>Layered acoustic resistance controls decay without muting harmonic texture.</p>
+          </article>
+          <article class="material-card service">
+            <span class="material-swatch" aria-hidden="true"></span>
+            <h3>Serviceable hardware</h3>
+            <p>Replaceable pads, cables, and fasteners extend the instrument's working life.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="family section-pad" aria-labelledby="family-title">
+        <div class="section-heading compact-heading">
+          <p class="eyebrow">System</p>
+          <h2 id="family-title">One voicing across three listening modes.</h2>
+        </div>
+        <div class="family-grid">
+          <article class="product-card">
+            <div class="product-mark" aria-hidden="true"></div>
+            <h3>Reference Headphones</h3>
+            <p>Open-back planar monitor for long sessions, spatial editing, and late-night records.</p>
+            <div class="tags" aria-label="Technical tags">
+              <span>Planar</span>
+              <span>Open-back</span>
+              <span>Balanced</span>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-mark amp" aria-hidden="true"></div>
+            <h3>Desktop Amplifier</h3>
+            <p>Current-capable class A/B drive with a black glass meter and stepped gain.</p>
+            <div class="tags" aria-label="Technical tags">
+              <span>Low-noise</span>
+              <span>4.4 mm</span>
+              <span>XLR</span>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-mark dac" aria-hidden="true"></div>
+            <h3>Portable DAC</h3>
+            <p>Small reference converter for travel chains, mastering notes, and USB-C playback.</p>
+            <div class="tags" aria-label="Technical tags">
+              <span>USB-C</span>
+              <span>32-bit</span>
+              <span>Line out</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="audition section-pad" id="audition" aria-labelledby="audition-title">
+        <div class="audition-copy">
+          <p class="eyebrow">Audition</p>
+          <h2 id="audition-title">Tell us where the instrument will live.</h2>
+          <p>
+            Aurel auditions are matched to listening chain, use case, and the kinds of
+            records that make you lean forward.
+          </p>
+        </div>
+        <form
+          class="audition-form"
+          action="mailto:studio@aurel.audio"
+          method="post"
+          enctype="text/plain"
+        >
+          <label>
+            <span>Listening chain</span>
+            <input name="Listening chain" type="text" placeholder="DAC, amplifier, source" />
+          </label>
+          <label>
+            <span>Room or headphone use</span>
+            <select name="Use case">
+              <option>Dedicated headphone listening</option>
+              <option>Studio or editing desk</option>
+              <option>Shared room system</option>
+              <option>Travel chain</option>
+            </select>
+          </label>
+          <label>
+            <span>Genre priorities</span>
+            <input name="Genre priorities" type="text" placeholder="Jazz trio, ambient, chamber, electronic" />
+          </label>
+          <label>
+            <span>Purchase timeline</span>
+            <select name="Purchase timeline">
+              <option>Audition this month</option>
+              <option>Within one quarter</option>
+              <option>Researching a future chain</option>
+            </select>
+          </label>
+          <button class="button button-primary" type="submit">
+            Begin audition
+            <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>AUREL</p>
+      <p>Reference audio instruments, assembled in small runs.</p>
+    </footer>
+
+  </body>
+</html>
