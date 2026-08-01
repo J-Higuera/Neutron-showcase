@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="M00n creates experimental works for collectors, rooms, and rituals of looking."
+    />
+    <title>M00n | Twin-Moon Atelier</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" aria-label="M00n studio navigation">
+      <a class="mini-wordmark" href="#top" aria-label="M00n home">
+        <span>M</span><span class="moon-letter" aria-hidden="true"></span><span class="moon-letter moon-letter--thin" aria-hidden="true"></span><span>n</span>
+      </a>
+      <nav>
+        <a href="#series">Series</a>
+        <a href="#works">Works</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Inquiry</a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="hero-stage" aria-label="The Twin-Moon Constellation">
+          <figure class="orbit-fragment orbit-fragment--round media-slot">
+            <img src="assets/abstract-mixed-media-artwork-on-dark-canvas-with-luminous-silver-blue-pigment-close-cropped-nocturne-gallery-mood.jpg" alt="Luminous silver blue pigment on dark mixed-media canvas" />
+          </figure>
+          <figure class="orbit-fragment orbit-fragment--strip media-slot">
+            <img src="assets/close-up-textured-canvas-pigment-strokes-in-deep-blue-violet-silver-tones-tactile-macro-detail.jpg" alt="Deep blue violet and silver pigment texture on canvas" />
+          </figure>
+          <figure class="orbit-fragment orbit-fragment--paper media-slot">
+            <img src="assets/experimental-collage-paper-fragment-or-painted-paper-study-with-irregular-edges-dark-creative-atelier-mood.jpg" alt="Irregular experimental painted paper fragment" />
+          </figure>
+          <figure class="orbit-fragment orbit-fragment--frame media-slot">
+            <img src="assets/framed-contemporary-abstract-artwork-on-dark-gallery-wall-with-soft-spotlight-and-strong-negative-space.jpg" alt="Framed abstract artwork under a soft gallery spotlight" />
+          </figure>
+          <figure class="orbit-fragment orbit-fragment--studio media-slot">
+            <img src="assets/contemporary-artist-studio-table-at-night-with-brushes-paper-pigment-canvas-fragments-warm-spotlight-moody-shadows.jpg" alt="Nocturne artist studio table with brushes, paper, and pigment" />
+          </figure>
+          <figure class="orbit-fragment orbit-fragment--glow media-slot">
+            <img src="assets/projection-light-or-soft-circular-illumination-on-studio-wall-james-turrell-inspired-atmospheric-glow-without-literal-moon-photo.jpg" alt="Soft circular projection light on a studio wall" />
+          </figure>
+
+          <div class="hero-core">
+            <p class="eyebrow">Private Nocturne Atelier</p>
+            <h1 class="wordmark" id="hero-title" aria-label="M00n">
+              <span>M</span>
+              <span class="wordmark-moon" aria-hidden="true"></span>
+              <span class="wordmark-moon wordmark-moon--second" aria-hidden="true"></span>
+              <span>n</span>
+            </h1>
+            <p class="hero-line">Creative art under twin moons.</p>
+            <p class="hero-copy">
+              M00n makes experimental works for collectors, rooms, and rituals of looking —
+              pigment, scan, overpaint, erase, illuminate.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button button--primary" href="#series">View Lunar Series</a>
+              <a class="button" href="#contact">Request Availability</a>
+              <a class="button button--quiet" href="#commissions">Commission a Lunar Study</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-rail phase-rail--hero" aria-label="Lunar phase quick navigation">
+          <a href="#series" style="--phase:0">New</a>
+          <a href="#series" style="--phase:1">Waxing</a>
+          <a href="#series" style="--phase:2">Quarter</a>
+          <a href="#series" style="--phase:3">Gibbous</a>
+          <a href="#series" style="--phase:4">Full</a>
+          <a href="#series" style="--phase:5">Waning</a>
+          <a href="#series" style="--phase:6">Third</a>
+          <a href="#series" style="--phase:7">Crescent</a>
+        </div>
+      </section>
+
+      <section class="section series-section" id="series" aria-labelledby="series-title">
+        <div class="section-kicker">Eight Lunar Rooms</div>
+        <div class="section-head">
+          <h2 id="series-title">Lunar phase series navigator</h2>
+          <p>
+            Each phase opens a different room in the atelier: raw fields, emerging forms,
+            collectible objects, full light works, archives, and nocturne editions.
+          </p>
+        </div>
+
+        <div class="phase-console">
+          <div class="phase-arc" role="tablist" aria-label="M00n lunar series">
+            <button class="phase-button is-active" id="phase-tab-0" role="tab" aria-selected="true" aria-controls="phase-panel" data-phase="0" style="--i:0">
+              <span class="phase-icon phase-icon--new" aria-hidden="true"></span>
+              <span>New Moon</span>
+            </button>
+            <button class="phase-button" id="phase-tab-1" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="1" tabindex="-1" style="--i:1">
+              <span class="phase-icon phase-icon--waxing-crescent" aria-hidden="true"></span>
+              <span>Waxing Crescent</span>
+            </button>
+            <button class="phase-button" id="phase-tab-2" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="2" tabindex="-1" style="--i:2">
+              <span class="phase-icon phase-icon--first-quarter" aria-hidden="true"></span>
+              <span>First Quarter</span>
+            </button>
+            <button class="phase-button" id="phase-tab-3" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="3" tabindex="-1" style="--i:3">
+              <span class="phase-icon phase-icon--waxing-gibbous" aria-hidden="true"></span>
+              <span>Waxing Gibbous</span>
+            </button>
+            <button class="phase-button" id="phase-tab-4" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="4" tabindex="-1" style="--i:4">
+              <span class="phase-icon phase-icon--full" aria-hidden="true"></span>
+              <span>Full Moon</span>
+            </button>
+            <button class="phase-button" id="phase-tab-5" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="5" tabindex="-1" style="--i:5">
+              <span class="phase-icon phase-icon--waning-gibbous" aria-hidden="true"></span>
+              <span>Waning Gibbous</span>
+            </button>
+            <button class="phase-button" id="phase-tab-6" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="6" tabindex="-1" style="--i:6">
+              <span class="phase-icon phase-icon--third-quarter" aria-hidden="true"></span>
+              <span>Third Quarter</span>
+            </button>
+            <button class="phase-button" id="phase-tab-7" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="7" tabindex="-1" style="--i:7">
+              <span class="phase-icon phase-icon--waning-crescent" aria-hidden="true"></span>
+              <span>Waning Crescent</span>
+            </button>
+          </div>
+
+          <article class="phase-room" id="phase-panel" role="tabpanel" tabindex="0" aria-labelledby="phase-tab-0">
+            <div class="phase-room__text">
+              <p class="object-label" id="phase-meta">Moon Object No. 01, 2026 // pigment on dark ground // studies available on inquiry</p>
+              <h3 id="phase-title">New Moon Studies</h3>
+              <p id="phase-note">Raw dark-ground experiments, early marks, and obscured forms. Each work begins as a nocturne study and resolves as an object of light.</p>
+              <a class="text-link" href="#contact">Inquire about this series</a>
+            </div>
+            <div class="phase-room__works" aria-label="Selected works in active lunar phase">
+              <figure class="phase-work phase-work--lead media-slot">
+                <img id="phase-img-1" src="assets/abstract-mixed-media-artwork-on-dark-canvas-with-luminous-silver-blue-pigment-close-cropped-nocturne-gallery-mood.jpg" alt="Active lunar series lead artwork" />
+              </figure>
+              <figure class="phase-work phase-work--tall media-slot">
+                <img id="phase-img-2" src="assets/close-up-textured-canvas-pigment-strokes-in-deep-blue-violet-silver-tones-tactile-macro-detail.jpg" alt="Active lunar series detail artwork" />
+              </figure>
+              <figure class="phase-work phase-work--small media-slot">
+                <img id="phase-img-3" src="assets/experimental-collage-paper-fragment-or-painted-paper-study-with-irregular-edges-dark-creative-atelier-mood.jpg" alt="Active lunar series study fragment" />
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section works-section" id="works" aria-labelledby="works-title">
+        <div class="section-kicker">Collectible Object Labels</div>
+        <div class="section-head">
+          <h2 id="works-title">Featured works</h2>
+          <p>Originals, editions, commissions, and exhibition inquiries. Metadata is kept close to the object, like a private viewing table.</p>
+        </div>
+
+        <div class="gallery-mounts">
+          <article class="work-object work-object--large">
+            <figure class="work-image media-slot">
+              <img src="assets/framed-contemporary-abstract-artwork-on-dark-gallery-wall-with-soft-spotlight-and-strong-negative-space.jpg" alt="Framed contemporary abstract artwork on a dark gallery wall" />
+            </figure>
+            <div class="museum-tag">
+              <h3>Moon Object No. 04, 2026</h3>
+              <p>mixed media on canvas // 30 x 40 in // original // available on inquiry // from New Moon Studies</p>
+              <span>Certificate of authenticity included</span>
+            </div>
+          </article>
+          <article class="work-object work-object--satellite work-object--upper">
+            <figure class="work-image media-slot">
+              <img src="assets/abstract-mixed-media-artwork-on-dark-canvas-with-luminous-silver-blue-pigment-close-cropped-nocturne-gallery-mood.jpg" alt="Close cropped luminous pigment artwork" />
+            </figure>
+            <div class="museum-tag">
+              <h3>Full Light Work, 2026</h3>
+              <p>acrylic, graphite, projected scan // private collection</p>
+              <span>Exhibition proposal ready</span>
+            </div>
+          </article>
+          <article class="work-object work-object--satellite work-object--lower">
+            <figure class="work-image media-slot">
+              <img src="assets/experimental-collage-paper-fragment-or-painted-paper-study-with-irregular-edges-dark-creative-atelier-mood.jpg" alt="Experimental collage paper fragment study" />
+            </figure>
+            <div class="museum-tag">
+              <h3>Waning Study, 2026</h3>
+              <p>pigment, collage, digital transfer // edition of 12</p>
+              <span>Edition available</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section process-section" id="process" aria-labelledby="process-title">
+        <div class="process-table">
+          <div class="process-copy">
+            <p class="section-kicker">Medium Table</p>
+            <h2 id="process-title">Pigment, scan, overpaint, erase, illuminate.</h2>
+            <p>
+              Each work begins as a nocturne study: a dark field, a pressure mark,
+              a fragment of light.
+            </p>
+            <p>
+              Studio materials move between canvas, digital layering, collage,
+              projection, and hand-finished surfaces.
+            </p>
+          </div>
+
+          <figure class="process-image process-image--table media-slot">
+            <img src="assets/contemporary-artist-studio-table-at-night-with-brushes-paper-pigment-canvas-fragments-warm-spotlight-moody-shadows.jpg" alt="Studio table with brushes, paper, pigment, and canvas fragments" />
+          </figure>
+          <figure class="process-image process-image--macro media-slot">
+            <img src="assets/close-up-textured-canvas-pigment-strokes-in-deep-blue-violet-silver-tones-tactile-macro-detail.jpg" alt="Macro detail of blue violet pigment strokes" />
+          </figure>
+          <figure class="process-image process-image--moon media-slot">
+            <img src="assets/projection-light-or-soft-circular-illumination-on-studio-wall-james-turrell-inspired-atmospheric-glow-without-literal-moon-photo.jpg" alt="Circular illumination on a studio wall" />
+          </figure>
+
+          <div class="paper-note paper-note--one">
+            <span>dark field / silver edge</span>
+            <p>Original work. One surface, several passes.</p>
+          </div>
+          <div class="paper-note paper-note--two">
+            <span>scan light</span>
+            <p>Projection studies are folded back into painted surfaces.</p>
+          </div>
+          <div class="swatches" aria-label="Pigment swatches">
+            <span style="--swatch:#1E3A5F"></span>
+            <span style="--swatch:#6F658C"></span>
+            <span style="--swatch:#B9C0CA"></span>
+            <span style="--swatch:#9E6B6F"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section commission-section" id="commissions" aria-labelledby="commission-title">
+        <div class="section-head section-head--center">
+          <p class="section-kicker">Viewing Slips</p>
+          <h2 id="commission-title">Choose the envelope on the gallery desk.</h2>
+          <p>For private viewing requests, available works, edition details, and commission proposals.</p>
+        </div>
+        <div class="viewing-slips">
+          <article class="viewing-slip">
+            <span class="tiny-moon" aria-hidden="true"></span>
+            <p>For collectors</p>
+            <h3>Request availability</h3>
+            <a href="#contact">Open request</a>
+          </article>
+          <article class="viewing-slip">
+            <span class="tiny-moon tiny-moon--half" aria-hidden="true"></span>
+            <p>For curators</p>
+            <h3>Open exhibition inquiry</h3>
+            <a href="#contact">Request packet</a>
+          </article>
+          <article class="viewing-slip">
+            <span class="tiny-moon tiny-moon--crescent" aria-hidden="true"></span>
+            <p>For private clients</p>
+            <h3>Commission a lunar study</h3>
+            <a href="#contact">Begin commission</a>
+          </article>
+        </div>
+        <p class="commission-note">
+          Exhibition packets include series notes, object metadata, installation direction, and availability status.
+        </p>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="moonrise" aria-hidden="true"></div>
+        <div class="contact-shell">
+          <div>
+            <p class="section-kicker">Final Moonrise</p>
+            <h2 id="contact-title">Originals, editions, commissions, and exhibition inquiries.</h2>
+            <p>
+              For commissions, exhibition proposals, and private viewing requests.
+              Private viewing requests are answered with availability, dimensions,
+              medium, and series notes.
+            </p>
+          </div>
+          <form class="contact-form" action="#" method="post">
+            <label>
+              <span>Name</span>
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Inquiry type</span>
+              <select name="inquiry">
+                <option>Collector</option>
+                <option>Curator</option>
+                <option>Commission</option>
+                <option>Collaboration</option>
+              </select>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5"></textarea>
+            </label>
+            <button class="button button--primary" type="submit">Send Inquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="mini-wordmark mini-wordmark--footer" aria-label="M00n">
+        <span>M</span><span class="moon-letter" aria-hidden="true"></span><span class="moon-letter moon-letter--thin" aria-hidden="true"></span><span>n</span>
+      </div>
+      <p>Experimental works for collectors, rooms, and rituals of looking.</p>
+    </footer>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
