@@ -357,8 +357,11 @@ body.reveal-armed [data-reveal].revealed {
 }
 
 .ring {
-  height: clamp(340px, 55vh, 540px);
-  margin: 0 -2rem;
+  /* full-bleed: the arch spans the whole viewport regardless of the
+     centered content column */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: clamp(360px, 58vh, 560px);
   position: relative;
 }
 

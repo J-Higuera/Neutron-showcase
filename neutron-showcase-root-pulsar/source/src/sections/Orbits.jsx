@@ -132,7 +132,7 @@ export default function Orbits() {
         {ringMounted && (
           <CircularGallery
             items={ringItems}
-            bend={2.4}
+            bend={3}
             textColor="#cfe0ff"
             borderRadius={0.06}
             font='500 24px "Space Grotesk"'

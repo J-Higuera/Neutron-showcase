@@ -346,9 +346,9 @@ class Media {
     }
 
     this.speed = scroll.current - scroll.last;
-    // NEUTRON patch: half the upstream 0.04 — the card ripple oscillated
-    // too fast (owner call, 2026-08-08).
-    this.program.uniforms.uTime.value += 0.02;
+    // NEUTRON patch: upstream ticks 0.04 — the card ripple oscillated too
+    // fast (owner calls, 2026-08-08 ×2: 0.02 still quick, settled at 0.012).
+    this.program.uniforms.uTime.value += 0.012;
     this.program.uniforms.uSpeed.value = this.speed;
 
     const planeOffset = this.plane.scale.x / 2;
