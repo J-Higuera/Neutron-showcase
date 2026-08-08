@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import roster from '../generated-showcase-roster.json';
 import CircularGallery from '../components/reactbits/CircularGallery.jsx';
 import TiltedCard from '../components/reactbits/TiltedCard.jsx';
-import FlowingMenu from '../components/reactbits/FlowingMenu.jsx';
 import StarBorder from '../components/reactbits/StarBorder.jsx';
 import Magnet from '../components/reactbits/Magnet.jsx';
 
@@ -109,14 +108,6 @@ export default function Orbits() {
     }).filter(o => o.worlds.length > 0);
   }, [entries]);
 
-  const directoryItems = useMemo(
-    () =>
-      [...entries]
-        .sort((a, b) => shortName(a).localeCompare(shortName(b)))
-        .map(e => ({ link: e.href, text: shortName(e), image: thumb(e) })),
-    [entries]
-  );
-
   return (
     <section className="worlds" id="worlds">
       <p className="section-eyebrow mono">— THE COLLECTION</p>
@@ -165,23 +156,6 @@ export default function Orbits() {
         ))}
       </div>
 
-      <div className="directory" data-reveal>
-        <p className="directory-title mono">FAST INDEX · A–Z</p>
-        <div
-          className="directory-menu"
-          style={{ height: `${directoryItems.length * 56}px` }}
-        >
-          <FlowingMenu
-            items={directoryItems}
-            speed={12}
-            textColor="#eef2ff"
-            bgColor="transparent"
-            marqueeBgColor="#cfe0ff"
-            marqueeTextColor="#05060b"
-            borderColor="rgba(190, 210, 255, 0.14)"
-          />
-        </div>
-      </div>
     </section>
   );
 }

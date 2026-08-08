@@ -545,32 +545,6 @@ body.reveal-armed [data-reveal].revealed {
   text-decoration: none;
 }
 
-/* directory */
-.directory {
-  margin: 6rem -2rem 0;
-}
-
-.directory-title {
-  text-align: center;
-  color: var(--accent);
-  margin-bottom: 1.2rem;
-}
-
-.directory-menu .menu__item-link,
-.directory-menu .marquee span {
-  font-size: 1.05rem;
-  font-family: var(--font-display);
-  letter-spacing: 0.08em;
-}
-
-.directory-menu .marquee__img {
-  width: 120px;
-  height: 34px;
-  margin: 0 1.2vw;
-  padding: 0;
-  border-radius: 8px;
-}
-
 /* ————————————————————————————————— colophon ——————————————————————————————— */
 .colophon {
   margin-top: clamp(6rem, 12vh, 9rem);
@@ -709,11 +683,6 @@ body.reveal-armed [data-reveal].revealed {
 
   .hero-foot span:first-child {
     display: none;
-  }
-
-  .directory-menu .menu__item-link,
-  .directory-menu .marquee span {
-    font-size: 0.85rem;
   }
 }
 
