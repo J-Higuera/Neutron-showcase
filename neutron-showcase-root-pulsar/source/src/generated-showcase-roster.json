@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-08T04:49:53.677Z",
+    "generatedAt": "2026-08-08T04:53:51.060Z",
     "preservedFields": [
       "name",
       "title",
