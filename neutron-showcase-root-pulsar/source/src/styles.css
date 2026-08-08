@@ -147,6 +147,12 @@ body.reveal-armed [data-reveal].revealed {
   opacity: 0;
   transform: translateY(0.35em);
   animation: letter-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+}
+
+/* .play lands after the first painted frames (see Hero.jsx) */
+.hero-title.play span {
+  animation-play-state: running;
 }
 
 @keyframes letter-rise {

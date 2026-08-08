@@ -1,9 +1,25 @@
+import { useEffect, useState } from 'react';
 import PulsarHero from '../components/PulsarHero.jsx';
 import DecryptedText from '../components/reactbits/DecryptedText.jsx';
 import StarBorder from '../components/reactbits/StarBorder.jsx';
 import Magnet from '../components/reactbits/Magnet.jsx';
 
 export default function Hero() {
+  // The title animation starts only after two painted frames — if it starts
+  // during the initial mount storm, dropped frames make the letters appear to
+  // freeze and then pop in at once.
+  const [play, setPlay] = useState(false);
+  useEffect(() => {
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setPlay(true));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, []);
+
   const scrollToWorlds = () => {
     document.getElementById('worlds')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -27,7 +43,7 @@ export default function Hero() {
             characters="NEUTRON0123456789·"
           />
         </p>
-        <h1 className="hero-title" aria-label="NEUTRON">
+        <h1 className={`hero-title${play ? ' play' : ''}`} aria-label="NEUTRON">
           {'NEUTRON'.split('').map((ch, i) => (
             <span key={i} style={{ animationDelay: `${0.35 + i * 0.07}s` }}>
               {ch}

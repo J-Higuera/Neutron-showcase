@@ -99,9 +99,13 @@ export default function TiltedCard({
           scale
         }}
       >
+        {/* NEUTRON patch: lazy + async decode — 22 instances on one page
+            must not compete with the hero for first-paint bandwidth */}
         <motion.img
           src={imageSrc}
           alt={altText}
+          loading="lazy"
+          decoding="async"
           className="tilted-card-img"
           style={{
             width: imageWidth,

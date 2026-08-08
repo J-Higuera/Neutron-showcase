@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import roster from '../generated-showcase-roster.json';
 import CircularGallery from '../components/reactbits/CircularGallery.jsx';
 import TiltedCard from '../components/reactbits/TiltedCard.jsx';
@@ -74,9 +74,30 @@ export default function Orbits() {
   const entries = roster.entries;
 
   const ringItems = useMemo(
-    () => entries.map(e => ({ image: thumb(e), text: shortName(e) })),
+    () => entries.map(e => ({ image: thumb(e), text: shortName(e), link: e.href })),
     [entries]
   );
+
+  // The ring is the heaviest thing on the page (WebGL init + 22 textures).
+  // Mounting it only when the user approaches keeps first paint clean for
+  // the hero; once mounted it stays.
+  const ringRef = useRef(null);
+  const [ringMounted, setRingMounted] = useState(false);
+  useEffect(() => {
+    const el = ringRef.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(
+      observed => {
+        if (observed[0].isIntersecting) {
+          setRingMounted(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: '600px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const orbits = useMemo(() => {
     let counter = 0;
@@ -107,17 +128,19 @@ export default function Orbits() {
         follow any of them in.
       </p>
 
-      <div className="ring" data-reveal>
-        <CircularGallery
-          items={ringItems}
-          bend={2.4}
-          textColor="#cfe0ff"
-          borderRadius={0.06}
-          font='500 24px "Space Grotesk"'
-          scrollSpeed={2}
-          scrollEase={0.05}
-        />
-        <p className="ring-hint mono">DRAG TO SPIN THE ORBIT</p>
+      <div className="ring" data-reveal ref={ringRef}>
+        {ringMounted && (
+          <CircularGallery
+            items={ringItems}
+            bend={2.4}
+            textColor="#cfe0ff"
+            borderRadius={0.06}
+            font='500 24px "Space Grotesk"'
+            scrollSpeed={1}
+            scrollEase={0.035}
+          />
+        )}
+        <p className="ring-hint mono">DRAG TO SPIN · CLICK A WORLD TO ENTER</p>
       </div>
 
       <div className="orbit-list">

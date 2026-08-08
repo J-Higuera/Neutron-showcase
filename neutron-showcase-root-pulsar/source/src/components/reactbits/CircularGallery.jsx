@@ -448,6 +448,8 @@ class App {
       { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: 'Palm Trees' }
     ];
     const galleryItems = items && items.length ? items : defaultItems;
+    // NEUTRON patch: kept for click → link resolution in onTouchUp.
+    this.galleryItems = galleryItems;
     this.mediasImages = galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
@@ -472,6 +474,11 @@ class App {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
     this.start = e.touches ? e.touches[0].clientX : e.clientX;
+    // NEUTRON patch: remember where/when the press started so onTouchUp can
+    // tell a click from a drag.
+    this.downX = this.start;
+    this.downY = e.touches ? e.touches[0].clientY : e.clientY;
+    this.downTime = performance.now();
   }
   onTouchMove(e) {
     if (!this.isDown) return;
@@ -479,9 +486,35 @@ class App {
     const distance = (this.start - x) * (this.scrollSpeed * 0.025);
     this.scroll.target = this.scroll.position + distance;
   }
-  onTouchUp() {
+  onTouchUp(e) {
+    const wasDown = this.isDown;
     this.isDown = false;
     this.onCheck();
+    // NEUTRON patch: a press that barely moved and released quickly is a
+    // click — map it to the nearest plane and open that item's link.
+    if (!wasDown || !e || !this.medias || !this.galleryItems) return;
+    const upX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const upY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+    const moved = Math.hypot(upX - this.downX, upY - this.downY);
+    const elapsed = performance.now() - this.downTime;
+    if (moved > 8 || elapsed > 350) return;
+    const rect = this.container.getBoundingClientRect();
+    if (upX < rect.left || upX > rect.right || upY < rect.top || upY > rect.bottom) return;
+    const worldX = ((upX - rect.left) / this.screen.width - 0.5) * this.viewport.width;
+    let nearest = null;
+    let nearestDist = Infinity;
+    this.medias.forEach(media => {
+      const d = Math.abs(media.plane.position.x - worldX);
+      if (d < nearestDist) {
+        nearestDist = d;
+        nearest = media;
+      }
+    });
+    if (!nearest || nearestDist > nearest.plane.scale.x * 0.6) return;
+    const item = this.galleryItems[nearest.index % this.galleryItems.length];
+    if (item && item.link) {
+      window.open(item.link, '_blank', 'noopener,noreferrer');
+    }
   }
   onWheel(e) {
     const delta = e.deltaY || e.wheelDelta || e.detail;
