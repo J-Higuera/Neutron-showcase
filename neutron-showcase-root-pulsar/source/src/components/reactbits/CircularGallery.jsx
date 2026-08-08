@@ -538,6 +538,12 @@ class App {
     }
   }
   update() {
+    // NEUTRON patch: skip the whole frame while off-screen (isVisible is
+    // maintained by the observer added in addEventListeners).
+    if (this.isVisible === false) {
+      this.raf = window.requestAnimationFrame(this.update.bind(this));
+      return;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -555,27 +561,46 @@ class App {
     this.boundOnTouchUp = this.onTouchUp.bind(this);
     this.boundOnKeyDown = this.onKeyDown.bind(this);
 
+    // NEUTRON patch (embedded-page context): pointer/wheel input starts on the
+    // gallery container, not window — upstream binds window, which spins the
+    // ring on every page scroll and grabs every drag on the page. Move/up stay
+    // on window so a drag that leaves the ring still releases cleanly.
     window.addEventListener('resize', this.boundOnResize);
-    window.addEventListener('mousewheel', this.boundOnWheel);
-    window.addEventListener('wheel', this.boundOnWheel);
-    window.addEventListener('mousedown', this.boundOnTouchDown);
+    this.container?.addEventListener('mousewheel', this.boundOnWheel);
+    this.container?.addEventListener('wheel', this.boundOnWheel);
+    this.container?.addEventListener('mousedown', this.boundOnTouchDown);
     window.addEventListener('mousemove', this.boundOnTouchMove);
     window.addEventListener('mouseup', this.boundOnTouchUp);
-    window.addEventListener('touchstart', this.boundOnTouchDown);
+    this.container?.addEventListener('touchstart', this.boundOnTouchDown);
     window.addEventListener('touchmove', this.boundOnTouchMove);
     window.addEventListener('touchend', this.boundOnTouchUp);
 
     this.container?.addEventListener('keydown', this.boundOnKeyDown);
+
+    // NEUTRON patch: render only while the ring is near the viewport —
+    // upstream renders every frame for the life of the page.
+    this.isVisible = true;
+    if (this.container && typeof IntersectionObserver !== 'undefined') {
+      this.visibilityObserver = new IntersectionObserver(
+        entries => {
+          this.isVisible = entries[0].isIntersecting;
+        },
+        { rootMargin: '200px' }
+      );
+      this.visibilityObserver.observe(this.container);
+    }
   }
   destroy() {
     window.cancelAnimationFrame(this.raf);
+    // NEUTRON patch: removal mirrors the container-scoped bindings above.
+    this.visibilityObserver?.disconnect();
     window.removeEventListener('resize', this.boundOnResize);
-    window.removeEventListener('mousewheel', this.boundOnWheel);
-    window.removeEventListener('wheel', this.boundOnWheel);
-    window.removeEventListener('mousedown', this.boundOnTouchDown);
+    this.container?.removeEventListener('mousewheel', this.boundOnWheel);
+    this.container?.removeEventListener('wheel', this.boundOnWheel);
+    this.container?.removeEventListener('mousedown', this.boundOnTouchDown);
     window.removeEventListener('mousemove', this.boundOnTouchMove);
     window.removeEventListener('mouseup', this.boundOnTouchUp);
-    window.removeEventListener('touchstart', this.boundOnTouchDown);
+    this.container?.removeEventListener('touchstart', this.boundOnTouchDown);
     window.removeEventListener('touchmove', this.boundOnTouchMove);
     window.removeEventListener('touchend', this.boundOnTouchUp);
     if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {

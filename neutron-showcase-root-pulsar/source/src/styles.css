@@ -56,9 +56,8 @@ a {
 /* Scroll reveals — armed only when JS + motion available */
 body.reveal-armed [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(16px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
 }
 body.reveal-armed [data-reveal].revealed {
   opacity: 1;
@@ -245,24 +244,6 @@ body.reveal-armed [data-reveal].revealed {
   margin-bottom: 1.8rem;
 }
 
-.section-title .char {
-  color: var(--ink);
-}
-
-/* the vendored ScrollFloat h2 ships its own display sizing; the section title
-   scale is set here instead */
-.section-title .scroll-float {
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-
-.section-title .scroll-float-text {
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: 1.15;
-  text-align: left;
-}
 
 /* ————————————————————————————————— system ————————————————————————————————— */
 .system {

@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import roster from '../generated-showcase-roster.json';
-import ScrollFloat from '../components/reactbits/ScrollFloat.jsx';
 import CircularGallery from '../components/reactbits/CircularGallery.jsx';
 import TiltedCard from '../components/reactbits/TiltedCard.jsx';
 import FlowingMenu from '../components/reactbits/FlowingMenu.jsx';
@@ -100,11 +99,9 @@ export default function Orbits() {
   return (
     <section className="worlds" id="worlds">
       <p className="section-eyebrow mono">— THE COLLECTION</p>
-      <div className="section-title">
-        <ScrollFloat animationDuration={1} ease="back.inOut(2)" stagger={0.02}>
-          TWENTY-TWO WORLDS
-        </ScrollFloat>
-      </div>
+      <h2 className="section-title" data-reveal>
+        TWENTY-TWO WORLDS
+      </h2>
       <p className="worlds-lead">
         Six orbits, twenty-two bodies. Every one is a complete, deployed site —
         follow any of them in.

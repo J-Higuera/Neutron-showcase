@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import ScrollFloat from '../components/reactbits/ScrollFloat.jsx';
 
 const AGENTS = [
   {
@@ -74,15 +73,9 @@ export default function System() {
   return (
     <section className="system" id="system">
       <p className="section-eyebrow mono">— THE SYSTEM</p>
-      <div className="section-title">
-        <ScrollFloat
-          animationDuration={1}
-          ease="back.inOut(2)"
-          stagger={0.025}
-        >
-          ONE DENSE CORE
-        </ScrollFloat>
-      </div>
+      <h2 className="section-title" data-reveal>
+        ONE DENSE CORE
+      </h2>
       <p className="system-lead">
         Neutron is an autonomous agent platform. Every world in this collection
         came out of the same loop — a planner, a builder, and a reviewer,

@@ -1,14 +1,9 @@
 import { useEffect } from 'react';
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ClickSpark from './components/reactbits/ClickSpark.jsx';
 import Hero from './sections/Hero.jsx';
 import System from './sections/System.jsx';
 import Orbits from './sections/Orbits.jsx';
 import Colophon from './sections/Colophon.jsx';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   useEffect(() => {
@@ -16,14 +11,9 @@ export default function App() {
       return undefined;
     }
 
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    lenis.on('scroll', ScrollTrigger.update);
-    const tick = time => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-
-    // Scroll reveals: armed only when JS + motion are available, so content
-    // is never hidden for anyone else.
+    // Native scrolling only — no smooth-scroll library. Scroll reveals are
+    // armed only when JS + motion are available, so content is never hidden
+    // for anyone else.
     document.body.classList.add('reveal-armed');
     const io = new IntersectionObserver(
       observed => {
@@ -40,8 +30,6 @@ export default function App() {
 
     return () => {
       io.disconnect();
-      gsap.ticker.remove(tick);
-      lenis.destroy();
       document.body.classList.remove('reveal-armed');
     };
   }, []);
