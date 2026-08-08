@@ -601,8 +601,9 @@ class App {
     // ring on every page scroll and grabs every drag on the page. Move/up stay
     // on window so a drag that leaves the ring still releases cleanly.
     window.addEventListener('resize', this.boundOnResize);
-    this.container?.addEventListener('mousewheel', this.boundOnWheel);
-    this.container?.addEventListener('wheel', this.boundOnWheel);
+    // NEUTRON patch 2026-08-08: wheel input removed entirely (owner call) —
+    // page-scrolling across the ring spun it and fired the speed ripple,
+    // which read as a glitch. The ring moves by drag (and arrow keys) only.
     this.container?.addEventListener('mousedown', this.boundOnTouchDown);
     window.addEventListener('mousemove', this.boundOnTouchMove);
     window.addEventListener('mouseup', this.boundOnTouchUp);
@@ -630,8 +631,6 @@ class App {
     // NEUTRON patch: removal mirrors the container-scoped bindings above.
     this.visibilityObserver?.disconnect();
     window.removeEventListener('resize', this.boundOnResize);
-    this.container?.removeEventListener('mousewheel', this.boundOnWheel);
-    this.container?.removeEventListener('wheel', this.boundOnWheel);
     this.container?.removeEventListener('mousedown', this.boundOnTouchDown);
     window.removeEventListener('mousemove', this.boundOnTouchMove);
     window.removeEventListener('mouseup', this.boundOnTouchUp);

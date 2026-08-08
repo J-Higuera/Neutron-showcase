@@ -128,7 +128,7 @@ export default function Orbits() {
         follow any of them in.
       </p>
 
-      <div className="ring" data-reveal ref={ringRef}>
+      <div className="ring" ref={ringRef}>
         {ringMounted && (
           <CircularGallery
             items={ringItems}
