@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 // The magnetic axis is misaligned with the spin axis — when a beam sweeps across
 // the viewer's line of sight the whole hero pulses, like the real thing.
 
-const PARTICLE_COUNT = 42000;
+const PARTICLE_COUNT = 32000;
 const CAM_TILT = 0.34;
 const BEAM_TILT = 0.42; // magnetic axis offset from spin axis, radians
 const SPIN_RATE = 0.55; // rad/s
@@ -174,7 +174,9 @@ export default function PulsarHero() {
 
     let dpr = 1;
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // 1.5 caps the fill cost on high-density displays; a particle field
+      // doesn't need text-grade resolution
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.round(canvas.clientWidth * dpr);
       canvas.height = Math.round(canvas.clientHeight * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);

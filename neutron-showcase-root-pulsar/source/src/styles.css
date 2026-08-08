@@ -417,6 +417,10 @@ body.reveal-armed [data-reveal].revealed {
   align-items: center;
   gap: clamp(2rem, 5vw, 4.5rem);
   padding: 3rem 0;
+  /* off-screen rows skip layout + paint entirely; the intrinsic size keeps
+     the scrollbar stable */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
 }
 
 .world-row::before {
@@ -461,13 +465,12 @@ body.reveal-armed [data-reveal].revealed {
 
 .world-chip {
   display: inline-block;
-  background: rgba(3, 4, 9, 0.75);
+  background: rgba(3, 4, 9, 0.85);
   border: 1px solid var(--line-strong);
   color: var(--star);
   padding: 0.35rem 0.7rem;
   border-radius: 4px;
   margin: 0.8rem;
-  backdrop-filter: blur(4px);
 }
 
 .world-info {

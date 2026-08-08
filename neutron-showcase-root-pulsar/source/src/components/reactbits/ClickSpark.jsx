@@ -13,21 +13,22 @@ const ClickSpark = ({
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
   const startTimeRef = useRef(null);
+  // NEUTRON patch: lets handleClick wake the on-demand draw loop.
+  const startLoopRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const parent = canvas.parentElement;
-    if (!parent) return;
-
+    // NEUTRON patch: the canvas is viewport-fixed, not parent-sized. Upstream
+    // sizes it to the parent element — wrapped around a full page that means
+    // clearing a document-height canvas every animation frame.
     let resizeTimeout;
 
     const resizeCanvas = () => {
-      const { width, height } = parent.getBoundingClientRect();
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
+      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
     };
 
@@ -36,13 +37,12 @@ const ClickSpark = ({
       resizeTimeout = setTimeout(resizeCanvas, 100);
     };
 
-    const ro = new ResizeObserver(handleResize);
-    ro.observe(parent);
+    window.addEventListener('resize', handleResize);
 
     resizeCanvas();
 
     return () => {
-      ro.disconnect();
+      window.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
     };
   }, []);
@@ -103,13 +103,26 @@ const ClickSpark = ({
         return true;
       });
 
-      animationId = requestAnimationFrame(draw);
+      // NEUTRON patch: the loop lives only while sparks are alive — upstream
+      // runs requestAnimationFrame for the life of the page. handleClick
+      // restarts the loop via startLoopRef when a new burst arrives.
+      if (sparksRef.current.length > 0) {
+        animationId = requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        animationId = null;
+      }
     };
 
-    animationId = requestAnimationFrame(draw);
+    startLoopRef.current = () => {
+      if (animationId == null) {
+        animationId = requestAnimationFrame(draw);
+      }
+    };
 
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId != null) cancelAnimationFrame(animationId);
+      startLoopRef.current = null;
     };
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
 
@@ -129,6 +142,7 @@ const ClickSpark = ({
     }));
 
     sparksRef.current.push(...newSparks);
+    startLoopRef.current?.();
   };
 
   return (
@@ -140,17 +154,19 @@ const ClickSpark = ({
       }}
       onClick={handleClick}
     >
+      {/* NEUTRON patch: viewport-fixed overlay, matching the resize logic */}
       <canvas
         ref={canvasRef}
         style={{
-          width: '100%',
-          height: '100%',
+          width: '100vw',
+          height: '100vh',
           display: 'block',
           userSelect: 'none',
-          position: 'absolute',
+          position: 'fixed',
           top: 0,
           left: 0,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          zIndex: 10
         }}
       />
       {children}
