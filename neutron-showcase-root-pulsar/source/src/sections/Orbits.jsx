@@ -1,0 +1,167 @@
+import { useMemo } from 'react';
+import roster from '../generated-showcase-roster.json';
+import ScrollFloat from '../components/reactbits/ScrollFloat.jsx';
+import CircularGallery from '../components/reactbits/CircularGallery.jsx';
+import TiltedCard from '../components/reactbits/TiltedCard.jsx';
+import FlowingMenu from '../components/reactbits/FlowingMenu.jsx';
+import StarBorder from '../components/reactbits/StarBorder.jsx';
+import Magnet from '../components/reactbits/Magnet.jsx';
+
+const ORBIT_ORDER = [
+  'Systems & tools',
+  'Art & culture',
+  'Game worlds',
+  'Food & craft',
+  'Commerce',
+  'Workbench',
+];
+
+const shortName = entry => entry.name.split('|')[0].trim();
+const subName = entry => (entry.name.split('|')[1] ?? '').trim();
+const thumb = entry => `thumbs/${entry.folder}.jpg`;
+
+function WorldRow({ entry, index, flip }) {
+  return (
+    <article className={`world-row${flip ? ' flip' : ''}`} data-reveal>
+      <div className="world-media">
+        <TiltedCard
+          imageSrc={thumb(entry)}
+          altText={entry.name}
+          containerHeight="100%"
+          containerWidth="100%"
+          imageHeight="100%"
+          imageWidth="100%"
+          rotateAmplitude={9}
+          scaleOnHover={1.06}
+          showMobileWarning={false}
+          showTooltip={false}
+          displayOverlayContent
+          overlayContent={
+            <span className="world-chip mono">
+              W.{String(index).padStart(2, '0')} · {entry.motif.toUpperCase()}
+            </span>
+          }
+        />
+      </div>
+      <div className="world-info">
+        <p className="world-index mono">W.{String(index).padStart(2, '0')}</p>
+        <h4 className="world-name">{shortName(entry)}</h4>
+        {subName(entry) && <p className="world-subname">{subName(entry)}</p>}
+        <p className="world-premise">{entry.premise}</p>
+        <p className="world-mood">{entry.mood}</p>
+        <div className="world-tags mono">
+          <span>{entry.shape.toUpperCase()}</span>
+          <span>{entry.state.toUpperCase()}</span>
+        </div>
+        <Magnet padding={40} magnetStrength={12}>
+          <StarBorder
+            as="a"
+            href={entry.href}
+            target="_blank"
+            rel="noreferrer"
+            color="#9db8ff"
+            speed="6s"
+            className="world-cta"
+          >
+            ENTER WORLD ↗
+          </StarBorder>
+        </Magnet>
+      </div>
+    </article>
+  );
+}
+
+export default function Orbits() {
+  const entries = roster.entries;
+
+  const ringItems = useMemo(
+    () => entries.map(e => ({ image: thumb(e), text: shortName(e) })),
+    [entries]
+  );
+
+  const orbits = useMemo(() => {
+    let counter = 0;
+    return ORBIT_ORDER.map((category, i) => {
+      const worlds = entries
+        .filter(e => e.category === category)
+        .map(e => ({ entry: e, index: (counter += 1) }));
+      return { category, number: String(i + 1).padStart(2, '0'), worlds };
+    }).filter(o => o.worlds.length > 0);
+  }, [entries]);
+
+  const directoryItems = useMemo(
+    () =>
+      [...entries]
+        .sort((a, b) => shortName(a).localeCompare(shortName(b)))
+        .map(e => ({ link: e.href, text: shortName(e), image: thumb(e) })),
+    [entries]
+  );
+
+  return (
+    <section className="worlds" id="worlds">
+      <p className="section-eyebrow mono">— THE COLLECTION</p>
+      <div className="section-title">
+        <ScrollFloat animationDuration={1} ease="back.inOut(2)" stagger={0.02}>
+          TWENTY-TWO WORLDS
+        </ScrollFloat>
+      </div>
+      <p className="worlds-lead">
+        Six orbits, twenty-two bodies. Every one is a complete, deployed site —
+        follow any of them in.
+      </p>
+
+      <div className="ring" data-reveal>
+        <CircularGallery
+          items={ringItems}
+          bend={2.4}
+          textColor="#cfe0ff"
+          borderRadius={0.06}
+          font='500 24px "Space Grotesk"'
+          scrollSpeed={2}
+          scrollEase={0.05}
+        />
+        <p className="ring-hint mono">DRAG TO SPIN THE ORBIT</p>
+      </div>
+
+      <div className="orbit-list">
+        {orbits.map(orbit => (
+          <div className="orbit" key={orbit.category}>
+            <div className="orbit-head mono" data-reveal>
+              <span className="orbit-no">ORBIT {orbit.number}</span>
+              <span className="orbit-cat">{orbit.category.toUpperCase()}</span>
+              <span className="orbit-count">
+                {orbit.worlds.length} {orbit.worlds.length === 1 ? 'BODY' : 'BODIES'}
+              </span>
+            </div>
+            {orbit.worlds.map(({ entry, index }, i) => (
+              <WorldRow
+                key={entry.slug}
+                entry={entry}
+                index={index}
+                flip={i % 2 === 1}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="directory" data-reveal>
+        <p className="directory-title mono">FAST INDEX · A–Z</p>
+        <div
+          className="directory-menu"
+          style={{ height: `${directoryItems.length * 56}px` }}
+        >
+          <FlowingMenu
+            items={directoryItems}
+            speed={12}
+            textColor="#eef2ff"
+            bgColor="transparent"
+            marqueeBgColor="#cfe0ff"
+            marqueeTextColor="#05060b"
+            borderColor="rgba(190, 210, 255, 0.14)"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
