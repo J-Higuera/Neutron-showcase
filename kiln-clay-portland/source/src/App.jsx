@@ -82,7 +82,6 @@ export default function App() {
       </main>
       <footer className="site-footer">
         <p>Kiln &amp; Clay - Portland ceramics studio</p>
-        <p className="mono">wheel · handbuild · glaze · fire</p>
         <a href="#top">Back to the kiln window</a>
       </footer>
       {modalPiece && <PieceModal piece={modalPiece} onClose={() => setModalPiece(null)} />}

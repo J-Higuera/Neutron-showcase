@@ -81,14 +81,13 @@ function SketchBench() {
       </div>
 
       <div className="bench-stage" style={{ '--g1': g.gradient[1] }}>
-        <p className="mono bench-sketch-stamp">SKETCH / {formLabel} · TILE {g.stamp}</p>
         <Vessel form={form} glaze={glaze} className="vessel-lg bench-vessel" title={`Sketch: ${formLabel} in ${g.name}`} />
         <p className="bench-reading" aria-live="polite">
           <strong>{formLabel} in {g.name}.</strong> {g.line} Studio guide
           {' '}<span className="bench-price">${lo}-${hi}</span> per piece.
         </p>
         <a className="button button-primary" href={mail}>Send this sketch to the bench</a>
-        <p className="mono bench-honest">Opens a prefilled email - quantity and timeline stay yours to fill in.</p>
+        <p className="mono bench-honest">Opens a prefilled email.</p>
       </div>
     </div>
   );
@@ -120,7 +119,6 @@ export default function Commissions() {
             <h3>{s.title}</h3>
             <p className="mono step-window">{s.window}</p>
             <p className="step-copy">{s.body}</p>
-            <p className="mono step-ledger">{s.ledger}</p>
           </li>
         ))}
       </ol>

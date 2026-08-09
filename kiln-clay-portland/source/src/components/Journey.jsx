@@ -36,24 +36,13 @@ export default function Journey() {
 
   return (
     <section className="journey" id="journey" aria-labelledby="journey-title">
-      <div className="section-heading journey-heading reveal">
-        <div>
-          <p className="eyebrow">The process</p>
-          <h2 id="journey-title">Follow the clay from rain to table.</h2>
-          <p>
-            From first pinch pot to dinnerware you use every week. Small classes,
-            real firing, finished pieces you can pick up after the kiln cools.
-          </p>
-        </div>
-        <div className="journey-controls">
-          <button className="journey-arrow" aria-label="Previous chapter"
-            onClick={() => go(-1)} disabled={index === 0}>←</button>
-          <span className="mono journey-counter" aria-live="polite">
-            {String(index + 1).padStart(2, '0')} / {String(CHAPTERS.length).padStart(2, '0')}
-          </span>
-          <button className="journey-arrow" aria-label="Next chapter"
-            onClick={() => go(1)} disabled={index === CHAPTERS.length - 1}>→</button>
-        </div>
+      <div className="section-heading reveal">
+        <p className="eyebrow">The process</p>
+        <h2 id="journey-title">Follow the clay from rain to table.</h2>
+        <p>
+          From first pinch pot to dinnerware you use every week. Small classes,
+          real firing, finished pieces you can pick up after the kiln cools.
+        </p>
       </div>
 
       <div
@@ -71,7 +60,6 @@ export default function Journey() {
               <p className="mono journey-num">{ch.num} / 04</p>
               <h3>{ch.title}</h3>
               <p>{ch.copy}</p>
-              <p className="mono journey-ledger">{ch.ledger}</p>
             </div>
           </article>
         ))}
@@ -79,6 +67,16 @@ export default function Journey() {
 
       <div className="journey-rail" aria-hidden="true">
         <span style={{ transform: `scaleX(${(index + 1) / CHAPTERS.length})` }} />
+      </div>
+
+      <div className="journey-controls">
+        <button className="journey-arrow" aria-label="Previous chapter"
+          onClick={() => go(-1)} disabled={index === 0}>←</button>
+        <span className="mono journey-counter" aria-live="polite">
+          {String(index + 1).padStart(2, '0')} / {String(CHAPTERS.length).padStart(2, '0')}
+        </span>
+        <button className="journey-arrow" aria-label="Next chapter"
+          onClick={() => go(1)} disabled={index === CHAPTERS.length - 1}>→</button>
       </div>
     </section>
   );

@@ -87,10 +87,9 @@ export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece, featu
       {/* The test wall IS the shop's glaze filter: pick a fired tile, the
           shelf shows only pieces wearing it, and its ledger note opens. */}
       <div className="glaze-wall reveal" id="glazes" role="group" aria-label="Filter by glaze family">
-        <p className="mono wall-label">THE TEST WALL / FILTER BY GLAZE</p>
+        <p className="mono wall-label">FILTER BY GLAZE</p>
         <div className="glaze-tiles">
           {GLAZES.map((g) => {
-            const count = PIECES.filter((p) => p.glaze === g.id).length;
             const isActive = glazeFilter === g.id;
             return (
               <button
@@ -105,7 +104,6 @@ export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece, featu
               >
                 <span className="stamp">{g.stamp}</span>
                 <strong>{g.name}</strong>
-                <span className="mono tile-count">{isActive ? '× SHOWING' : `${count} PIECES`}</span>
               </button>
             );
           })}
@@ -114,7 +112,7 @@ export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece, featu
           {activeGlaze && (
             <div className="glaze-note-card">
               <span className="note-pin" aria-hidden="true" />
-              <p className="mono">test tile {activeGlaze.stamp} / {activeGlaze.cone} · {activeGlaze.surface}</p>
+              <p className="mono">TILE {activeGlaze.stamp} · {activeGlaze.cone}</p>
               <h3>{activeGlaze.name}</h3>
               <p>{activeGlaze.behavior}</p>
             </div>
@@ -141,14 +139,13 @@ export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece, featu
         {featured && shown.some((p) => p.id === featured.id) && (
           <button className="piece-card featured-card reveal" onClick={() => onOpenPiece(featured)}
             aria-haspopup="dialog" aria-label={`Today's pull: ${featured.name} - see details`}>
-            <span className="mono featured-stamp">FRESH FROM THE KILN · TODAY'S PULL</span>
+            <span className="mono featured-stamp">TODAY'S PULL</span>
             <span className="featured-body">
               <Vessel form={featured.form} glaze={featured.glaze} title={featured.name} />
               <span className="piece-meta">
                 <strong>{featured.name}</strong>
                 <span className="mono">{featured.form} · {glazeById(featured.glaze).name}</span>
                 <span className="piece-price">${featured.price}</span>
-                <span className="featured-cta mono">SEE THIS PIECE →</span>
               </span>
             </span>
             <span className={`status-chip status-${featured.status}`}>{STATUS_LABEL[featured.status]}</span>
