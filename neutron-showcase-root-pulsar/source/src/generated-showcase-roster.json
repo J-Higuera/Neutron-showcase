@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-09T10:07:28.188Z",
+    "generatedAt": "2026-08-09T10:58:43.599Z",
     "preservedFields": [
       "name",
       "title",
@@ -121,8 +121,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Aurel | The Listening Instrument",
-      "title": "Aurel | The Listening Instrument",
+      "name": "AUREL — Reference Headphones",
+      "title": "AUREL — Reference Headphones",
       "slug": "aurel-premium-audio",
       "folder": "aurel-premium-audio",
       "href": "https://j-higuera.github.io/Neutron-showcase/aurel-premium-audio/",
