@@ -44,7 +44,7 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -291,9 +291,7 @@ a.readout:hover { border-color: var(--glass-brd); background: rgba(0,255,122,0.0
 @keyframes scanMove { 0%{background-position:0 -60%} 100%{background-position:0 160%} }
 .lattice__svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
 
-.route { opacity: 0.9; }
-/* hide-for-reveal only when JS is present to run the reveal */
-.js .route { stroke-dasharray: var(--len, 600); stroke-dashoffset: var(--len, 600); }
+.route { stroke-dasharray: var(--len, 600); stroke-dashoffset: var(--len, 600); opacity: 0.9; }
 .route--ring { opacity: 0.4; stroke-width: 1; }
 .routes.drawn .route { animation: draw 2.2s var(--ease) forwards; animation-delay: var(--d, 0s); }
 @keyframes draw { to { stroke-dashoffset: 0; } }
@@ -372,13 +370,10 @@ a.readout:hover { border-color: var(--glass-brd); background: rgba(0,255,122,0.0
   border: 1px solid var(--glass-brd);
   backdrop-filter: blur(8px);
   clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%);
-  /* reveal rides the independent translate/opacity channels; transform stays free
-     for :hover so the lift never waits on the reveal stagger delay */
-  transition: translate .5s var(--ease), opacity .5s var(--ease),
-              transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  opacity: 0; transform: translateY(26px);
 }
-.js .shard { opacity: 0; translate: 0 26px; }
-.shard.in { opacity: 1; translate: none; transition-delay: calc(var(--i) * 70ms), calc(var(--i) * 70ms), 0s, 0s, 0s; }
+.shard.in { opacity: 1; transform: none; transition-delay: calc(var(--i) * 70ms); }
 .shard::before {
   content: ""; position: absolute; left: 0; top: 1.5rem; width: 3px; height: 2.2rem;
   background: linear-gradient(var(--matrix), var(--cyan)); border-radius: 2px;
@@ -416,8 +411,8 @@ a.readout:hover { border-color: var(--glass-brd); background: rgba(0,255,122,0.0
   padding: 0.45rem 0.75rem; border-radius: 8px;
   background: rgba(2,5,3,0.6); border: 1px solid var(--hair);
   backdrop-filter: blur(4px);
+  opacity: 0; transform: translateY(14px);
 }
-.js .pread { opacity: 0; transform: translateY(14px); }
 .pread.in { opacity: 1; transform: none; transition: all .5s var(--ease); transition-delay: calc(var(--p) * 60ms); }
 .pread__k { color: var(--ink-mut); text-transform: uppercase; letter-spacing: 0.1em; }
 .pread__v { color: var(--ink); }
@@ -460,8 +455,8 @@ a.readout:hover { border-color: var(--glass-brd); background: rgba(0,255,122,0.0
   backdrop-filter: blur(6px);
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
   margin-right: -14px;
+  opacity: 0; transform: translateX(-16px);
 }
-.js .band { opacity: 0; transform: translateX(-16px); }
 .band:last-child { margin-right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
 .band.in { opacity: 1; transform: none; transition: all .55s var(--ease); transition-delay: calc(var(--b) * 90ms); }
 .band__label {
@@ -644,7 +639,7 @@ a.readout:hover { border-color: var(--glass-brd); background: rgba(0,255,122,0.0
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .route { stroke-dashoffset: 0 !important; }
   .routes .route { animation: none !important; }
-  .shard, .pread, .band { opacity: 1 !important; transform: none !important; translate: none !important; }
+  .shard, .pread, .band { opacity: 1 !important; transform: none !important; }
   .lattice__scan, .frail, .pline { animation: none !important; }
   .caret { animation: none !important; opacity: 1; }
   .node__ring, .node--core .node__dot { animation: none !important; }

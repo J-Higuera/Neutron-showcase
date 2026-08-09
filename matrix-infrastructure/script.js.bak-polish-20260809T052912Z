@@ -13,23 +13,6 @@
   const y = $('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* ---------- anchor nav: programmatic smooth scroll ----------
-     Native fragment navigation drops a click that lands while a previous
-     smooth glide is still running (measured: second nav click swallowed,
-     URL and position end up disagreeing). scrollIntoView() supersedes an
-     in-flight glide reliably; behavior:'auto' follows the CSS
-     scroll-behavior, so reduced-motion still gets an instant jump.
-     The skip link keeps native navigation for its focus semantics. */
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a || a.classList.contains('skip-link')) return;
-    const el = document.getElementById(a.hash.slice(1));
-    if (!el) return;
-    e.preventDefault();
-    el.scrollIntoView();
-    if (location.hash !== a.hash) history.pushState(null, '', a.hash);
-  });
-
   /* ---------- hero lattice: route lengths + draw + pulses ---------- */
   const routesG = $('.routes');
   if (routesG) {
@@ -57,7 +40,7 @@
         pulsesG.appendChild(c);
         return { path, node: c, len: path.getTotalLength(), t: Math.random(), spd: 0.0016 + Math.random() * 0.0016 };
       });
-      let raf = 0;
+      let raf;
       const tick = () => {
         for (const p of pulses) {
           p.t += p.spd;
@@ -69,20 +52,12 @@
         }
         raf = requestAnimationFrame(tick);
       };
-      // run only while the lattice is on screen and the tab is visible
-      let latticeInView = true;
-      const syncPulses = () => {
-        const shouldRun = latticeInView && !document.hidden;
-        if (shouldRun && !raf) raf = requestAnimationFrame(tick);
-        else if (!shouldRun && raf) { cancelAnimationFrame(raf); raf = 0; }
-      };
-      const pio = new IntersectionObserver((es) => {
-        es.forEach((e) => { latticeInView = e.isIntersecting; });
-        syncPulses();
+      // pause when tab hidden
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(raf);
+        else raf = requestAnimationFrame(tick);
       });
-      pio.observe($('.lattice__frame'));
-      document.addEventListener('visibilitychange', syncPulses);
-      syncPulses();
+      raf = requestAnimationFrame(tick);
     }
   }
 
@@ -94,7 +69,6 @@
   };
   if (!reduce) {
     setInterval(() => {
-      if (document.hidden) return;
       const l = tickers.load;
       if (l.el) l.el.textContent = l.fmt(Math.max(0.4, Math.min(0.88, l.base + (Math.random() - 0.5) * l.jit)));
       const d = tickers.drift;
