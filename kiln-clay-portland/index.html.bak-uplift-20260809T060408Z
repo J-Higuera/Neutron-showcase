@@ -10,9 +10,6 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/close-up-ceramic-glaze-test-tiles-studio-wall.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='8' y='4' width='48' height='56' rx='14' fill='%23D86B2A'/><rect x='8' y='4' width='48' height='27' rx='13' fill='%23F0A25D'/><rect x='8' y='34' width='48' height='26' rx='13' fill='%233A2118' opacity='.35'/></svg>">
-    <script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.classList.add("anim");setTimeout(function(){d.classList.remove("anim")},3000)}}catch(e){}</script>
-    <link rel="preload" href="assets/fonts/fraunces-11.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/work-sans-2.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -36,7 +33,7 @@
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-atmosphere" aria-hidden="true">
-          <img class="rain-pane" src="assets/portland-rainy-street-soft-gray-light.jpg" alt="" fetchpriority="high">
+          <img class="rain-pane" src="assets/portland-rainy-street-soft-gray-light.jpg" alt="">
           <img class="kiln-pane" src="assets/ceramic-kiln-interior-glowing-orange-heat.jpg" alt="">
         </div>
 
@@ -164,7 +161,6 @@
               <p>Most workshop pieces are ready two to four weeks later, boxed for pickup.</p>
             </article>
           </div>
-          <div class="process-rail" aria-hidden="true"><span></span></div>
         </div>
       </section>
 
@@ -347,6 +343,7 @@
 
     <script src="assets/vendor/gsap.min.js"></script>
     <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

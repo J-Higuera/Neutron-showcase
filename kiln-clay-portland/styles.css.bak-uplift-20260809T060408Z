@@ -84,21 +84,6 @@ a {
   outline-offset: 4px;
 }
 
-::selection {
-  background: var(--kiln-ember);
-  color: var(--bone);
-}
-
-/* Pre-paint hold so the intro never flashes: a tiny head script adds .anim
-   (motion-OK only) before first paint, GSAP animates these in from hidden,
-   and script.js removes the class whenever it cannot animate. The head
-   script also drops the class after 3s as a dead-man's switch, so a failed
-   script load can never leave the page blank. */
-.anim .hero-copy > *,
-.anim .test-tile {
-  opacity: 0;
-}
-
 .skip-link {
   position: fixed;
   left: 1rem;
@@ -418,7 +403,7 @@ h3 {
     inset 0 -15px 24px rgba(58, 33, 24, .16),
     0 10px 20px rgba(23, 19, 17, .28);
   transform: translateZ(0);
-  transition: translate 240ms var(--ease), scale 240ms var(--ease), box-shadow 240ms var(--ease);
+  transition: translate 180ms var(--ease);
 }
 
 .test-tile::before,
@@ -445,7 +430,6 @@ h3 {
   background: rgba(255, 255, 255, .2);
   transform: rotate(8deg);
   transform-origin: top center;
-  transition: background-color 240ms var(--ease);
 }
 
 .test-tile > * {
@@ -615,46 +599,6 @@ h3 {
   scroll-snap-type: x mandatory;
   padding: .5rem .3rem 1rem;
   scrollbar-color: var(--wet-clay) rgba(58,33,24,.12);
-}
-
-/* Scrub mode — script.js adds .scrub-on to <html> only while the pinned
-   horizontal scrub is actually driving the shelf (desktop, motion OK, GSAP
-   loaded). Mandatory snap must go: the scrub writes scrollLeft every frame
-   and the browser's snap logic re-yanks each write to a card edge — that
-   fight was the section's jank. The scrollbar hides because the kiln rail
-   below communicates the driven progress; manual horizontal drag still
-   works. Every fallback path (mobile, reduced motion, no JS) keeps the
-   native snap-scrolling track above. */
-.scrub-on .process-track {
-  scroll-snap-type: none;
-  scrollbar-width: none;
-}
-
-.scrub-on .process-track::-webkit-scrollbar {
-  display: none;
-}
-
-.process-rail {
-  display: none;
-}
-
-.scrub-on .process-rail {
-  display: block;
-  grid-column: 1 / -1;
-  height: .35rem;
-  margin-block-start: -.9rem;
-  border-radius: 999px;
-  background: rgba(58, 33, 24, .14);
-  overflow: hidden;
-}
-
-.scrub-on .process-rail span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--wet-clay), var(--kiln-ember));
-  transform: scaleX(0);
-  transform-origin: left center;
 }
 
 .process-card {
@@ -958,63 +902,18 @@ h3 {
     transform: translateY(-3px);
   }
 
-  .button:active {
-    transform: translateY(-1px);
-    transition-duration: 60ms;
-  }
-
-  .button-primary:hover {
-    box-shadow: inset 0 0 0 1px rgba(23, 19, 17, .35), 0 16px 30px rgba(58, 33, 24, .3);
-  }
-
   /* GSAP leaves inline `transform` AND `translate: none` on the tiles and
      cards it animates, which silently kills a transform-based hover. The
-     separate `translate`/`scale` properties compose with GSAP's transform,
-     and !important lets them beat the inline `none` GSAP parks there
-     (GSAP never animates translate/scale itself, so nothing fights).
-     Nav tiles (links) get the full "glaze tile lifted off the shelf"
-     response; decorative tiles get only a quiet nudge so nothing
-     pretends to be clickable. */
-  a.test-tile:hover {
-    translate: 0 -5px !important;
-    scale: 1.03 !important;
-    box-shadow:
-      inset 0 0 0 2px rgba(255, 248, 237, .55),
-      inset 0 -15px 24px rgba(58, 33, 24, .16),
-      0 18px 34px rgba(23, 19, 17, .38),
-      0 0 0 4px var(--glow);
-  }
-
-  a.test-tile:hover::after {
-    background: rgba(255, 255, 255, .34);
-  }
-
-  div.test-tile:hover {
-    translate: 0 -2px !important;
-  }
-
+     separate `translate` property composes with GSAP's transform, and
+     !important lets it beat the inline `translate: none` GSAP parks there
+     (GSAP never animates `translate` itself, so nothing fights). */
+  .test-tile:hover,
   .offering-card:hover {
-    translate: 0 -4px !important;
-    box-shadow: inset 0 0 0 1px var(--line), 0 22px 45px rgba(58, 33, 24, .2);
+    translate: 0 -3px !important;
   }
 
   .offering-card {
-    transition: translate 240ms var(--ease), box-shadow 240ms var(--ease);
-  }
-
-  .surface-card,
-  .process-card {
-    transition: translate 240ms var(--ease), box-shadow 240ms var(--ease);
-  }
-
-  .surface-card:hover {
-    translate: 0 -4px;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3), 0 26px 55px rgba(0, 0, 0, .34);
-  }
-
-  .process-card:hover {
-    translate: 0 -4px;
-    box-shadow: inset 0 0 0 1px var(--line), 0 16px 32px rgba(58, 33, 24, .2);
+    transition: translate 180ms var(--ease);
   }
 }
 
