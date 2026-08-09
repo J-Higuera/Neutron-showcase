@@ -18,8 +18,8 @@ if (!Array.isArray(generatedEntries)) {
 assertRequiredFields(sourceArtifacts, 'deployArtifacts');
 assertRequiredFields(generatedEntries, 'generatedEntries');
 
-if (generatedEntries.length !== 10) {
-  throw new Error(`Expected exactly 10 public deploy entries, found ${generatedEntries.length}.`);
+if (generatedEntries.length !== 22) {
+  throw new Error(`Expected exactly 22 public deploy entries, found ${generatedEntries.length}.`);
 }
 
 if (generatedEntries.length !== sourceArtifacts.length) {

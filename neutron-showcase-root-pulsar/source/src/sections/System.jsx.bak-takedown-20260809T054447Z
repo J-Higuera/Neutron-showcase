@@ -22,8 +22,8 @@ const AGENTS = [
 ];
 
 const STATS = [
-  { value: 10, label: 'WORLDS DEPLOYED' },
-  { value: 4, label: 'ORBITS' },
+  { value: 22, label: 'WORLDS DEPLOYED' },
+  { value: 6, label: 'ORBITS' },
   { value: 3, label: 'AGENTS' },
   { value: 0, label: 'TEMPLATES USED' },
 ];

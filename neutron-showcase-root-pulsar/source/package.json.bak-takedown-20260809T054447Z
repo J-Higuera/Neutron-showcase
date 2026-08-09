@@ -1,7 +1,7 @@
 {
   "name": "neutron-showcase-root-pulsar",
   "version": "1.0.0",
-  "description": "PULSAR — the Neutron showcase root. 10 worlds in orbit around one dense system.",
+  "description": "PULSAR — the Neutron showcase root. 22 worlds in orbit around one dense system.",
   "type": "module",
   "scripts": {
     "generate:roster": "node scripts/generate-roster.mjs",

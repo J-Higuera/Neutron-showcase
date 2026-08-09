@@ -51,7 +51,7 @@ export default function Hero() {
           ))}
         </h1>
         <p className="hero-sub">
-          One system. Ten worlds in orbit — each one planned, designed,
+          One system. Twenty-two worlds in orbit — each one planned, designed,
           built, reviewed, and shipped by AI agents.
         </p>
         <div className="hero-actions">
@@ -75,7 +75,7 @@ export default function Hero() {
           SCROLL
           <i />
         </span>
-        <span>10 BODIES · 4 ORBITS</span>
+        <span>22 BODIES · 6 ORBITS</span>
       </div>
     </header>
   );

@@ -112,10 +112,10 @@ export default function Orbits() {
     <section className="worlds" id="worlds">
       <p className="section-eyebrow mono">— THE COLLECTION</p>
       <h2 className="section-title" data-reveal>
-        TWENTY-TWO WORLDS
+        TEN WORLDS
       </h2>
       <p className="worlds-lead">
-        Six orbits, twenty-two bodies. Every one is a complete, deployed site —
+        Four orbits, ten bodies. Every one is a complete, deployed site —
         follow any of them in.
       </p>
 
