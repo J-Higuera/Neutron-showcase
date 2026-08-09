@@ -33,23 +33,13 @@ if (!prefersReducedMotion) {
 
 const bakeItems = [...document.querySelectorAll(".bake-item")];
 let warmIndex = 0;
-let warmTimer = null;
 
 function warmNextBake() {
+  if (!bakeItems.length || prefersReducedMotion) return;
   bakeItems.forEach((item) => item.classList.remove("is-warm"));
   bakeItems[warmIndex].classList.add("is-warm");
   warmIndex = (warmIndex + 1) % bakeItems.length;
 }
 
-if (bakeItems.length && !prefersReducedMotion) {
-  const warmObserver = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting && warmTimer === null) {
-      warmNextBake();
-      warmTimer = window.setInterval(warmNextBake, 2600);
-    } else if (!entry.isIntersecting && warmTimer !== null) {
-      window.clearInterval(warmTimer);
-      warmTimer = null;
-    }
-  });
-  warmObserver.observe(document.querySelector(".bake-list"));
-}
+warmNextBake();
+window.setInterval(warmNextBake, 2600);

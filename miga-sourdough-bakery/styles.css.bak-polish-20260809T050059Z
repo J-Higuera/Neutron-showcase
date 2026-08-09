@@ -569,14 +569,14 @@ footer a {
 @media (prefers-reduced-motion: no-preference) {
   .motion-ready .reveal {
     opacity: 1;
-    translate: 0 18px;
-    transition: translate 700ms var(--ease);
+    transform: translateY(18px);
+    transition: transform 700ms var(--ease);
     transition-delay: var(--delay, 0ms);
   }
 
   .motion-ready .reveal.is-visible {
     opacity: 1;
-    translate: 0 0;
+    transform: translateY(0);
   }
 }
 
@@ -722,7 +722,6 @@ footer a {
   }
 
   .site-header {
-    position: static;
     align-items: flex-start;
     flex-wrap: wrap;
     width: calc(100% - 1rem);

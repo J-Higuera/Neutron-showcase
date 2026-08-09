@@ -9,7 +9,6 @@
     <meta property="og:description" content="Warm, slow-fermented sourdough from one baker to the neighborhood.">
     <meta property="og:image" content="assets/hero.jpg">
     <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23351e13'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23fff7e8'%3Em%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..800&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -68,7 +67,7 @@
 
         <div class="process-grid">
           <article class="step reveal">
-            <img loading="lazy" decoding="async" src="assets/flour-bowl.jpg" width="1067" height="1600" alt="Flour falling into a glass bowl">
+            <img src="assets/flour-bowl.jpg" width="1067" height="1600" alt="Flour falling into a glass bowl">
             <div>
               <span>01 · flour</span>
               <h3>Fresh-milled mood, simple pantry.</h3>
@@ -76,7 +75,7 @@
             </div>
           </article>
           <article class="step wide reveal" style="--delay: 80ms">
-            <img loading="lazy" decoding="async" src="assets/dough-hands.jpg" width="1600" height="1067" alt="Hands folding sourdough on a floured workbench">
+            <img src="assets/dough-hands.jpg" width="1600" height="1067" alt="Hands folding sourdough on a floured workbench">
             <div>
               <span>02 · fold</span>
               <h3>Strength built quietly.</h3>
@@ -84,7 +83,7 @@
             </div>
           </article>
           <article class="step reveal" style="--delay: 120ms">
-            <img loading="lazy" decoding="async" src="assets/rest-proofing-linen.jpg" width="1125" height="750" alt="Sourdough dough proofing between folded linen cloths">
+            <img src="assets/rest-proofing-linen.jpg" width="1125" height="750" alt="Sourdough dough proofing between folded linen cloths">
             <div>
               <span>03 · rest</span>
               <h3>Tucked in until ready.</h3>
@@ -92,7 +91,7 @@
             </div>
           </article>
           <article class="step reveal">
-            <img loading="lazy" decoding="async" src="assets/prebake-scoring-lame.jpg" width="1071" height="750" alt="Hands scoring flour-dusted unbaked bread dough with a lame">
+            <img src="assets/prebake-scoring-lame.jpg" width="1071" height="750" alt="Hands scoring flour-dusted unbaked bread dough with a lame">
             <div>
               <span>04 · score</span>
               <h3>A quick blade before heat.</h3>
@@ -100,7 +99,7 @@
             </div>
           </article>
           <article class="step wide reveal" style="--delay: 80ms">
-            <img loading="lazy" decoding="async" src="assets/hands-loaf.jpg" width="1068" height="1600" alt="Hands holding a fresh baked loaf">
+            <img src="assets/hands-loaf.jpg" width="1068" height="1600" alt="Hands holding a fresh baked loaf">
             <div>
               <span>05 · bake</span>
               <h3>Hot enough to sing.</h3>
@@ -108,7 +107,7 @@
             </div>
           </article>
           <article class="step reveal" style="--delay: 160ms">
-            <img loading="lazy" decoding="async" src="assets/open-crumb.jpg" width="1600" height="1036" alt="Close view of open sourdough crumb">
+            <img src="assets/open-crumb.jpg" width="1600" height="1036" alt="Close view of open sourdough crumb">
             <div>
               <span>06 · crumb</span>
               <h3>Soft chew, clean tang.</h3>
@@ -158,14 +157,14 @@
           <p class="board-note">Preorders close Friday at noon or when the bench is full.</p>
         </div>
         <figure class="menu-photo reveal" style="--delay: 120ms">
-          <img loading="lazy" decoding="async" src="assets/morning-counter.jpg" width="1600" height="1197" alt="A morning table set with bread and milk">
+          <img src="assets/morning-counter.jpg" width="1600" height="1197" alt="A morning table set with bread and milk">
           <figcaption>Pickup is a porch table, a paper bag, and bread still talking as it cools.</figcaption>
         </figure>
       </section>
 
       <section class="story section">
         <figure class="story-photo reveal">
-          <img loading="lazy" decoding="async" src="assets/hands-loaf.jpg" width="1068" height="1600" alt="Hands holding a fresh baked loaf">
+          <img src="assets/hands-loaf.jpg" width="1068" height="1600" alt="Hands holding a fresh baked loaf">
         </figure>
         <div class="story-copy reveal" style="--delay: 100ms">
           <p class="eyebrow">the one-baker rhythm</p>
@@ -196,7 +195,7 @@
           <p>Open but not empty, glossy but not gummy, with enough structure for a thick swipe of butter.</p>
         </div>
         <figure class="crumb-photo reveal" style="--delay: 100ms">
-          <img loading="lazy" decoding="async" src="assets/crumb-hands.jpg" width="1060" height="1600" alt="Hands holding a torn piece of bread showing its crumb">
+          <img src="assets/crumb-hands.jpg" width="1060" height="1600" alt="Hands holding a torn piece of bread showing its crumb">
         </figure>
       </section>
 
