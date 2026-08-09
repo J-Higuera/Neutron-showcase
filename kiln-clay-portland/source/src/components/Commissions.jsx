@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Vessel from './Vessel.jsx';
+import Vessel from './Vessel.jsx'; // sketch bench preview
 import { GLAZES, glazeById } from '../data/glazes.js';
 import { FORMS } from '../data/pieces.js';
 
@@ -94,9 +94,9 @@ function SketchBench() {
   );
 }
 
+// The four checkpoints sit flat on the page — number, title, window, and
+// copy all readable at a glance, nothing behind a click.
 export default function Commissions() {
-  const [open, setOpen] = useState('sample');
-
   return (
     <section className="commissions" id="commissions" aria-labelledby="commissions-title">
       <div className="section-heading split-heading reveal">
@@ -114,24 +114,15 @@ export default function Commissions() {
       <SketchBench />
 
       <ol className="commission-steps reveal">
-        {STEPS.map((s) => {
-          const isOpen = open === s.id;
-          return (
-            <li key={s.id} className="commission-step" data-open={isOpen}>
-              <button className="step-head" aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? null : s.id)}>
-                <span className="mono step-num">{s.num}</span>
-                <strong>{s.title}</strong>
-                <span className="mono step-window">{s.window}</span>
-                <span className="step-arrow" aria-hidden="true" />
-              </button>
-              <div className="step-body">
-                <p>{s.body}</p>
-                <p className="mono step-ledger">{s.ledger}</p>
-              </div>
-            </li>
-          );
-        })}
+        {STEPS.map((s) => (
+          <li key={s.id} className="commission-step">
+            <p className="mono step-num">{s.num}</p>
+            <h3>{s.title}</h3>
+            <p className="mono step-window">{s.window}</p>
+            <p className="step-copy">{s.body}</p>
+            <p className="mono step-ledger">{s.ledger}</p>
+          </li>
+        ))}
       </ol>
     </section>
   );

@@ -1,7 +1,3 @@
-import Vessel from './Vessel.jsx';
-import { glazeById } from '../data/glazes.js';
-import { STATUS_LABEL } from '../data/pieces.js';
-
 // Kiln-status line: derived from the real date so the ledger never reads
 // stale — firings land Fridays, cool over the weekend.
 function kilnStatus() {
@@ -14,8 +10,9 @@ function kilnStatus() {
     : `KILN: cone 6 loaded · fires ${day}`;
 }
 
-export default function Hero({ featured, onOpenPiece }) {
-  const glaze = glazeById(featured.glaze);
+// Title-led hero: the name owns the full width over the rain-and-kiln
+// atmosphere; lede and actions compose beneath it. Nothing shares the stage.
+export default function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-atmosphere" aria-hidden="true">
@@ -24,9 +21,9 @@ export default function Hero({ featured, onOpenPiece }) {
       </div>
 
       <div className="hero-content">
-        <div className="hero-copy">
-          <p className="eyebrow">Portland ceramics studio</p>
-          <h1 id="hero-title">Rainlight<br />Kiln Ledger</h1>
+        <p className="eyebrow">Portland ceramics studio</p>
+        <h1 id="hero-title">Rainlight Kiln Ledger</h1>
+        <div className="hero-under">
           <p className="hero-lede">
             Wheel, handbuild, glaze, fire - every piece begins under Portland
             rainlight and leaves with kiln heat in its surface.
@@ -36,25 +33,6 @@ export default function Hero({ featured, onOpenPiece }) {
             <a className="button button-secondary" href="#work">Browse the work</a>
           </div>
         </div>
-
-        <button
-          className="featured-piece"
-          onClick={() => onOpenPiece(featured)}
-          aria-haspopup="dialog"
-          aria-label={`Today's pull: ${featured.name} - see details`}
-        >
-          <span className="mono featured-stamp">FRESH FROM THE KILN · TODAY'S PULL</span>
-          <Vessel form={featured.form} glaze={featured.glaze} title={featured.name} />
-          <span className="featured-meta">
-            <strong>{featured.name}</strong>
-            <span className="mono">{featured.form} · {glaze.name}</span>
-            <span className="featured-row">
-              <span className="featured-price">${featured.price}</span>
-              <span className={`status-chip status-${featured.status}`}>{STATUS_LABEL[featured.status]}</span>
-            </span>
-          </span>
-          <span className="featured-cta mono">SEE THIS PIECE →</span>
-        </button>
       </div>
 
       <div className="hero-ledger mono" aria-label="Studio status">

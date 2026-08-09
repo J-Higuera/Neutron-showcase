@@ -102,8 +102,7 @@ a {
 /* Pre-paint hold: index.html adds .anim before first paint (motion-OK
    only) and drops it after 3s as a dead-man's switch; App.jsx animates
    these in and removes the class on every non-animating path. */
-.anim .hero-copy > *,
-.anim .featured-piece,
+.anim .hero-content > *,
 .anim .hero-ledger,
 .anim .scroll-cue {
   opacity: 0;
@@ -445,83 +444,28 @@ h3 {
     linear-gradient(180deg, rgba(23, 19, 17, .45), rgba(23, 19, 17, .6));
 }
 
+/* Title-led hero: the name spans the full measure; lede and actions
+   compose on one line beneath it. */
 .hero-content {
   width: min(100%, var(--max));
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(19rem, .72fr);
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 4rem);
 }
 
-/* Today's pull — the kiln-side space earns its keep: one real piece,
-   fresh from the ledger, opening straight into its detail modal. */
-.featured-piece {
-  position: relative;
-  justify-self: end;
-  width: min(100%, 22rem);
-  display: grid;
-  gap: .3rem;
-  padding: 1.1rem 1.2rem 1.2rem;
-  text-align: left;
-  color: var(--charcoal);
-  background:
-    linear-gradient(145deg, rgba(255, 248, 237, .94), rgba(231, 215, 195, .9)),
-    var(--bisque);
-  border-radius: 1.2rem .5rem 1rem .55rem;
-  box-shadow: var(--shadow), inset 0 0 0 1px rgba(58, 33, 24, .14);
-  rotate: 1.2deg;
-  transition: translate 240ms var(--ease), scale 240ms var(--ease), box-shadow 240ms var(--ease);
+.hero h1 {
+  max-width: none;
+  font-size: clamp(3.3rem, 9.2vw, 8.8rem);
+  line-height: .94;
+  letter-spacing: -.015em;
+  margin-block-end: .5rem;
 }
 
-.featured-stamp {
-  color: var(--kiln-ember);
-  margin-block-end: .2rem;
-}
-
-.featured-piece .vessel {
-  width: min(100%, 12rem);
-  margin-inline: auto;
-}
-
-.featured-meta {
-  display: grid;
-  gap: .2rem;
-}
-
-.featured-meta strong {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  line-height: 1.05;
-}
-
-.featured-meta .mono {
-  margin: 0;
-  color: var(--wet-clay);
-  text-transform: none;
-  letter-spacing: .02em;
-}
-
-.featured-row {
+.hero-under {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: .6rem;
-  margin-block-start: .2rem;
-}
-
-.featured-row .status-chip {
-  position: static;
-}
-
-.featured-price {
-  font: 760 1.15rem/1.2 var(--sans);
-  color: var(--reduction-brown);
-}
-
-.featured-cta {
-  margin: .55rem 0 0;
-  color: var(--kiln-ember);
+  gap: 1.2rem 2.5rem;
+  margin-block-start: .6rem;
 }
 
 .hero-lede {
@@ -599,18 +543,71 @@ h3 {
 
 /* ---------- journey ---------- */
 
-/* Default layout: stacked photo-card chapters — works at every width with
-   no JS and under reduced motion. The pinned crossfade version applies
-   only while Journey.jsx has actually built the pin (html.journey-pin). */
-.journey-stage {
-  position: relative;
+/* A user-driven chapter strip: native horizontal snap scrolling, visible
+   arrows, and a position rail. Vertical scrolling is never captured —
+   stepping through the chapters is optional at every width. */
+.journey-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.journey-controls {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding-block-end: .5rem;
+}
+
+.journey-arrow {
+  width: 2.7rem;
+  aspect-ratio: 1;
   display: grid;
-  gap: .9rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--reduction-brown);
+  color: var(--bone);
+  font-size: 1.15rem;
+  transition: background-color 160ms var(--ease), translate 160ms var(--ease), opacity 160ms var(--ease);
+}
+
+.journey-arrow:hover:not(:disabled) {
+  background: var(--kiln-ember);
+  translate: 0 -2px;
+}
+
+.journey-arrow:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+.journey-counter {
+  margin: 0;
+  color: var(--wet-clay);
+  white-space: nowrap;
+}
+
+.journey-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(58%, 42rem);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  padding: .3rem .2rem .6rem;
+  scrollbar-width: none;
+}
+
+.journey-strip::-webkit-scrollbar {
+  display: none;
 }
 
 .journey-step {
   position: relative;
-  min-height: 24rem;
+  scroll-snap-align: start;
+  min-height: min(60vh, 29rem);
   border-radius: 1.2rem .5rem 1rem .5rem;
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -623,23 +620,6 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.journey-pin .journey-stage {
-  display: block;
-  height: min(78vh, 46rem);
-  border-radius: 1.8rem .8rem 1.4rem .7rem;
-  overflow: hidden;
-  background: var(--reduction-brown);
-  box-shadow: var(--shadow);
-}
-
-.journey-pin .journey-step {
-  position: absolute;
-  inset: 0;
-  min-height: 0;
-  border-radius: 0;
-  box-shadow: none;
 }
 
 .journey-scrim {
@@ -681,42 +661,11 @@ h3 {
 }
 
 .journey-rail {
-  display: none;
-  position: absolute;
-  left: clamp(1.2rem, 3.5vw, 2.6rem);
-  right: clamp(1.2rem, 3.5vw, 2.6rem);
-  bottom: .8rem;
   height: .3rem;
+  margin: .5rem .2rem 0;
   border-radius: 999px;
-  background: rgba(255, 248, 237, .18);
+  background: rgba(58, 33, 24, .14);
   overflow: hidden;
-}
-
-.journey-pin .journey-rail {
-  display: block;
-}
-
-.journey-skip {
-  display: none;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 2;
-  margin: 0;
-  padding: .5rem .85rem;
-  border-radius: 999px;
-  color: rgba(255, 248, 237, .9);
-  background: rgba(23, 19, 17, .55);
-  backdrop-filter: blur(4px);
-  text-decoration: none;
-}
-
-.journey-skip:hover {
-  background: rgba(23, 19, 17, .8);
-}
-
-.journey-pin .journey-skip {
-  display: inline-block;
 }
 
 .journey-rail span {
@@ -724,8 +673,8 @@ h3 {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--wet-clay), var(--kiln-ember));
-  transform: scaleX(0);
   transform-origin: left center;
+  transition: transform 320ms var(--ease);
 }
 
 /* ---------- glaze wall ---------- */
@@ -1024,6 +973,40 @@ h3 {
   color: var(--reduction-brown);
 }
 
+/* Today's pull — the shelf's first entry, twice as wide, ember-ringed. */
+.featured-card {
+  grid-column: span 2;
+  background:
+    linear-gradient(145deg, rgba(255, 248, 237, .96), rgba(231, 215, 195, .9)),
+    var(--bisque);
+  box-shadow: inset 0 0 0 2px rgba(216, 107, 42, .4), 0 16px 40px rgba(58, 33, 24, .14);
+}
+
+.featured-stamp {
+  color: var(--kiln-ember);
+  margin: 0 0 .2rem;
+}
+
+.featured-body {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) 1fr;
+  align-items: center;
+  gap: .8rem;
+}
+
+.featured-card .vessel {
+  width: min(100%, 12rem);
+}
+
+.featured-card .piece-meta strong {
+  font-size: 1.45rem;
+}
+
+.featured-cta {
+  margin: .5rem 0 0;
+  color: var(--kiln-ember);
+}
+
 .status-chip {
   position: absolute;
   top: .8rem;
@@ -1301,79 +1284,61 @@ h3 {
   margin: 0 0 .4rem;
 }
 
+/* Four checkpoints, flat on the page — everything readable at a glance. */
 .commission-steps {
-  margin: 0 0 clamp(1.6rem, 3.5vw, 2.6rem);
+  margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: .55rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .9rem;
 }
 
 .commission-step {
+  position: relative;
+  padding: 1.6rem 1.1rem 1.15rem;
   border-radius: .75rem .3rem .95rem .42rem;
   background: rgba(255, 248, 237, .78);
   box-shadow: inset 0 0 0 1px var(--line);
-  overflow: hidden;
 }
 
-.step-head {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 3rem 1fr auto 1.2rem;
-  align-items: center;
-  gap: .8rem;
-  padding: 1rem 1.1rem;
-  text-align: left;
+.commission-step::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  top: .9rem;
+  height: .32rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--wet-clay), var(--kiln-ember));
+  opacity: .7;
 }
 
-.step-num { margin: 0; color: var(--kiln-ember); }
-
-.step-head strong {
-  font-family: var(--serif);
-  font-size: 1.18rem;
+.step-num {
+  margin: .3rem 0 .4rem;
+  color: var(--kiln-ember);
 }
 
-.step-window { margin: 0; color: var(--wet-clay); }
-
-.step-arrow {
-  width: .6rem;
-  height: .6rem;
-  border-right: 2px solid var(--reduction-brown);
-  border-bottom: 2px solid var(--reduction-brown);
-  transform: rotate(45deg);
-  transition: transform 240ms var(--ease);
-  justify-self: end;
+.commission-step h3 {
+  font-size: 1.22rem;
+  margin-block-end: .15rem;
 }
 
-.commission-step[data-open="true"] .step-arrow {
-  transform: rotate(-135deg);
+.step-window {
+  margin: 0 0 .6rem;
+  color: var(--wet-clay);
 }
 
-.step-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms var(--ease);
-}
-
-.commission-step[data-open="true"] .step-body {
-  grid-template-rows: 1fr;
-}
-
-.step-body > * {
-  overflow: hidden;
-  margin: 0;
-  padding-inline: calc(3rem + 1.1rem + .8rem) 1.1rem;
-}
-
-.step-body p:first-child {
+.step-copy {
+  font-size: .93rem;
   color: var(--reduction-brown);
-  max-width: 58ch;
   text-wrap: pretty;
+  margin-block-end: .7rem;
 }
 
 .step-ledger {
-  color: var(--wet-clay) !important;
-  padding-block: .5rem 1rem;
+  margin: 0;
+  color: var(--wet-clay);
 }
 
 /* ---------- the sketch bench ---------- */
@@ -1611,11 +1576,8 @@ h3 {
     box-shadow: inset 0 0 0 1px var(--line), 0 22px 45px rgba(58, 33, 24, .2);
   }
 
-  .featured-piece:hover {
-    translate: 0 -5px !important;
-    scale: 1.01 !important;
-    box-shadow: 0 28px 80px rgba(23, 19, 17, .3), 0 8px 24px rgba(58, 33, 24, .16),
-      inset 0 0 0 1px rgba(58, 33, 24, .14);
+  .featured-card:hover {
+    box-shadow: inset 0 0 0 2px rgba(216, 107, 42, .55), 0 24px 50px rgba(58, 33, 24, .22);
   }
 
   .session-row:hover {
@@ -1641,15 +1603,15 @@ h3 {
   .glaze-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .hero-content {
-    grid-template-columns: 1fr;
-    align-content: center;
+  .journey-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .4rem;
   }
 
-  .featured-piece {
-    justify-self: start;
-    width: min(100%, 24rem);
-  }
+  .journey-strip { grid-auto-columns: min(76%, 34rem); }
+
+  .commission-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .session-row {
     grid-template-columns: 1fr auto;
@@ -1681,6 +1643,10 @@ h3 {
   }
 
   .journey-step { min-height: 20rem; }
+  .journey-strip { grid-auto-columns: 86vw; }
+  .commission-steps { grid-template-columns: 1fr; }
+  .featured-body { grid-template-columns: minmax(0, .8fr) 1fr; gap: .5rem; }
+  .featured-card .piece-meta strong { font-size: 1.15rem; }
 
   .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
 

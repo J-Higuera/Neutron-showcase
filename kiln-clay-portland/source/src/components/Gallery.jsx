@@ -58,7 +58,7 @@ export function PieceModal({ piece, onClose }) {
   );
 }
 
-export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece }) {
+export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece, featured }) {
   const [formFilter, setFormFilter] = useState(null);
 
   // Filtering collapses the grid, but the reveal ScrollTriggers cached the
@@ -138,7 +138,23 @@ export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece }) {
       </div>
 
       <div className="work-grid">
-        {shown.map((p) => {
+        {featured && shown.some((p) => p.id === featured.id) && (
+          <button className="piece-card featured-card reveal" onClick={() => onOpenPiece(featured)}
+            aria-haspopup="dialog" aria-label={`Today's pull: ${featured.name} - see details`}>
+            <span className="mono featured-stamp">FRESH FROM THE KILN · TODAY'S PULL</span>
+            <span className="featured-body">
+              <Vessel form={featured.form} glaze={featured.glaze} title={featured.name} />
+              <span className="piece-meta">
+                <strong>{featured.name}</strong>
+                <span className="mono">{featured.form} · {glazeById(featured.glaze).name}</span>
+                <span className="piece-price">${featured.price}</span>
+                <span className="featured-cta mono">SEE THIS PIECE →</span>
+              </span>
+            </span>
+            <span className={`status-chip status-${featured.status}`}>{STATUS_LABEL[featured.status]}</span>
+          </button>
+        )}
+        {shown.filter((p) => !featured || p.id !== featured.id).map((p) => {
           const g = glazeById(p.glaze);
           return (
             <button key={p.id} className="piece-card reveal" onClick={() => onOpenPiece(p)}

@@ -39,14 +39,9 @@ export default function App() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.hero-copy > *',
+        '.hero-content > *',
         { y: 26, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.09, ease: 'power3.out' }
-      );
-      gsap.fromTo(
-        '.featured-piece',
-        { y: 30, opacity: 0, rotate: 2.5 },
-        { y: 0, opacity: 1, rotate: 1.2, duration: 0.9, delay: 0.35, ease: 'power3.out' }
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.11, ease: 'power3.out' }
       );
       gsap.fromTo(
         '.hero-ledger, .scroll-cue',
@@ -73,12 +68,13 @@ export default function App() {
       <a className="skip-link" href="#work">Skip to the work</a>
       <Header />
       <main id="main">
-        <Hero featured={featured} onOpenPiece={setModalPiece} />
+        <Hero />
         <Journey />
         <Gallery
           glazeFilter={glazeFilter}
           onGlazeSelect={setGlazeFilter}
           onOpenPiece={setModalPiece}
+          featured={featured}
         />
         <Workshops />
         <Commissions />
