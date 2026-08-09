@@ -1,0 +1,19 @@
+{
+  "name": "kiln-clay-v2",
+  "version": "2.0.0",
+  "description": "Kiln & Clay — Portland ceramics studio showcase (React rebuild)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.5",
+    "gsap": "^3.12.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "vite": "^8.2.0"
+  }
+}
