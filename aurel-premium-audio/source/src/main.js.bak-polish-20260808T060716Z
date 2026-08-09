@@ -6,30 +6,6 @@ const canvas = document.querySelector("#product-canvas");
 const stage = document.querySelector(".product-stage");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Browsers drop field data on mailto form posts; compose the mailto ourselves
-// so the typed answers survive, and tell the visitor what just happened.
-const auditionForm = document.querySelector(".audition-form");
-if (auditionForm) {
-  const formNote = document.createElement("p");
-  formNote.className = "form-note";
-  formNote.setAttribute("role", "status");
-  formNote.hidden = true;
-  auditionForm.append(formNote);
-
-  auditionForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const lines = [...new FormData(auditionForm).entries()]
-      .filter(([, value]) => String(value).trim())
-      .map(([key, value]) => `${key}: ${String(value).trim()}`);
-    const subject = encodeURIComponent("Aurel audition request");
-    const body = encodeURIComponent(lines.join("\n"));
-    window.location.href = `mailto:studio@aurel.audio?subject=${subject}&body=${body}`;
-    formNote.textContent =
-      "Your mail app should open with these details — or write to studio@aurel.audio directly.";
-    formNote.hidden = false;
-  });
-}
-
 function canUseWebGL() {
   try {
     const probe = document.createElement("canvas");
@@ -313,8 +289,7 @@ scene.add(floor);
 
 let targetRotationX = product.rotation.x;
 let targetRotationY = product.rotation.y;
-let stageInView = true;
-let pageVisible = !document.hidden;
+let isVisible = true;
 
 function resize() {
   const rect = stage.getBoundingClientRect();
@@ -342,12 +317,12 @@ stage.addEventListener("pointerleave", () => {
 });
 
 const observer = new IntersectionObserver(([entry]) => {
-  stageInView = entry.isIntersecting;
+  isVisible = entry.isIntersecting;
 });
 observer.observe(stage);
 
 document.addEventListener("visibilitychange", () => {
-  pageVisible = !document.hidden;
+  isVisible = !document.hidden;
 });
 
 window.addEventListener("resize", resize, { passive: true });
@@ -358,25 +333,21 @@ const clock = new THREE.Clock();
 function animate() {
   requestAnimationFrame(animate);
 
-  if (!stageInView || !pageVisible) return;
+  if (!isVisible && !reducedMotion) return;
 
   const elapsed = clock.getElapsedTime();
-  targetRotationY += Math.sin(elapsed * 0.42) * 0.0009;
-  product.rotation.x += (targetRotationX - product.rotation.x) * 0.055;
-  product.rotation.y += (targetRotationY - product.rotation.y) * 0.055;
-  product.position.y = Math.sin(elapsed * 0.7) * 0.035;
-  knob.rotation.z = elapsed * 0.08;
+  if (!reducedMotion) {
+    targetRotationY += Math.sin(elapsed * 0.42) * 0.0009;
+    product.rotation.x += (targetRotationX - product.rotation.x) * 0.055;
+    product.rotation.y += (targetRotationY - product.rotation.y) * 0.055;
+    product.position.y = Math.sin(elapsed * 0.7) * 0.035;
+    knob.rotation.z = elapsed * 0.08;
+  }
 
   renderer.render(scene, camera);
 }
 
 renderer.render(scene, camera);
 stage.classList.add("webgl-ready");
-if (reducedMotion) {
-  // Static presentation: nothing in the scene moves, so render on demand
-  // (after resizes) instead of running a 60fps loop over a still image.
-  window.addEventListener("resize", () => renderer.render(scene, camera), { passive: true });
-} else {
-  animate();
-}
+animate();
 }
