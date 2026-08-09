@@ -6,18 +6,16 @@
     <title>Vórtice Coffee Roastery | Medellín Specialty Coffee</title>
     <meta name="description" content="Vórtice is a concept specialty coffee roastery in Medellín, focused on Colombian single-origin lots, precise roast curves, cupping, and monthly subscriptions.">
     <meta name="theme-color" content="#251813">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23251813'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%23df9b59' stroke-width='3.5'/%3E%3Cpath d='M16 7.5a8.5 8.5 0 0 0 0 17' fill='none' stroke='%238fa277' stroke-width='3.5'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
-    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Vórtice home">
         <span class="brand__word">V<span class="brand__o">o</span>rtice</span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
+      <nav class="nav-links">
         <a href="#origins">Origins</a>
         <a href="#roastery">Roastery</a>
         <a href="#club">Club</a>
@@ -44,7 +42,7 @@
               <span class="hero-line">pulled into</span>
               <span class="hero-line">its perfect roast.</span>
             </h1>
-            <p class="hero__lede">Roasted in Medellín with in-house profile development, roast-date discipline, and a monthly subscription club built around Colombia’s current crop.</p>
+            <p class="hero__lede">Roasted in Medellín with in-house profile development, roast-date discipline, and a monthly subscription club built around Colombia's current crop.</p>
             <div class="cta-row">
               <a class="button button--primary" href="#club">Join the subscription</a>
               <a class="button button--secondary" href="#origins">Explore current lots</a>
@@ -109,11 +107,11 @@
               </article>
 
               <div class="artifact artifact--cherries">
-                <img src="assets/colombian-coffee-farm-ripe-red-coffee-cherries-on-branch-hand-picking-high-altitude-antioquia-or-huila-natural-light-close-documentary-photograph.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Ripe red Colombian coffee cherries being picked at high altitude.">
+                <img src="assets/colombian-coffee-farm-ripe-red-coffee-cherries-on-branch-hand-picking-high-altitude-antioquia-or-huila-natural-light-close-documentary-photograph.jpg" width="1600" height="1067" alt="Ripe red Colombian coffee cherries being picked at high altitude.">
                 <span>Origin intake</span>
               </div>
               <div class="artifact artifact--green">
-                <img src="assets/green-coffee-beans-parchment-coffee-sacks-sample-trays-colombian-specialty-coffee-traceability-roastery-table-overhead-documentary-photograph.jpg" width="1068" height="1600" loading="lazy" decoding="async" alt="Green coffee beans, parchment, sacks, and sample trays on a roastery table.">
+                <img src="assets/green-coffee-beans-parchment-coffee-sacks-sample-trays-colombian-specialty-coffee-traceability-roastery-table-overhead-documentary-photograph.jpg" width="1068" height="1600" alt="Green coffee beans, parchment, sacks, and sample trays on a roastery table.">
                 <span>Traceability table</span>
               </div>
             </div>
@@ -129,7 +127,7 @@
         </div>
         <div class="origins-layout">
           <aside class="evidence-panel evidence-panel--origin reveal">
-            <img src="assets/colombian-coffee-farm-ripe-red-coffee-cherries-on-branch-hand-picking-high-altitude-antioquia-or-huila-natural-light-close-documentary-photograph.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="A hand selecting ripe red coffee cherries on a Colombian coffee branch.">
+            <img src="assets/colombian-coffee-farm-ripe-red-coffee-cherries-on-branch-hand-picking-high-altitude-antioquia-or-huila-natural-light-close-documentary-photograph.jpg" width="1600" height="1067" alt="A hand selecting ripe red coffee cherries on a Colombian coffee branch.">
             <div>
               <span>Farm evidence</span>
               <p>Fresh crop rotation follows ripe cherry, parchment, sample tray, and roast result.</p>
@@ -203,7 +201,7 @@
       <section class="roastery section-warm" id="roastery" aria-labelledby="roastery-title">
         <div class="roastery__grid">
           <figure class="process-photo reveal">
-            <img src="assets/specialty-coffee-roasting-machine-drum-roaster-cooling-tray-in-house-roastery-warm-copper-industrial-editorial-photograph.jpg" width="1143" height="1600" loading="lazy" decoding="async" alt="A warm copper-toned in-house drum roaster and cooling tray.">
+            <img src="assets/specialty-coffee-roasting-machine-drum-roaster-cooling-tray-in-house-roastery-warm-copper-industrial-editorial-photograph.jpg" width="1143" height="1600" alt="A warm copper-toned in-house drum roaster and cooling tray.">
             <figcaption>Roast room: heat, airflow, cooling tray, and the smell of first crack.</figcaption>
           </figure>
           <div class="ledger reveal">
@@ -233,10 +231,10 @@
 
       <section class="cupping section-light" aria-labelledby="cupping-title">
         <div class="cupping__panel reveal">
-          <img src="assets/coffee-cupping-table-multiple-bowls-spoons-score-sheets-specialty-coffee-quality-control-procedural-documentary-photograph.jpg" width="1068" height="1600" loading="lazy" decoding="async" alt="A specialty coffee cupping table with bowls, spoons, and score sheets.">
+          <img src="assets/coffee-cupping-table-multiple-bowls-spoons-score-sheets-specialty-coffee-quality-control-procedural-documentary-photograph.jpg" width="1068" height="1600" alt="A specialty coffee cupping table with bowls, spoons, and score sheets.">
           <div class="score-sheet">
             <div class="section-kicker">Cupping proof table</div>
-            <h2 id="cupping-title">“If the cup loses the farm, the roast curve changes.”</h2>
+            <h2 id="cupping-title">"If the cup loses the farm, the roast curve changes."</h2>
             <div class="sensory-grid" aria-label="Cupping score categories">
               <span>Aroma</span>
               <span>Acidity</span>
@@ -265,7 +263,7 @@
             <span class="tier-card__tag">Filter lane</span>
             <h3>Filtro Claro</h3>
             <p>For V60, Chemex, AeroPress. One bag monthly, bright, floral, fruit-forward.</p>
-            <div class="dial" role="img" aria-label="Clarity high, body medium, sweetness medium">
+            <div class="dial" aria-label="Clarity high, body medium, sweetness medium">
               <span style="--v:92%">Clarity</span>
               <span style="--v:54%">Body</span>
               <span style="--v:68%">Sweetness</span>
@@ -276,7 +274,7 @@
             <span class="tier-card__tag">Espresso lane</span>
             <h3>Espresso Base</h3>
             <p>For espresso and milk drinks. One to two bags monthly with structured sweetness, cacao, and caramel.</p>
-            <div class="dial" role="img" aria-label="Clarity medium, body high, sweetness high">
+            <div class="dial" aria-label="Clarity medium, body high, sweetness high">
               <span style="--v:56%">Clarity</span>
               <span style="--v:88%">Body</span>
               <span style="--v:82%">Sweetness</span>
@@ -287,7 +285,7 @@
             <span class="tier-card__tag">Discovery lane</span>
             <h3>Rotación Vórtice</h3>
             <p>Mixed discovery with rotating regions and processes, built for curious drinkers.</p>
-            <div class="dial" role="img" aria-label="Clarity high, body medium high, sweetness high">
+            <div class="dial" aria-label="Clarity high, body medium high, sweetness high">
               <span style="--v:78%">Clarity</span>
               <span style="--v:72%">Body</span>
               <span style="--v:86%">Sweetness</span>
@@ -296,7 +294,7 @@
           </article>
         </div>
         <figure class="packing-panel reveal">
-          <img src="assets/roasted-coffee-beans-valve-bags-roast-date-labels-packing-table-subscription-coffee-shipping-preparation-warm-editorial-photograph.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Roasted coffee bags with roast date labels prepared for subscription shipping.">
+          <img src="assets/roasted-coffee-beans-valve-bags-roast-date-labels-packing-table-subscription-coffee-shipping-preparation-warm-editorial-photograph.jpg" width="1600" height="1067" alt="Roasted coffee bags with roast date labels prepared for subscription shipping.">
           <figcaption>Subscription prep: roast date, valve bag, brew lane, and monthly dispatch.</figcaption>
         </figure>
         <div class="cta-row cta-row--center">

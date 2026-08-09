@@ -128,6 +128,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -649,13 +650,6 @@ p {
   margin-bottom: clamp(2rem, 5vi, 4rem);
 }
 
-/* The heading grid is authored for exactly two children (h2 | p). Where a
-   kicker also sits inside it, span it across the row so the h2 keeps the
-   wide column instead of being pushed into the narrow one. */
-.section-heading .section-kicker {
-  grid-column: 1 / -1;
-}
-
 .section-heading p {
   color: var(--muted);
 }
@@ -1113,23 +1107,16 @@ body:has(.site-footer) {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Reveal moves the element with the independent `translate` property, not
-     `transform`: `transform` is already spoken for on some .reveal elements
-     (.evidence-panel's tilt) and on their hover states (.lot-card /
-     .tier-card lift), and one property cannot carry both. Gated on .js so
-     the content is never left invisible if the script does not run. */
-  .js .reveal {
+  .reveal {
     opacity: 0;
-    translate: 0 28px;
-    transition:
-      opacity .7s var(--ease) calc(var(--i, 0) * 70ms),
-      translate .7s var(--ease) calc(var(--i, 0) * 70ms),
-      transform .22s var(--ease);
+    transform: translateY(28px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+    transition-delay: calc(var(--i, 0) * 70ms);
   }
 
   .reveal.is-visible {
     opacity: 1;
-    translate: 0;
+    transform: translateY(0);
   }
 
   .vortex-stage.is-visible .roast-curve,
@@ -1154,12 +1141,6 @@ body:has(.site-footer) {
   .vortex-stage.is-visible .bean--red,
   .vortex-shell.is-visible .bean--red {
     animation: beanTravelLate 7.8s var(--ease) .8s infinite alternate;
-  }
-
-  /* The bean travel loops never end; park them while the stage is off screen
-     so the rest of the page is not scrolled over a repainting SVG. */
-  .vortex-stage.is-idle .bean {
-    animation-play-state: paused;
   }
 }
 

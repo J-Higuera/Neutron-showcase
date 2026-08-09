@@ -1,6 +1,7 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-document.documentElement.classList.add("js");
+// The `js` class is set by an inline script in <head> so the reveal system's
+// hidden state is never applied to a page whose script did not run.
 
 const revealItems = [...document.querySelectorAll(".reveal")];
 
@@ -25,23 +26,52 @@ if (!reduceMotion.matches && "IntersectionObserver" in window) {
 const vortex = document.querySelector(".vortex-stage");
 
 if (vortex && !reduceMotion.matches) {
-  vortex.addEventListener("pointermove", (event) => {
-    if (window.matchMedia("(max-width: 46rem)").matches) return;
-    const rect = vortex.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    vortex.style.setProperty("--tilt-x", `${y * -5}deg`);
-    vortex.style.setProperty("--tilt-y", `${x * 5}deg`);
+  const stacked = window.matchMedia("(max-width: 46rem)");
+  let rect = null;
+  let frame = 0;
+  let pointer = null;
+
+  const dropRect = () => { rect = null; };
+  window.addEventListener("resize", dropRect, { passive: true });
+  window.addEventListener("scroll", dropRect, { passive: true });
+
+  const tilt = () => {
+    frame = 0;
+    if (!pointer) return;
     vortex.animate(
-      { transform: `perspective(900px) rotateX(${y * -3}deg) rotateY(${x * 3}deg)` },
+      { transform: `perspective(900px) rotateX(${pointer.y * -3}deg) rotateY(${pointer.x * 3}deg)` },
       { duration: 260, fill: "forwards", easing: "cubic-bezier(.16,1,.3,1)" }
     );
+    pointer = null;
+  };
+
+  vortex.addEventListener("pointermove", (event) => {
+    if (stacked.matches) return;
+    // One layout read per enter/scroll/resize instead of one per pointer event.
+    if (!rect) rect = vortex.getBoundingClientRect();
+    pointer = {
+      x: (event.clientX - rect.left) / rect.width - 0.5,
+      y: (event.clientY - rect.top) / rect.height - 0.5
+    };
+    // Coalesce to one animation per frame; a fast mouse fires far more often.
+    if (!frame) frame = requestAnimationFrame(tilt);
   });
 
   vortex.addEventListener("pointerleave", () => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    pointer = null;
+    rect = null;
     vortex.animate(
       { transform: "perspective(900px) rotateX(0deg) rotateY(0deg)" },
       { duration: 420, fill: "forwards", easing: "cubic-bezier(.16,1,.3,1)" }
     );
   });
+
+  if ("IntersectionObserver" in window) {
+    const idle = new IntersectionObserver(([entry]) => {
+      vortex.classList.toggle("is-idle", !entry.isIntersecting);
+    }, { threshold: 0 });
+    idle.observe(vortex);
+  }
 }
