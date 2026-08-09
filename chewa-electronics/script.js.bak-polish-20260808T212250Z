@@ -6,6 +6,21 @@
     gsap.registerPlugin(ScrollTrigger);
   }
 
+  if (!reduceMotion.matches && window.Lenis) {
+    const lenis = new Lenis({
+      duration: 0.95,
+      smoothWheel: true,
+      wheelMultiplier: 0.82
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }
+
   const searchForm = document.querySelector(".header-search");
   if (searchForm) {
     searchForm.addEventListener("submit", (event) => {

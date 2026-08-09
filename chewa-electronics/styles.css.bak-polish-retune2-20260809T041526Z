@@ -947,13 +947,6 @@ h1 {
 }
 
 @media (max-width: 720px) {
-  /* The sticky header becomes two rows here (search wraps to its own row), so it
-     covers the top 125px of the viewport — more than a section's 56px of top
-     padding. Reserve that strip so anchor jumps land section headings below it. */
-  html {
-    scroll-padding-top: 125px;
-  }
-
   .header-inner {
     min-height: auto;
     grid-template-columns: 1fr auto;
