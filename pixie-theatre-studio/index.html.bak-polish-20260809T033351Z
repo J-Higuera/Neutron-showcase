@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Pixie is a craft-led theatre studio for actors, young performers, directors, and curious beginners.">
     <title>Pixie Theatre Studio | The Green Room Portal</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111014'/><circle cx='16' cy='16' r='11.5' fill='none' stroke='%23f6c66a' stroke-opacity='.5'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23f6c66a'>P</text></svg>">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -31,7 +30,7 @@
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow">The Green Room Portal</p>
-          <h1 id="hero-title">Step into the room where perfor&shy;mances become possible.</h1>
+          <h1 id="hero-title">Step into the room where performances become possible.</h1>
           <p class="hero-lede">Pixie is a theatre studio for actors, young performers, directors, and curious beginners, building voice, movement, ensemble, and stage confidence through craft-led training.</p>
           <div class="hero-actions" aria-label="Hero calls to action">
             <a class="button button-primary" href="#call-sheet">Book a workshop</a>
@@ -180,7 +179,7 @@
         <div class="atmosphere-grid">
           <article class="studio-panel rehearsal-circle">
             <div class="panel-art">
-              <img src="assets/theatre_actors_in_rehearsal_circle_doing_physical_warmup_candid_studio_workshop_warm_low_light.jpg" alt="Actors warming up in a theatre rehearsal circle." width="1800" height="1202" loading="lazy">
+              <img src="assets/theatre_actors_in_rehearsal_circle_doing_physical_warmup_candid_studio_workshop_warm_low_light.jpg" alt="Actors warming up in a theatre rehearsal circle.">
             </div>
             <h3>Rehearsal Circle</h3>
             <p>Bodies awake, breath in the room, everyone visible before anyone has to be impressive.</p>
@@ -190,14 +189,14 @@
           </article>
           <article class="studio-panel table-work">
             <div class="panel-art">
-              <img src="assets/close_up_of_scripts_rehearsal_notes_pencils_and_hands_on_a_theatre_table_natural_warm_light.webp" alt="Scripts, rehearsal notes, pencils, and hands on a warm theatre table." width="2500" height="1669" loading="lazy">
+              <img src="assets/close_up_of_scripts_rehearsal_notes_pencils_and_hands_on_a_theatre_table_natural_warm_light.webp" alt="Scripts, rehearsal notes, pencils, and hands on a warm theatre table.">
             </div>
             <h3>Script &amp; Table Work</h3>
             <p>Pencils down, questions up, choices tested before they are performed.</p>
           </article>
           <article class="studio-panel performance-night">
             <div class="panel-art">
-              <img src="assets/intimate_black_box_studio_performance_small_ensemble_on_stage_dramatic_side_lighting_audience_barely_visible.jpg" alt="Small ensemble performing in an intimate black-box studio." width="3000" height="2001" loading="lazy">
+              <img src="assets/intimate_black_box_studio_performance_small_ensemble_on_stage_dramatic_side_lighting_audience_barely_visible.jpg" alt="Small ensemble performing in an intimate black-box studio.">
             </div>
             <h3>Showing Night</h3>
             <p>The work meets a small audience without losing the scale and honesty of the room.</p>

@@ -19,17 +19,8 @@
 }
 
 html {
+  scroll-behavior: smooth;
   overflow-x: clip;
-}
-
-/* anchor landings clear the sticky header */
-#top,
-#main,
-#pathways,
-#method,
-#join,
-#call-sheet {
-  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -112,10 +103,6 @@ textarea {
 
 .brand {
   gap: 0.7rem;
-  padding-right: 0.9rem;
-  border-radius: 999px;
-  background: rgba(17, 16, 20, 0.78);
-  box-shadow: inset 0 0 0 1px var(--line);
   text-decoration: none;
 }
 
@@ -161,7 +148,7 @@ textarea {
   padding: 0.22rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(17, 16, 20, 0.78);
+  background: rgba(17, 16, 20, 0.68);
 }
 
 .nav-links a {
@@ -1009,7 +996,7 @@ textarea:focus-visible {
   border: 1px solid rgba(246, 198, 106, 0.24);
   border-radius: 0.45rem;
   background:
-    linear-gradient(90deg, rgba(75, 31, 58, 0.3), transparent),
+    linear-gradient(90deg, rgba(75, 31, 58, 0.75), transparent),
     var(--paper);
   color: var(--ink);
 }
@@ -1057,11 +1044,6 @@ textarea:focus-visible {
   margin: 0.35rem 0 0;
   color: rgba(36, 24, 33, 0.62);
   font-size: 0.72rem;
-}
-
-.signup .form-note.is-confirmed {
-  color: var(--plum);
-  font-weight: 700;
 }
 
 .site-footer {
@@ -1117,8 +1099,8 @@ textarea:focus-visible {
   }
 
   .nav-links {
-    flex: 0 1 auto;
-    max-width: 62%;
+    flex: 1 1 auto;
+    max-width: 54%;
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -1128,13 +1110,7 @@ textarea:focus-visible {
   }
 
   .nav-links a {
-    padding-inline: 0.5rem;
     white-space: nowrap;
-  }
-
-  .brand {
-    flex: 0 0 auto;
-    padding-right: 0.6rem;
   }
 
   .hero {
@@ -1160,8 +1136,6 @@ textarea:focus-visible {
     font-size: clamp(2.95rem, 2.35rem + 2.35vi, 3.65rem);
     max-width: 9.7ch;
     overflow-wrap: normal;
-    -webkit-hyphens: none;
-    hyphens: none;
   }
 
   .hero-lede {

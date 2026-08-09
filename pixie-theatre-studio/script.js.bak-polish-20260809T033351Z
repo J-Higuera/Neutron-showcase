@@ -7,7 +7,6 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       note.textContent = "You are on the call sheet. Pixie will reply with the next available room.";
-      note.classList.add("is-confirmed");
       form.setAttribute("aria-busy", "false");
     });
   }
@@ -50,13 +49,7 @@
       ease: "sine.inOut",
       yoyo: true,
       repeat: -1,
-      transformOrigin: "50% 80%",
-      scrollTrigger: {
-        trigger: ".portal-stage",
-        start: "top bottom",
-        end: "bottom top",
-        toggleActions: "play pause resume pause"
-      }
+      transformOrigin: "50% 80%"
     });
 
     gsap.utils.toArray(".section-heading, .pinned, .note-card, .notice, .studio-panel, .quote-block, .offer, .signup").forEach(function (element) {
@@ -65,7 +58,6 @@
         opacity: 0,
         duration: 0.68,
         ease: "power3.out",
-        clearProps: "all",
         scrollTrigger: {
           trigger: element,
           start: "top 84%",
@@ -87,6 +79,22 @@
           scrub: 0.35
         },
         delay: index * 0.02
+      });
+    });
+
+    gsap.matchMedia().add("(min-width: 1024px)", function () {
+      const callBoardHeading = document.querySelector(".pathways-section .section-heading");
+
+      if (!callBoardHeading) {
+        return;
+      }
+
+      ScrollTrigger.create({
+        trigger: ".call-board",
+        start: "top 18%",
+        end: "bottom 52%",
+        pin: callBoardHeading,
+        pinSpacing: false
       });
     });
   });
