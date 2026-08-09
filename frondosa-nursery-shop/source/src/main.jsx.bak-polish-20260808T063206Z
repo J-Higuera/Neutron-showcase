@@ -106,12 +106,12 @@ function useLocalStorage(key, initial) {
 }
 
 function money(n) { return `$${n.toFixed(2)}`; }
-const sitePrefix = () => window.location.pathname.match(/^.*?\/frondosa-nursery-shop(?=\/|$)/)?.[0] ?? '';
+const previewPrefix = () => window.location.pathname.startsWith('/preview/frondosa-nursery-shop') ? '/preview/frondosa-nursery-shop' : '';
 function path() {
-  const raw = window.location.pathname.replace(/^.*?\/frondosa-nursery-shop(?=\/|$)/, '') || '/';
+  const raw = window.location.pathname.replace(/^\/preview\/frondosa-nursery-shop/, '') || '/';
   return raw !== '/' ? raw.replace(/\/+$/, '') : raw;
 }
-function route(to) { history.pushState(null, '', `${sitePrefix()}${to}`); window.dispatchEvent(new Event('popstate')); window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+function route(to) { history.pushState(null, '', `${previewPrefix()}${to}`); window.dispatchEvent(new Event('popstate')); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 function App() {
   const [routePath, setRoutePath] = useState(path());
@@ -217,10 +217,10 @@ function FilterRail({ filters, setFilters, drawer, setDrawer }) {
     ['category','Type',['foliage','trailing','fern','palm','succulent/cactus','blooming','bundle','accessory']],
   ];
   const panel = <aside className="filter-rail">
-    <div className="rail-title"><Leaf size={19} /><div><strong>Care match tags</strong><small>Clip filters together</small></div><button className="mobile-close" aria-label="Close filters" onClick={() => setDrawer(false)}><X size={18} /></button></div>
+    <div className="rail-title"><Leaf size={19} /><div><strong>Care match tags</strong><small>Clip filters together</small></div><button className="mobile-close" onClick={() => setDrawer(false)}><X size={18} /></button></div>
     <label className="searchbar desktop-search"><Search size={17} /><input value={filters.q} onChange={(e) => setFilters({ ...filters, q: e.target.value })} placeholder="Search species, care, category" /></label>
     {groups.map(([key, title, values]) => <fieldset key={key} className="tag-stack"><legend>{title}</legend>{values.map((value) => <label key={value} className="check-tag"><input type="checkbox" checked={filters[key].includes(value)} onChange={() => toggleFilter(filters, setFilters, key, value)} /><span>{value}</span></label>)}</fieldset>)}
-    <fieldset className="tag-stack"><legend>Price up to {money(filters.price)}</legend><input className="range" type="range" min="10" max="140" aria-label="Maximum price" value={filters.price} onChange={(e) => setFilters({ ...filters, price: Number(e.target.value) })} /></fieldset>
+    <fieldset className="tag-stack"><legend>Price up to {money(filters.price)}</legend><input className="range" type="range" min="10" max="140" value={filters.price} onChange={(e) => setFilters({ ...filters, price: Number(e.target.value) })} /></fieldset>
     <label className="check-tag toggle"><input type="checkbox" checked={filters.beginner} onChange={(e) => setFilters({ ...filters, beginner: e.target.checked })} /><span>beginner-friendly only</span></label>
     <button className="clear" onClick={() => setFilters(filtersInitial)}>Clear all tags</button>
   </aside>;
@@ -255,7 +255,7 @@ function filterProducts(f) {
 
 function ProductCard({ product, addToCart }) {
   return <article className="product-card">
-    <button className="photo-button" onClick={() => route(`/plant/${product.id}`)} aria-label={`View care card for ${product.name}`}><img src={product.image} alt={`${product.name} product photo`} loading="lazy" decoding="async" /></button>
+    <button className="photo-button" onClick={() => route(`/plant/${product.id}`)} aria-label={`View care card for ${product.name}`}><img src={product.image} alt={`${product.name} product photo`} /></button>
     <div className="card-copy">
       <div className="card-title"><h2>{product.name}</h2><em>{product.scientific}</em></div>
       <p>{product.summary}</p>
@@ -292,7 +292,7 @@ function ProductDetail({ id, addToCart }) {
     <div className="product-hero">
       <div className="gallery showcase-gallery">
         <img className="gallery-main" src={product.gallery[active]} alt={`${product.name} gallery view ${active + 1}`} />
-        <div>{product.gallery.map((src, i) => <button className={active === i ? 'active' : ''} key={`${src}-${i}`} aria-label={`Show ${product.name} photo ${i + 1}`} onClick={() => setActive(i)}><img src={src} alt="" /></button>)}</div>
+        <div>{product.gallery.map((src, i) => <button className={active === i ? 'active' : ''} key={src} onClick={() => setActive(i)}><img src={src} alt="" /></button>)}</div>
       </div>
       <article className="care-card purchase-card">
         <p className="eyebrow">species bench card / {product.category}</p>
@@ -367,7 +367,7 @@ function Checkout({ cartLines, totals, clearCart, orders, setOrders, setLoggedIn
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) next.email = 'Enter a valid email address.';
     if (!form.payment) next.payment = 'Choose demo payment to continue.';
     setErrors(next);
-    if (Object.keys(next).length) { requestAnimationFrame(() => document.querySelector('.error-summary')?.focus()); return; }
+    if (Object.keys(next).length) { document.querySelector('.error-summary')?.focus(); return; }
     const id = `FR-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 8000)}`;
     const newOrder = { id, date: new Date().toISOString().slice(0,10), status: 'Greenhouse packed', total: totals.total, contact: { name: form.name, email: form.email }, shipping: form, items: cartLines.map((x) => ({ productId: x.product.id, qty: x.qty })), events: ['Order received','Bench count verified','Care card printed','Greenhouse packed'].map((label, i) => ({ label, time: new Date(Date.now() + i * 60000).toLocaleString(), note: 'Demo dispatch event.' })) };
     setOrders([newOrder, ...orders]); clearCart(); setLoggedIn(true); setDone(newOrder);
@@ -380,7 +380,7 @@ function Checkout({ cartLines, totals, clearCart, orders, setOrders, setLoggedIn
     <form className="checkout-form" onSubmit={submit} noValidate>
       <p className="demo-pay">Demo checkout — no real payment is collected or processed.</p>
       {Object.keys(errors).length > 0 && <div className="error-summary" tabIndex="-1">Please fix the highlighted packing-slip fields.</div>}
-      {['name','email','address','city','state','zip'].map((k) => <label key={k}>{k === 'zip' ? 'ZIP / postal' : k[0].toUpperCase() + k.slice(1)}<input type={k === 'email' ? 'email' : 'text'} value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} aria-invalid={!!errors[k]} autoComplete={{ name: 'name', email: 'email', address: 'shipping street-address', city: 'shipping address-level2', state: 'shipping address-level1', zip: 'shipping postal-code' }[k]} />{errors[k] && <small className="field-error">{errors[k]}</small>}</label>)}
+      {['name','email','address','city','state','zip'].map((k) => <label key={k}>{k === 'zip' ? 'ZIP / postal' : k[0].toUpperCase() + k.slice(1)}<input value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} aria-invalid={!!errors[k]} autoComplete={k === 'name' ? 'name' : k === 'email' ? 'email' : k === 'address' ? 'street-address' : 'shipping ' + k} />{errors[k] && <small className="field-error">{errors[k]}</small>}</label>)}
       <label>Delivery note <textarea value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} /></label>
       <label className="payment-choice"><input type="checkbox" checked={form.payment} onChange={(e) => setForm({ ...form, payment: e.target.checked })} /> Use demo payment</label>{errors.payment && <small className="field-error">{errors.payment}</small>}
       <button className="primary">Place demo order</button>

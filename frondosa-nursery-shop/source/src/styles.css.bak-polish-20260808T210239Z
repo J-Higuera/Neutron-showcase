@@ -117,7 +117,6 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius);
 }
 .searchbar input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; }
-.searchbar:focus-within { border-color: var(--leaf); box-shadow: 0 0 0 2px rgba(40, 88, 59, .22); }
 .tag-stack { border: 0; padding: .65rem 0; margin: 0; }
 .tag-stack legend { font-weight: 700; color: var(--soil); margin-bottom: .42rem; }
 .check-tag {
