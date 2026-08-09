@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-09T05:46:06.521Z",
+    "generatedAt": "2026-08-09T08:54:08.578Z",
     "preservedFields": [
       "name",
       "title",
@@ -135,8 +135,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Kiln & Clay | Portland Ceramics Studio",
-      "title": "Kiln & Clay | Portland Ceramics Studio",
+      "name": "Kiln &amp; Clay | Portland Ceramics Studio",
+      "title": "Kiln &amp; Clay | Portland Ceramics Studio",
       "slug": "kiln-clay-portland",
       "folder": "kiln-clay-portland",
       "href": "https://j-higuera.github.io/Neutron-showcase/kiln-clay-portland/",
