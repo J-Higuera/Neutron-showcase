@@ -599,10 +599,6 @@ h3 {
   color: var(--red);
 }
 
-.sticky-note h2 {
-  font-size: clamp(2rem, 1.1rem + 2.1vi, 3.4rem);
-}
-
 .process-list {
   counter-reset: process;
   display: grid;
@@ -617,7 +613,7 @@ h3 {
   border: 1px solid oklch(0.97 0.02 86 / 0.2);
   display: grid;
   gap: 0.8rem;
-  grid-template-columns: 12rem minmax(0, 1fr);
+  grid-template-columns: 10rem minmax(0, 1fr);
   min-width: 0;
   padding: clamp(1.1rem, 2.4vw, 1.5rem);
 }
@@ -760,14 +756,14 @@ textarea {
 @media (prefers-reduced-motion: no-preference) {
   .reveal {
     opacity: 0;
-    translate: 0 24px;
-    transition: opacity 600ms var(--ease), translate 600ms var(--ease), transform 180ms var(--ease);
-    transition-delay: calc(var(--i, 0) * 70ms), calc(var(--i, 0) * 70ms), 0s;
+    transform: translateY(24px);
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 70ms);
   }
 
   .reveal.is-visible {
     opacity: 1;
-    translate: 0 0;
+    transform: translateY(0);
   }
 
   .lane-path {
