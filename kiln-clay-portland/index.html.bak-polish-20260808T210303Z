@@ -9,7 +9,6 @@
     <meta property="og:description" content="Wheel, handbuild, glaze, fire - every piece begins under Portland rainlight and leaves with kiln heat in its surface.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/close-up-ceramic-glaze-test-tiles-studio-wall.jpg">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='8' y='4' width='48' height='56' rx='14' fill='%23D86B2A'/><rect x='8' y='4' width='48' height='27' rx='13' fill='%23F0A25D'/><rect x='8' y='34' width='48' height='26' rx='13' fill='%233A2118' opacity='.35'/></svg>">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -53,7 +52,7 @@
             <div class="test-wall">
               <a class="test-tile nav-tile ember tall" href="#workshops" style="--i:0">
                 <span class="stamp">01</span>
-                <strong>Work&shy;shops</strong>
+                <strong>Workshops</strong>
                 <small>First touch to cone 6</small>
               </a>
               <a class="test-tile rain" href="#shop" style="--i:1">
@@ -83,7 +82,7 @@
               </div>
               <div class="test-tile celadon" aria-hidden="true" style="--i:6">
                 <span class="stamp">27</span>
-                <strong>Moss Cela&shy;don</strong>
+                <strong>Moss Celadon</strong>
                 <small>Soft pooled edge</small>
               </div>
               <div class="test-tile ash wide" aria-hidden="true" style="--i:7">
@@ -117,7 +116,7 @@
 
         <div class="process-shell">
           <div class="process-photo">
-            <img src="assets/potter-hands-centering-wet-clay-wheel.jpg" alt="Hands centering wet clay on a pottery wheel" loading="lazy" decoding="async">
+            <img src="assets/potter-hands-centering-wet-clay-wheel.jpg" alt="Hands centering wet clay on a pottery wheel">
             <svg class="ring-lines" viewBox="0 0 220 220" aria-hidden="true">
               <circle cx="110" cy="110" r="88"></circle>
               <circle cx="110" cy="110" r="58"></circle>
@@ -175,7 +174,7 @@
 
         <div class="offering-grid">
           <article class="offering-card">
-            <img src="assets/potter-hands-centering-wet-clay-wheel.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/potter-hands-centering-wet-clay-wheel.jpg" alt="">
             <div>
               <p class="tag">Beginner - 2 hours</p>
               <h3>First-Time Wheel Night</h3>
@@ -184,7 +183,7 @@
             </div>
           </article>
           <article class="offering-card">
-            <img src="assets/ceramic-artist-brushing-glaze-handmade-vessel.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/ceramic-artist-brushing-glaze-handmade-vessel.jpg" alt="">
             <div>
               <p class="tag">All levels - 2.5 hours</p>
               <h3>Handbuilding Table</h3>
@@ -193,7 +192,7 @@
             </div>
           </article>
           <article class="offering-card feature-offer">
-            <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="">
             <div>
               <p class="tag">Returning - 6 weeks</p>
               <h3>Six-Week Throwing Series</h3>
@@ -202,7 +201,7 @@
             </div>
           </article>
           <article class="offering-card">
-            <img src="assets/close-up-ceramic-glaze-test-tiles-studio-wall.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/close-up-ceramic-glaze-test-tiles-studio-wall.jpg" alt="">
             <div>
               <p class="tag">Curious makers - 90 min</p>
               <h3>Glaze Lab</h3>
@@ -211,7 +210,7 @@
             </div>
           </article>
           <article class="offering-card">
-            <img src="assets/ceramic-kiln-interior-glowing-orange-heat.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/ceramic-kiln-interior-glowing-orange-heat.jpg" alt="">
             <div>
               <p class="tag">Private - 2 hours</p>
               <h3>Group / Date Night</h3>
@@ -220,7 +219,7 @@
             </div>
           </article>
           <article class="offering-card">
-            <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="" loading="lazy" decoding="async">
+            <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="">
             <div>
               <p class="tag">Members - monthly</p>
               <h3>Member Open Studio</h3>
@@ -265,7 +264,7 @@
         </div>
 
         <figure class="shelf-photo">
-          <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="Shelves of handmade mugs, bowls, and vases in a ceramics studio" loading="lazy" decoding="async">
+          <img src="assets/shelves-wheel-thrown-mugs-bowls-vases-studio.jpg" alt="Shelves of handmade mugs, bowls, and vases in a ceramics studio">
           <figcaption>Wheel-thrown forms, handbuilt objects, cone-fired surfaces, and shelves full of work in progress.</figcaption>
         </figure>
       </section>
@@ -316,7 +315,7 @@
 
       <section class="story-section" id="story" aria-labelledby="story-title">
         <div class="story-image">
-          <img src="assets/ceramic-artist-brushing-glaze-handmade-vessel.jpg" alt="Ceramic artist brushing glaze onto a handmade vessel" loading="lazy" decoding="async">
+          <img src="assets/ceramic-artist-brushing-glaze-handmade-vessel.jpg" alt="Ceramic artist brushing glaze onto a handmade vessel">
         </div>
         <div class="story-copy">
           <p class="eyebrow">Studio story & contact</p>

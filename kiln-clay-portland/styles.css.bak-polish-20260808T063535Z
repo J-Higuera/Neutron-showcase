@@ -403,7 +403,7 @@ h3 {
     inset 0 -15px 24px rgba(58, 33, 24, .16),
     0 10px 20px rgba(23, 19, 17, .28);
   transform: translateZ(0);
-  transition: translate 180ms var(--ease);
+  transition: transform 180ms var(--ease);
 }
 
 .test-tile::before,
@@ -441,8 +441,6 @@ h3 {
   font-family: var(--serif);
   font-size: clamp(1rem, .9rem + .42vi, 1.35rem);
   line-height: 1;
-  hyphens: auto;
-  overflow-wrap: break-word;
 }
 
 .test-tile small,
@@ -702,13 +700,6 @@ h3 {
   margin-block-end: 2rem;
 }
 
-/* Span the eyebrow across both columns so auto-placement keeps the h2 in the
-   flexible first column instead of pushing it (and the actions) into
-   collapsed tracks. */
-.shop-intro .eyebrow {
-  grid-column: 1 / -1;
-}
-
 .shop-intro h2 {
   color: var(--bone);
 }
@@ -856,7 +847,6 @@ h3 {
 }
 
 .story-image {
-  display: grid;
   min-height: clamp(26rem, 52vw, 42rem);
   border-radius: 1.4rem .45rem 1.1rem .65rem;
 }
@@ -898,22 +888,17 @@ h3 {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .button:hover {
+  .button:hover,
+  .test-tile:hover {
     transform: translateY(-3px);
   }
 
-  /* GSAP leaves inline `transform` AND `translate: none` on the tiles and
-     cards it animates, which silently kills a transform-based hover. The
-     separate `translate` property composes with GSAP's transform, and
-     !important lets it beat the inline `translate: none` GSAP parks there
-     (GSAP never animates `translate` itself, so nothing fights). */
-  .test-tile:hover,
   .offering-card:hover {
-    translate: 0 -3px !important;
+    transform: translateY(-3px);
   }
 
   .offering-card {
-    transition: translate 180ms var(--ease);
+    transition: transform 180ms var(--ease);
   }
 }
 
