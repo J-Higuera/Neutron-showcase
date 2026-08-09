@@ -13,13 +13,8 @@
       content="Gathered hot, annealed overnight, and finished by hand after the glow is gone."
     />
     <meta property="og:type" content="website" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23090706'/%3E%3Ccircle cx='32' cy='35' r='16' fill='%23ef7b28'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23ffbd64'/%3E%3C/svg%3E"
-    />
     <title>Ember & Sand Glassblowing</title>
-    <script type="module" crossorigin src="./assets/index-C0pbY0i4.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BxtcWzOt.css">
+    <script type="module" src="/src/main.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#inquiry">Skip to inquiry</a>
@@ -43,7 +38,7 @@
       <section class="hero section-hot" aria-labelledby="hero-title">
         <div class="hero-media media-frame">
           <img
-            src="./assets/real-furnace-gather-bristol-blue-glass-DTg6-FRj.jpg"
+            src="assets/real-furnace-gather-bristol-blue-glass.jpg"
             alt="Glassblower shaping glowing hot glass on a blowpipe in the Bristol Blue Glass workshop."
           />
         </div>
@@ -70,7 +65,7 @@
       <section class="makers section-bench" aria-labelledby="makers-title">
         <div class="makers-image media-frame reveal">
           <img
-            src="./assets/real-hot-shop-teamwork-ty-willis-BLb3dwim.jpg"
+            src="assets/real-hot-shop-teamwork-ty-willis.jpg"
             alt="Two hot-shop glassworkers coordinating around a glowing glass piece."
           />
         </div>
@@ -118,7 +113,7 @@
             <li class="station reveal" data-step="01">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-furnace-gather-bristol-blue-glass-DTg6-FRj.jpg"
+                  src="assets/real-furnace-gather-bristol-blue-glass.jpg"
                   alt="Glowing glass on a blowpipe during hot-shop forming."
                 />
               </figure>
@@ -131,7 +126,7 @@
             <li class="station reveal" data-step="02">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-hands-tools-glass-demo-tulane-DCtKQone.jpg"
+                  src="assets/real-hands-tools-glass-demo-tulane.jpg"
                   alt="Hands and tools shaping a bright hot glass form during a demonstration."
                 />
               </figure>
@@ -144,7 +139,7 @@
             <li class="station reveal" data-step="03">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-hot-shop-teamwork-ty-willis-BLb3dwim.jpg"
+                  src="assets/real-hot-shop-teamwork-ty-willis.jpg"
                   alt="Glassworkers coordinating in a hot shop while the piece stays moving."
                 />
               </figure>
@@ -157,7 +152,7 @@
             <li class="station reveal" data-step="04">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-hands-tools-glass-demo-tulane-DCtKQone.jpg"
+                  src="assets/real-hands-tools-glass-demo-tulane.jpg"
                   alt="Close view of glowing glass being shaped by hand tools."
                 />
               </figure>
@@ -170,7 +165,7 @@
             <li class="station reveal" data-step="05">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-annealer-kiln-ofen-cristalica-v4b8P1LR.jpg"
+                  src="assets/real-annealer-kiln-ofen-cristalica.jpg"
                   alt="Glass production furnace and oven equipment inside the Cristalica workshop."
                 />
               </figure>
@@ -183,7 +178,7 @@
             <li class="station reveal" data-step="06">
               <figure class="station-media media-frame">
                 <img
-                  src="./assets/real-coldworking-polishing-waterford-B0-xuxPn.jpg"
+                  src="assets/real-coldworking-polishing-waterford.jpg"
                   alt="Worker polishing glass at the Waterford Crystal factory."
                 />
               </figure>
@@ -205,35 +200,35 @@
         <div class="evidence-wall">
           <figure class="evidence-item evidence-large reveal">
             <img
-              src="./assets/real-furnace-gather-bristol-blue-glass-DTg6-FRj.jpg"
+              src="assets/real-furnace-gather-bristol-blue-glass.jpg"
               alt="Glassblower shaping glowing hot glass in a working glass shop."
             />
             <figcaption>furnace heat gathers in the glass before a form exists</figcaption>
           </figure>
           <figure class="evidence-item reveal">
             <img
-              src="./assets/real-hands-tools-glass-demo-tulane-DCtKQone.jpg"
+              src="assets/real-hands-tools-glass-demo-tulane.jpg"
               alt="Hands and tools close to hot glass during a glassblowing demonstration."
             />
             <figcaption>wet wood blocks steam against the gather</figcaption>
           </figure>
           <figure class="evidence-item reveal">
             <img
-              src="./assets/real-annealer-kiln-ofen-cristalica-v4b8P1LR.jpg"
+              src="assets/real-annealer-kiln-ofen-cristalica.jpg"
               alt="Glass production oven and furnace equipment at Cristalica."
             />
             <figcaption>annealing removes internal stress overnight</figcaption>
           </figure>
           <figure class="evidence-item reveal">
             <img
-              src="./assets/real-coldworking-polishing-waterford-B0-xuxPn.jpg"
+              src="assets/real-coldworking-polishing-waterford.jpg"
               alt="Glass polishing work at the Waterford Crystal factory."
             />
             <figcaption>the pontil mark is evidence of transfer</figcaption>
           </figure>
           <figure class="evidence-item evidence-wide reveal">
             <img
-              src="./assets/real-finished-blown-glass-pike-place-C2nyq8qi.jpg"
+              src="assets/real-finished-blown-glass-pike-place.jpg"
               alt="Finished blown glass vessels for sale at Pike Place Market."
             />
             <figcaption>coldworking happens after the heat is gone</figcaption>
@@ -260,7 +255,7 @@
         </div>
         <figure class="objects-photo media-frame reveal">
           <img
-            src="./assets/real-finished-blown-glass-pike-place-C2nyq8qi.jpg"
+            src="assets/real-finished-blown-glass-pike-place.jpg"
             alt="Finished blown glass vessels displayed together at Pike Place Market."
           />
           <figcaption>seasonal color pulls / collector holds / no repeated hand</figcaption>
@@ -306,7 +301,7 @@
       <section class="workshops section-hot" id="workshops" aria-labelledby="workshops-title">
         <figure class="workshops-photo media-frame reveal">
           <img
-            src="./assets/real-hands-tools-glass-demo-tulane-DCtKQone.jpg"
+            src="assets/real-hands-tools-glass-demo-tulane.jpg"
             alt="Hands using tools to shape glowing glass during a hot-shop demonstration."
           />
         </figure>
@@ -333,7 +328,7 @@
       <section class="final-inquiry section-cool" id="inquiry" aria-labelledby="inquiry-title">
         <div class="final-media media-frame">
           <img
-            src="./assets/real-finished-blown-glass-pike-place-C2nyq8qi.jpg"
+            src="assets/real-finished-blown-glass-pike-place.jpg"
             alt="Finished blown glass vessels reflecting display light."
           />
         </div>
@@ -369,7 +364,6 @@
           <p id="message-help">Include use, scale, color temperature, quantity, deadline, and whether you want to visit the studio.</p>
 
           <button class="button button-primary" type="submit">Send inquiry</button>
-          <p class="form-status" role="status"></p>
         </form>
       </section>
     </main>

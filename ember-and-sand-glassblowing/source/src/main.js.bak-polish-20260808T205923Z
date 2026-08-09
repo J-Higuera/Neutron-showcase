@@ -11,33 +11,15 @@ document.documentElement.classList.add('js');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const root = document.documentElement;
 
-let scrollRange = 0;
-let heatFrame = 0;
-
 function updateScrollHeat() {
-  const progress = scrollRange > 0 ? Math.min(window.scrollY / scrollRange, 1) : 0;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = max > 0 ? window.scrollY / max : 0;
   root.style.setProperty('--scroll-progress', progress.toFixed(4));
 }
 
-function measureScrollRange() {
-  scrollRange = document.documentElement.scrollHeight - window.innerHeight;
-  updateScrollHeat();
-}
-
-measureScrollRange();
-window.addEventListener(
-  'scroll',
-  () => {
-    if (heatFrame) return;
-    heatFrame = requestAnimationFrame(() => {
-      heatFrame = 0;
-      updateScrollHeat();
-    });
-  },
-  { passive: true },
-);
-window.addEventListener('resize', measureScrollRange);
-window.addEventListener('load', measureScrollRange);
+updateScrollHeat();
+window.addEventListener('scroll', updateScrollHeat, { passive: true });
+window.addEventListener('resize', updateScrollHeat);
 
 if (!prefersReducedMotion.matches) {
   const revealObserver = new IntersectionObserver(
@@ -84,7 +66,7 @@ document.querySelector('.inquiry-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const form = event.currentTarget;
   const button = form.querySelector('button[type="submit"]');
-  const status = form.querySelector('.form-status');
-  if (button) button.textContent = 'Inquiry noted';
-  if (status) status.textContent = 'Inquiry noted.';
+  if (!button) return;
+  button.textContent = 'Inquiry noted';
+  form.setAttribute('aria-busy', 'false');
 });
