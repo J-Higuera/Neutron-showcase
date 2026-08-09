@@ -3,7 +3,7 @@ import { PIECES, FORMS, STATUS_LABEL } from '../data/pieces.js';
 import { GLAZES, glazeById } from '../data/glazes.js';
 import Vessel from './Vessel.jsx';
 
-function PieceModal({ piece, onClose }) {
+export function PieceModal({ piece, onClose }) {
   const closeRef = useRef(null);
   const glaze = glazeById(piece.glaze);
 
@@ -58,9 +58,15 @@ function PieceModal({ piece, onClose }) {
   );
 }
 
-export default function Gallery({ glazeFilter, onClearGlaze }) {
+export default function Gallery({ glazeFilter, onGlazeSelect, onOpenPiece }) {
   const [formFilter, setFormFilter] = useState(null);
-  const [openPiece, setOpenPiece] = useState(null);
+
+  // Filtering collapses the grid, but the reveal ScrollTriggers cached the
+  // ORIGINAL card positions — without a refresh, a filtered-in card can sit
+  // above its stale trigger and stay invisible forever.
+  useEffect(() => {
+    window.ScrollTrigger?.refresh();
+  }, [glazeFilter, formFilter]);
 
   const shown = PIECES.filter(
     (p) => (!glazeFilter || p.glaze === glazeFilter) && (!formFilter || p.form === formFilter)
@@ -78,6 +84,44 @@ export default function Gallery({ glazeFilter, onClearGlaze }) {
         </p>
       </div>
 
+      {/* The test wall IS the shop's glaze filter: pick a fired tile, the
+          shelf shows only pieces wearing it, and its ledger note opens. */}
+      <div className="glaze-wall reveal" id="glazes" role="group" aria-label="Filter by glaze family">
+        <p className="mono wall-label">THE TEST WALL / FILTER BY GLAZE</p>
+        <div className="glaze-tiles">
+          {GLAZES.map((g) => {
+            const count = PIECES.filter((p) => p.glaze === g.id).length;
+            const isActive = glazeFilter === g.id;
+            return (
+              <button
+                key={g.id}
+                className="glaze-tile"
+                style={{
+                  '--g0': g.gradient[0], '--g1': g.gradient[1], '--g2': g.gradient[2],
+                  '--tile-ink': g.ink,
+                }}
+                aria-pressed={isActive}
+                onClick={() => onGlazeSelect(isActive ? null : g.id)}
+              >
+                <span className="stamp">{g.stamp}</span>
+                <strong>{g.name}</strong>
+                <span className="mono tile-count">{isActive ? '× SHOWING' : `${count} PIECES`}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="glaze-note" data-open={!!activeGlaze} aria-live="polite">
+          {activeGlaze && (
+            <div className="glaze-note-card">
+              <span className="note-pin" aria-hidden="true" />
+              <p className="mono">test tile {activeGlaze.stamp} / {activeGlaze.cone} · {activeGlaze.surface}</p>
+              <h3>{activeGlaze.name}</h3>
+              <p>{activeGlaze.behavior}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="work-filters reveal" aria-label="Filter the shelf">
         <div className="filter-row" role="group" aria-label="Filter by form">
           <button className="filter-chip" aria-pressed={!formFilter} onClick={() => setFormFilter(null)}>
@@ -90,12 +134,6 @@ export default function Gallery({ glazeFilter, onClearGlaze }) {
             </button>
           ))}
         </div>
-        {activeGlaze && (
-          <button className="filter-chip glaze-filter-chip" onClick={onClearGlaze}>
-            <span className="glaze-chip" style={{ '--g0': activeGlaze.gradient[0], '--g1': activeGlaze.gradient[1], '--g2': activeGlaze.gradient[2] }} aria-hidden="true" />
-            {activeGlaze.name} × clear
-          </button>
-        )}
         <p className="mono filter-count" aria-live="polite">{shown.length} / {PIECES.length} pieces</p>
       </div>
 
@@ -103,7 +141,7 @@ export default function Gallery({ glazeFilter, onClearGlaze }) {
         {shown.map((p) => {
           const g = glazeById(p.glaze);
           return (
-            <button key={p.id} className="piece-card reveal" onClick={() => setOpenPiece(p)}
+            <button key={p.id} className="piece-card reveal" onClick={() => onOpenPiece(p)}
               aria-haspopup="dialog">
               <span className={`status-chip status-${p.status}`}>{STATUS_LABEL[p.status]}</span>
               <Vessel form={p.form} glaze={p.glaze} title={`${p.name} - ${p.form} in ${g.name}`} />
@@ -118,12 +156,10 @@ export default function Gallery({ glazeFilter, onClearGlaze }) {
         {shown.length === 0 && (
           <p className="empty-shelf mono">
             Nothing on the shelf wears that combination right now - the kiln
-            may fix that. <a href="#commissions">Commission it instead.</a>
+            may fix that. <a href="#commissions">Sketch it as a commission instead.</a>
           </p>
         )}
       </div>
-
-      {openPiece && <PieceModal piece={openPiece} onClose={() => setOpenPiece(null)} />}
     </section>
   );
 }

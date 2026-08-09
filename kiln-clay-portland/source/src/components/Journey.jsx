@@ -26,12 +26,15 @@ export default function Journey() {
       gsap.set(steps, { autoAlpha: 0 });
       gsap.set(steps[0], { autoAlpha: 1 });
 
+      // 400px of scroll per chapter: enough to read, short enough that the
+      // pin never feels like a toll booth on the way to the shop — and the
+      // stage carries an explicit skip link besides.
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
           trigger: stage,
           start: 'center center',
-          end: () => '+=' + steps.length * 640,
+          end: () => '+=' + steps.length * 400,
           scrub: 0.3,
           pin: true,
           anticipatePin: 1,
@@ -88,6 +91,7 @@ export default function Journey() {
           </article>
         ))}
         <div className="journey-rail" aria-hidden="true"><span /></div>
+        <a className="journey-skip mono" href="#work">SKIP TO THE SHELF ↓</a>
       </div>
     </section>
   );

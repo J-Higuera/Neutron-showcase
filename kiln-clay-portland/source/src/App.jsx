@@ -4,18 +4,28 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Journey from './components/Journey.jsx';
-import GlazeExplorer from './components/GlazeExplorer.jsx';
-import Gallery from './components/Gallery.jsx';
+import Gallery, { PieceModal } from './components/Gallery.jsx';
 import Workshops from './components/Workshops.jsx';
 import Commissions from './components/Commissions.jsx';
 import Visit from './components/Visit.jsx';
+import { PIECES } from './data/pieces.js';
 
 gsap.registerPlugin(ScrollTrigger);
 window.gsap = gsap;
 window.ScrollTrigger = ScrollTrigger;
 
+// Today's pull: one available piece featured in the hero, rotating with the
+// real date so the ledger stays alive without anyone touching it.
+function todaysPull() {
+  const available = PIECES.filter((p) => p.status === 'available');
+  const day = Math.floor(Date.now() / 86400000);
+  return available[day % available.length];
+}
+
 export default function App() {
   const [glazeFilter, setGlazeFilter] = useState(null);
+  const [modalPiece, setModalPiece] = useState(null);
+  const featured = todaysPull();
 
   // Global motion: hero intro (behind the pre-paint .anim gate) and gentle
   // section reveals. Every non-animating path removes the gate instead.
@@ -29,9 +39,14 @@ export default function App() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.hero-content > *',
+        '.hero-copy > *',
         { y: 26, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.09, ease: 'power3.out' }
+      );
+      gsap.fromTo(
+        '.featured-piece',
+        { y: 30, opacity: 0, rotate: 2.5 },
+        { y: 0, opacity: 1, rotate: 1.2, duration: 0.9, delay: 0.35, ease: 'power3.out' }
       );
       gsap.fromTo(
         '.hero-ledger, .scroll-cue',
@@ -53,22 +68,18 @@ export default function App() {
     return () => ctx.revert();
   }, []);
 
-  // Selecting a glaze opens its ledger note in place; the note's own
-  // "see the pieces" link carries the reader down to the filtered shelf —
-  // no auto-scroll stealing the note they just asked for.
-  function selectGlaze(id) {
-    setGlazeFilter(id);
-  }
-
   return (
     <>
       <a className="skip-link" href="#work">Skip to the work</a>
       <Header />
       <main id="main">
-        <Hero />
+        <Hero featured={featured} onOpenPiece={setModalPiece} />
         <Journey />
-        <GlazeExplorer selected={glazeFilter} onSelect={selectGlaze} />
-        <Gallery glazeFilter={glazeFilter} onClearGlaze={() => setGlazeFilter(null)} />
+        <Gallery
+          glazeFilter={glazeFilter}
+          onGlazeSelect={setGlazeFilter}
+          onOpenPiece={setModalPiece}
+        />
         <Workshops />
         <Commissions />
         <Visit />
@@ -78,6 +89,7 @@ export default function App() {
         <p className="mono">wheel · handbuild · glaze · fire</p>
         <a href="#top">Back to the kiln window</a>
       </footer>
+      {modalPiece && <PieceModal piece={modalPiece} onClose={() => setModalPiece(null)} />}
     </>
   );
 }
