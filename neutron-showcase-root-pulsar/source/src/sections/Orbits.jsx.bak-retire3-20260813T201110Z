@@ -77,7 +77,7 @@ export default function Orbits() {
     [entries]
   );
 
-  // The ring is the heaviest thing on the page (WebGL init + one texture per world).
+  // The ring is the heaviest thing on the page (WebGL init + 22 textures).
   // Mounting it only when the user approaches keeps first paint clean for
   // the hero; once mounted it stays.
   const ringRef = useRef(null);
@@ -100,26 +100,22 @@ export default function Orbits() {
 
   const orbits = useMemo(() => {
     let counter = 0;
-    return ORBIT_ORDER.map(category => {
+    return ORBIT_ORDER.map((category, i) => {
       const worlds = entries
         .filter(e => e.category === category)
         .map(e => ({ entry: e, index: (counter += 1) }));
-      return { category, worlds };
-    })
-      .filter(o => o.worlds.length > 0)
-      // Numbered over the POPULATED orbits, not their position in ORBIT_ORDER:
-      // retiring a category used to leave a gap in the printed sequence.
-      .map((o, i) => ({ ...o, number: String(i + 1).padStart(2, '0') }));
+      return { category, number: String(i + 1).padStart(2, '0'), worlds };
+    }).filter(o => o.worlds.length > 0);
   }, [entries]);
 
   return (
     <section className="worlds" id="worlds">
       <p className="section-eyebrow mono">— THE COLLECTION</p>
       <h2 className="section-title" data-reveal>
-        SEVEN WORLDS
+        TEN WORLDS
       </h2>
       <p className="worlds-lead">
-        Three orbits, seven bodies. Every one is a complete, deployed site —
+        Four orbits, ten bodies. Every one is a complete, deployed site —
         follow any of them in.
       </p>
 

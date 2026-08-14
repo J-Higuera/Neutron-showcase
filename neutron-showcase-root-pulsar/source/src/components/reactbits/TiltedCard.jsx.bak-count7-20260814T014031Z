@@ -99,8 +99,8 @@ export default function TiltedCard({
           scale
         }}
       >
-        {/* NEUTRON patch: lazy + async decode — one instance per world, and
-            none must compete with the hero for first-paint bandwidth */}
+        {/* NEUTRON patch: lazy + async decode — 22 instances on one page
+            must not compete with the hero for first-paint bandwidth */}
         <motion.img
           src={imageSrc}
           alt={altText}

@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-09T10:58:43.599Z",
+    "generatedAt": "2026-08-14T01:40:42.045Z",
     "preservedFields": [
       "name",
       "title",
@@ -23,20 +23,6 @@
   },
   "entries": [
     {
-      "name": "Vórtice Coffee Roastery | Medellín Specialty Coffee",
-      "title": "Vórtice Coffee Roastery | Medellín Specialty Coffee",
-      "slug": "vortice-coffee-roastery",
-      "folder": "vortice-coffee-roastery",
-      "href": "https://j-higuera.github.io/Neutron-showcase/vortice-coffee-roastery/",
-      "category": "Food & craft",
-      "premise": "A roastery site built around roast rhythm, origin, and cup ritual.",
-      "mood": "Roast curve, farm origin, and ceremony pulled into a warm vortex.",
-      "motif": "swirl",
-      "shape": "arch",
-      "state": "Public deploy",
-      "proofNote": "Title and URL verified from the deployed showcase clone."
-    },
-    {
       "name": "Miga | Tiny Neighborhood Sourdough Bakery",
       "title": "Miga | Tiny Neighborhood Sourdough Bakery",
       "slug": "miga-sourdough-bakery",
@@ -51,20 +37,6 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Ember & Sand Glassblowing",
-      "title": "Ember & Sand Glassblowing",
-      "slug": "ember-and-sand-glassblowing",
-      "folder": "ember-and-sand-glassblowing",
-      "href": "https://j-higuera.github.io/Neutron-showcase/ember-and-sand-glassblowing/",
-      "category": "Art & culture",
-      "premise": "A glassblowing studio shaped by heat, process, and glowing material.",
-      "mood": "Furnace temperature, turning pipe, and hand-finished glow.",
-      "motif": "orb",
-      "shape": "orbital",
-      "state": "Public deploy",
-      "proofNote": "Title and URL verified from the deployed showcase clone."
-    },
-    {
       "name": "Frondosa Nursery Shop",
       "title": "Frondosa Nursery Shop",
       "slug": "frondosa-nursery-shop",
@@ -75,20 +47,6 @@
       "mood": "Greenhouse browsing, care labels, and a complete e-commerce path.",
       "motif": "leaf",
       "shape": "aperture",
-      "state": "Public deploy",
-      "proofNote": "Title and URL verified from the deployed showcase clone."
-    },
-    {
-      "name": "Pixie Theatre Studio | The Green Room Portal",
-      "title": "Pixie Theatre Studio | The Green Room Portal",
-      "slug": "pixie-theatre-studio",
-      "folder": "pixie-theatre-studio",
-      "href": "https://j-higuera.github.io/Neutron-showcase/pixie-theatre-studio/",
-      "category": "Art & culture",
-      "premise": "A theatre-flavored studio world with performance, invitation, and wonder.",
-      "mood": "Green-room portal, rehearsal magic, and call-board notices.",
-      "motif": "curtain",
-      "shape": "curtain",
       "state": "Public deploy",
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
