@@ -1,0 +1,103 @@
+import { useEffect, useRef, useState } from 'react';
+
+const AGENTS = [
+  {
+    id: '01',
+    name: 'Astral',
+    role: 'The Planner',
+    text: 'Reads the brief, sets the creative direction, and owns the design of every world.',
+  },
+  {
+    id: '02',
+    name: 'Glitch',
+    role: 'The Builder',
+    text: 'Writes every line that ships — structure, style, and motion. No templates, no scaffolds.',
+  },
+  {
+    id: '03',
+    name: 'Oracle',
+    role: 'The Reviewer',
+    text: 'Judges each build against its plan and holds the gate until the work is true to it.',
+  },
+];
+
+const STATS = [
+  { value: 7, label: 'WORLDS DEPLOYED' },
+  { value: 3, label: 'ORBITS' },
+  { value: 3, label: 'AGENTS' },
+  { value: 0, label: 'TEMPLATES USED' },
+];
+
+function Stat({ value, label }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(value);
+      return undefined;
+    }
+    let raf = 0;
+    const io = new IntersectionObserver(
+      entries => {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = now => {
+          const k = Math.min(1, (now - start) / 1100);
+          setShown(Math.round(value * (1 - Math.pow(1 - k, 3))));
+          if (k < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.6 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [value]);
+
+  return (
+    <div className="stat" ref={ref}>
+      <span className="stat-value">{shown}</span>
+      <span className="stat-label mono">{label}</span>
+    </div>
+  );
+}
+
+export default function System() {
+  return (
+    <section className="system" id="system">
+      <p className="section-eyebrow mono">— THE SYSTEM</p>
+      <h2 className="section-title" data-reveal>
+        ONE DENSE CORE
+      </h2>
+      <p className="system-lead">
+        Neutron is an autonomous agent platform. Every world in this collection
+        came out of the same loop — a planner, a builder, and a reviewer,
+        working without human hands in the code.
+      </p>
+
+      <div className="agent-chain">
+        {AGENTS.map(agent => (
+          <article className="agent-card" key={agent.id}>
+            <span className="agent-id mono">{agent.id}</span>
+            <h3 className="agent-name">{agent.name}</h3>
+            <p className="agent-role mono">{agent.role}</p>
+            <p className="agent-text">{agent.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="stat-band">
+        {STATS.map(s => (
+          <Stat key={s.label} value={s.value} label={s.label} />
+        ))}
+      </div>
+    </section>
+  );
+}
