@@ -55,7 +55,9 @@ function findChromium() {
 const worlds = readDeployArtifacts();
 fs.mkdirSync(OUT_DIR, { recursive: true });
 const server = await serveClone();
-const browser = await chromium.launch({ executablePath: findChromium() });
+// Software WebGL so 3D heroes (aurel) capture the real model, not the
+// no-WebGL photo fallback — same flag the behavioral probes use on this box.
+const browser = await chromium.launch({ executablePath: findChromium(), args: ['--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: VIEWPORT, deviceScaleFactor: 1 });
 
 let ok = 0;

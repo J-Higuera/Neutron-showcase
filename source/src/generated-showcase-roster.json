@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-14T01:40:42.045Z",
+    "generatedAt": "2026-08-19T06:24:15.498Z",
     "preservedFields": [
       "name",
       "title",
@@ -51,8 +51,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Chewa | Electronics With Proof Beside the Price",
-      "title": "Chewa | Electronics With Proof Beside the Price",
+      "name": "Chewa Electronics | Proof Beside the Price",
+      "title": "Chewa Electronics | Proof Beside the Price",
       "slug": "chewa-electronics",
       "folder": "chewa-electronics",
       "href": "https://j-higuera.github.io/Neutron-showcase/chewa-electronics/",
