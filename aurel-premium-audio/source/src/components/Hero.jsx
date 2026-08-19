@@ -103,6 +103,7 @@ export default function Hero({ onAdd }) {
           </button>
           <a className="button button-ghost" href="#audition">Book an audition</a>
         </div>
+        <p className="avail mono">Run № 7 · ships within 5 days · 14-day home audition</p>
       </div>
 
       <ul className="spec-chips reveal" style={{ '--d': '300ms' }} aria-label="Key specifications">

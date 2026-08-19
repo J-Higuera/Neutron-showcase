@@ -34,14 +34,25 @@ export default function Audition() {
   return (
     <section className="audition" id="audition" aria-labelledby="audition-title">
       <div className="audition-layout">
-        <div className="section-heading reveal">
-          <p className="eyebrow">Audition</p>
-          <h2 id="audition-title">Hear it before you keep it.</h2>
-          <p>
-            Auditions run in the studio's listening room or by shipped loaner,
-            matched to your chain and the records you lean into. Every
-            purchase starts with ears, not a spec sheet.
-          </p>
+        <div className="audition-intro">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Audition</p>
+            <h2 id="audition-title">Hear it before you keep it.</h2>
+            <p>
+              Auditions run in the studio's listening room or by shipped loaner,
+              matched to your chain and the records you lean into. Every
+              purchase starts with ears, not a spec sheet.
+            </p>
+          </div>
+          <figure className="audition-photo reveal" style={{ '--d': '80ms' }}>
+            <img
+              src="./assets/analog-soundboard-knobs.jpg"
+              alt="Channel strips and knobs of the studio's analog console"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>The chain your loaner is voiced against.</figcaption>
+          </figure>
         </div>
 
         <form className="audition-form reveal" onSubmit={submit} noValidate>

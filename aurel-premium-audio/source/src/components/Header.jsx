@@ -1,5 +1,6 @@
 const LINKS = [
   ['#reference', 'Reference'],
+  ['#craft', 'Craft'],
   ['#hardware', 'Hardware'],
   ['#acoustics', 'Acoustics'],
   ['#audition', 'Audition'],

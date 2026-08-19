@@ -1,9 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
+import Philosophy from './components/Philosophy.jsx';
+import Craft from './components/Craft.jsx';
 import Hardware from './components/Hardware.jsx';
 import Acoustics from './components/Acoustics.jsx';
+import Press from './components/Press.jsx';
 import Audition from './components/Audition.jsx';
+import Faq from './components/Faq.jsx';
+import Footer from './components/Footer.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 
 const CART_KEY = 'aurel-cart-v1';
@@ -72,14 +77,15 @@ export default function App() {
       <Header count={count} onOpenCart={() => setCartOpen(true)} />
       <main id="main">
         <Hero onAdd={addItem} />
+        <Philosophy />
+        <Craft />
         <Hardware onAdd={addItem} />
         <Acoustics />
+        <Press />
         <Audition />
+        <Faq />
       </main>
-      <footer className="site-footer">
-        <p><strong>AUREL</strong> - reference audio instruments, assembled in small runs.</p>
-        <a href="#reference">Back to the instrument</a>
-      </footer>
+      <Footer />
       <CartDrawer
         open={cartOpen}
         cart={cart}

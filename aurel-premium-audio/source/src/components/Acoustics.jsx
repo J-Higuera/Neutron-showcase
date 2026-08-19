@@ -4,22 +4,30 @@ import { ACOUSTICS, REFERENCE } from '../data/products.js';
 // four acoustic behaviors, and the full build ledger — all visible, no
 // interaction required.
 function ResponseCurve() {
+  const trace = 'M0 84 C 60 82, 110 78, 170 79 S 290 84, 360 82 S 500 76, 570 79 S 680 88, 720 92';
   return (
-    <svg className="response-curve" viewBox="0 0 720 160" role="img"
-      aria-label="Frequency response: even balance from 20 hertz to 20 kilohertz with gentle upper-air extension">
-      {[0, 1, 2, 3].map((i) => (
-        <line key={i} x1={i * 240} y1="0" x2={i * 240} y2="160" className="curve-grid" />
-      ))}
-      <line x1="0" y1="80" x2="720" y2="80" className="curve-grid" />
-      <path
-        className="curve-line"
-        d="M0 84 C 60 82, 110 78, 170 79 S 290 84, 360 82 S 500 76, 570 79 S 680 88, 720 92"
-        fill="none"
-      />
-      <text x="8" y="152" className="curve-label">20 Hz</text>
-      <text x="352" y="152" className="curve-label">1 kHz</text>
-      <text x="676" y="152" className="curve-label">20 kHz</text>
-    </svg>
+    <figure className="curve-wrap">
+      <svg className="response-curve" viewBox="0 0 720 160" role="img"
+        aria-label="Frequency response: even balance from 20 hertz to 20 kilohertz with gentle upper-air extension">
+        {[0, 1, 2, 3].map((i) => (
+          <line key={i} x1={i * 240} y1="0" x2={i * 240} y2="160" className="curve-grid" />
+        ))}
+        {[50, 80, 110].map((y) => (
+          <line key={y} x1="0" y1={y} x2="720" y2={y} className="curve-grid" />
+        ))}
+        <path className="curve-area" d={`${trace} L 720 160 L 0 160 Z`} />
+        <path className="curve-line" d={trace} fill="none" />
+        <text x="8" y="152" className="curve-label">20 Hz</text>
+        <text x="352" y="152" className="curve-label">1 kHz</text>
+        <text x="662" y="152" className="curve-label">20 kHz</text>
+        <text x="700" y="46" className="curve-label">+3 dB</text>
+        <text x="704" y="76" className="curve-label">0 dB</text>
+        <text x="700" y="106" className="curve-label">−3 dB</text>
+      </svg>
+      <figcaption className="curve-note mono">
+        Studio rig · 1/12-octave smoothing · both drivers overlaid
+      </figcaption>
+    </figure>
   );
 }
 

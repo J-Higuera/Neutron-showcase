@@ -873,3 +873,387 @@ p { margin-block-start: 0; }
     animation-iteration-count: 1 !important;
   }
 }
+
+/* =========================================================================
+   v2.1 — the brand layer: philosophy band, craft rows, press, FAQ, footer.
+   Appended after the base sheet; later rules win where they overlap.
+   ========================================================================= */
+
+.mono { font-family: var(--mono); }
+
+.avail {
+  margin: .5rem 0 0;
+  font: 600 .76rem/1.4 var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- philosophy (dark band) ---------- */
+
+.philosophy {
+  position: relative;
+  margin-block-start: var(--section);
+  overflow: clip;
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.philosophy-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .3;
+}
+
+.philosophy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(105deg,
+    rgba(25, 24, 23, .94) 0%, rgba(25, 24, 23, .78) 45%, rgba(25, 24, 23, .45) 100%);
+}
+
+.philosophy-inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: clamp(4rem, 8vw, 6.5rem) var(--gutter);
+  display: grid;
+  justify-items: start;
+}
+
+.philosophy .eyebrow { color: var(--copper); }
+
+.philosophy h2 {
+  color: var(--paper);
+  max-width: 22ch;
+  font-size: clamp(1.9rem, 1.6rem + 1.9vi, 3.7rem);
+}
+
+.philosophy-lede {
+  max-width: 56ch;
+  margin: .5rem 0 0;
+  color: rgba(242, 237, 226, .78);
+  text-wrap: pretty;
+}
+
+.philosophy-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+  width: 100%;
+  margin: clamp(1.6rem, 3.5vw, 2.6rem) 0 0;
+  padding: 1.3rem 0 0;
+  border-block-start: 1px solid rgba(242, 237, 226, .22);
+}
+
+.philosophy-stats div { display: grid; gap: .25rem; }
+
+.philosophy-stats dd {
+  margin: 0;
+  order: -1;
+  font: 640 clamp(1.6rem, 1.4rem + 1vi, 2.3rem)/1.05 var(--serif);
+  color: var(--paper);
+}
+
+.philosophy-stats dt {
+  font: 600 .72rem/1.4 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 226, .6);
+}
+
+/* ---------- craft ---------- */
+
+.craft {
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: var(--section) var(--gutter) 0;
+}
+
+.craft-rows { display: grid; gap: clamp(2.2rem, 5vw, 4rem); }
+
+.craft-row {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1fr);
+  gap: clamp(1.4rem, 4vw, 3.4rem);
+  align-items: center;
+}
+
+.craft-row.flip .craft-photo { order: 2; }
+
+.craft-photo {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow);
+}
+
+.craft-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 600ms var(--ease);
+}
+
+.craft-copy { max-width: 46ch; }
+
+.craft-index {
+  display: block;
+  margin-block-end: .55rem;
+  font: 600 .76rem/1 var(--mono);
+  letter-spacing: .14em;
+  color: var(--copper-deep);
+}
+
+.craft-copy h3 {
+  font-size: clamp(1.5rem, 1.3rem + 1.1vi, 2.3rem);
+  margin-block-end: .6rem;
+}
+
+.craft-copy p { margin: 0; color: var(--ink-soft); text-wrap: pretty; }
+
+@media (hover: hover) and (pointer: fine) {
+  .craft-row:hover .craft-photo img { scale: 1.04; }
+}
+
+/* ---------- measurements extras ---------- */
+
+.curve-wrap { margin: 0 0 clamp(1.4rem, 3vw, 2.2rem); }
+
+.curve-wrap .response-curve { margin-block-end: 0; }
+
+.curve-area {
+  fill: color-mix(in srgb, var(--copper), transparent 88%);
+  stroke: none;
+}
+
+.curve-note {
+  margin: .55rem 0 0;
+  font: 600 .72rem/1.4 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* ---------- press ---------- */
+
+.press {
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: var(--section) var(--gutter) 0;
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  padding-block: clamp(1.8rem, 4vw, 2.8rem);
+  border-block: 1px solid var(--line);
+}
+
+.press-quote {
+  margin: 0;
+  display: grid;
+  gap: .9rem;
+  align-content: start;
+}
+
+.press-quote p {
+  margin: 0;
+  font: 640 clamp(1.08rem, 1rem + .4vi, 1.3rem)/1.45 var(--serif);
+  text-wrap: pretty;
+}
+
+.press-quote cite {
+  font: 600 .72rem/1 var(--mono);
+  font-style: normal;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--copper-deep);
+}
+
+/* ---------- audition, with the room in frame ---------- */
+
+.audition-layout { align-items: start; }
+
+.audition { padding-block-end: 0; }
+
+.audition-intro { display: grid; gap: 1.5rem; align-content: start; }
+
+.audition-photo {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow);
+  background: var(--ink);
+}
+
+.audition-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.audition-photo figcaption {
+  padding: .65rem .9rem .75rem;
+  font: 500 .84rem/1.4 var(--sans);
+  color: rgba(242, 237, 226, .75);
+}
+
+/* ---------- faq ---------- */
+
+.faq {
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: var(--section) var(--gutter) var(--section);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 0;
+}
+
+.faq-item {
+  padding: 1.3rem 1.4rem 1.4rem;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.faq-item dt {
+  margin-block-end: .45rem;
+  font: 640 1.1rem/1.3 var(--serif);
+}
+
+.faq-item dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: .95rem;
+  text-wrap: pretty;
+}
+
+/* ---------- footer, rebuilt ---------- */
+
+.site-footer {
+  display: block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.footer-grid {
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: clamp(2.6rem, 5vw, 4rem) var(--gutter) clamp(1.8rem, 4vw, 2.6rem);
+  display: grid;
+  grid-template-columns: 1.35fr repeat(3, minmax(0, .68fr));
+  gap: clamp(1.6rem, 4vw, 3rem);
+}
+
+.footer-mark {
+  margin: 0 0 .8rem;
+  font: 800 1.05rem/1 var(--sans);
+  letter-spacing: .34em;
+  color: var(--paper);
+}
+
+.footer-tag {
+  margin: 0 0 1.2rem;
+  max-width: 30ch;
+  color: rgba(242, 237, 226, .75);
+  text-wrap: pretty;
+}
+
+.footer-addr {
+  margin: 0;
+  font: 500 .8rem/1.7 var(--mono);
+  color: rgba(242, 237, 226, .55);
+}
+
+.footer-col { display: grid; gap: .55rem; align-content: start; }
+
+.footer-head {
+  margin: 0 0 .5rem;
+  font: 700 .72rem/1 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 226, .5);
+}
+
+.footer-col a {
+  width: fit-content;
+  color: rgba(242, 237, 226, .85);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .95rem;
+  transition: color 160ms var(--ease);
+}
+
+.footer-col a:hover { color: var(--copper); }
+
+.footer-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .8rem;
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: 1.1rem var(--gutter) 1.5rem;
+  border-block-start: 1px solid rgba(242, 237, 226, .16);
+  color: rgba(242, 237, 226, .6);
+  font-size: .86rem;
+}
+
+.footer-line p { margin: 0; }
+
+/* The base sheet's `.site-footer p` (ink-soft, for the old ivory footer)
+   outranks the bare class selectors above — restate the dark-footer colors
+   at the same or higher specificity. */
+.site-footer p { color: rgba(242, 237, 226, .75); }
+.site-footer .footer-mark { color: var(--paper); }
+.site-footer .footer-addr { color: rgba(242, 237, 226, .55); }
+.site-footer .footer-head { color: rgba(242, 237, 226, .5); }
+.site-footer .footer-line p { color: rgba(242, 237, 226, .6); }
+
+.footer-line a {
+  color: rgba(242, 237, 226, .88);
+  font-weight: 600;
+  text-underline-offset: .25em;
+}
+
+/* ---------- responsive for the new layer ---------- */
+
+@media (max-width: 1050px) {
+  .press-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .craft-row { grid-template-columns: 1fr; gap: 1rem; }
+  .craft-row.flip .craft-photo { order: 0; }
+  .craft-photo { aspect-ratio: 16 / 10; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-item { padding: 1.1rem 1.15rem 1.2rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .philosophy-stats { gap: 1.3rem 2rem; }
+  .craft, .press, .faq { padding-inline: .9rem; }
+
+  /* Store-list cards: photo beside copy instead of stacked, so four
+     products cost one screen on a phone, not three. */
+  .hardware-card { grid-template-rows: none; grid-template-columns: 40% 1fr; }
+  .hardware-photo { aspect-ratio: auto; height: 100%; min-height: 8.5rem; }
+  .hardware-body { padding: .85rem .95rem .95rem; }
+  .hardware-buy { margin-block-start: .4rem; }
+}

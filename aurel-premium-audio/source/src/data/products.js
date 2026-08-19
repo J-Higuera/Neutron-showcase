@@ -78,3 +78,59 @@ export const ACOUSTICS = [
   ['Soundstage', 'Precise lateral placement without widening tricks or synthetic bloom.'],
   ['Noise floor', 'Quiet electronics preserve reverb tails and low-level texture.'],
 ];
+
+// The numbers behind the philosophy band — measured on the studio's own rig,
+// stated once, plainly.
+export const PHILOSOPHY_STATS = [
+  ['580 mm²', 'diaphragm area per side'],
+  ['< 0.08 %', 'THD at 1 kHz, 94 dB'],
+  ['± 0.4 dB', 'left–right pair matching'],
+];
+
+export const CRAFT = [
+  {
+    id: 'aluminum',
+    title: 'Milled, not molded.',
+    body: 'Every shell starts as a solid billet of 6063 aluminum and leaves the mill as one piece — no seams to buzz, no plastic to color the midrange. The bead-blasted surface is the metal itself, not a coating.',
+    image: './assets/amplifier-input-knobs.jpg',
+    alt: 'Machined aluminum knobs and panel work, close up',
+  },
+  {
+    id: 'leather',
+    title: 'Leather that breaks in, not down.',
+    body: 'Pads and headband wear vegetable-tanned lambskin, cut and stitched in-house. It seals gently around glasses, breathes through long sessions, and takes on the shape of its one owner.',
+    image: './assets/headphones-leather-closeup.jpg',
+    alt: 'Stitched lambskin leather headphone pads, close up',
+  },
+  {
+    id: 'runs',
+    title: 'Assembled in runs of 120.',
+    body: 'Small runs mean every driver pair is measured, matched, and listened to before it ships — and the person who voiced your set signed the card in the box. This run is № 7.',
+    image: './assets/vintage-audio-stack.jpg',
+    alt: 'A stack of vintage studio audio equipment',
+  },
+];
+
+export const PRESS = [
+  {
+    quote: 'The rare planar that disappears — you stop auditioning the headphone and start hearing the take.',
+    source: 'Headroom Quarterly',
+  },
+  {
+    quote: 'Tuning this honest usually costs twice as much and forgives half as little.',
+    source: 'The Signal Path',
+  },
+  {
+    quote: 'Our reference for edit-room checks three years running. Nothing else earns the second listen like it.',
+    source: 'Mastering Notes',
+  },
+];
+
+export const FAQ = [
+  ['How does the home audition work?', 'We ship a loaner Reference with a matched cable for 14 days. Keep your ears, keep your chain, send it back with the prepaid label — or apply the audition toward your order.'],
+  ['What does the warranty cover?', 'Five years on drivers and structure, two on cables and pads. Repairs are done at the bench that built your set, not a service partner.'],
+  ['Can I return a purchased pair?', '30 days, any reason, full refund. We only ask that the lambskin comes back clean enough for the next set of ears at the studio.'],
+  ['How are drivers matched?', 'Each diaphragm is swept individually; pairs ship only when they track within ±0.4 dB from 40 Hz to 10 kHz. Your measurement sheet is in the box.'],
+  ['Which cable comes in the box?', 'A shielded 4.4 mm balanced cable, 2.2 m. Single-ended 6.35 mm and 3 m studio lengths are available at checkout or any time after.'],
+  ['Do you repair out-of-warranty sets?', 'Always. Re-pads, re-cables, driver service — priced at cost, turned around within two weeks, whatever the age of the set.'],
+];
