@@ -1,0 +1,30 @@
+{
+  "name": "neutron-showcase-root-pulsar",
+  "version": "1.0.0",
+  "description": "PULSAR — the Neutron showcase root. Seven worlds in orbit around one dense system.",
+  "type": "module",
+  "scripts": {
+    "generate:roster": "node scripts/generate-roster.mjs",
+    "verify:roster": "node scripts/verify-roster.mjs",
+    "generate:thumbs": "node scripts/generate-thumbs.mjs",
+    "dev": "npm run generate:roster && vite --host 0.0.0.0",
+    "build": "npm run generate:roster && vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@fontsource/space-grotesk": "^5.2.5",
+    "@fontsource/syne": "^5.2.5",
+    "@vitejs/plugin-react": "^6.0.5",
+    "gsap": "^3.12.5",
+    "motion": "^12.0.0",
+    "ogl": "^1.0.11",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "vite": "^8.2.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
+  }
+}

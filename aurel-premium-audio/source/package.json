@@ -1,0 +1,19 @@
+{
+  "name": "aurel-v2",
+  "version": "2.0.0",
+  "description": "AUREL — reference headphone storefront (React + three.js rebuild)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "three": "^0.179.1",
+    "vite": "^8.2.0"
+  }
+}
