@@ -2,6 +2,8 @@
 
 All photographs are stored locally in `assets/` and are not hotlinked. Source URLs were captured by the acquisition worker or this correction pass.
 
+Animation: [GSAP](https://gsap.com) core + ScrollTrigger (standard GSAP license), vendored locally in `assets/vendor/`.
+
 | Local file | Source / photographer page | License |
 |---|---|---|
 | `assets/hero.jpg` | https://unsplash.com/photos/bread-on-brown-paper-bag-rUb_h62EX1U | Unsplash License, https://unsplash.com/license |
