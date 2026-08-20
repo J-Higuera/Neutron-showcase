@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "${NEUTRON_DEPLOY_ASKPASS_TOKEN}"
