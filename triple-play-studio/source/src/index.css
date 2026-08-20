@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: oklch(16.5% 0.018 262);
+  --color-pit: oklch(20.5% 0.022 262);
+  --color-panel: oklch(23.5% 0.024 262);
+  --color-edge: oklch(33% 0.02 262);
+  --color-edge-soft: oklch(27% 0.02 262);
+  --color-bone: oklch(94.5% 0.006 90);
+  --color-mute: oklch(80% 0.012 262);
+  --color-dim: oklch(67% 0.014 262);
+  --color-cobalt: oklch(64% 0.17 264);
+  --color-cobalt-hot: oklch(72% 0.15 264);
+  --color-cobalt-deep: oklch(45% 0.17 264);
+  --color-amber: oklch(78% 0.13 82);
+  --color-leaf: oklch(72% 0.12 152);
+  --color-paper: oklch(97.5% 0.005 90);
+  --color-paper-ink: oklch(23% 0.02 262);
+
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+html {
+  /* native controls (select popups, scrollbars) must render dark — the page is dark */
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: oklch(45% 0.17 264 / 0.55); }
+
+:focus-visible {
+  outline: 2px solid var(--color-cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* thin dark scrollbar, chrome only — cosmetic */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-edge-soft); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-edge); }
+
+/* split-flap cell: quick half-turn each time the glyph changes */
+.flap { display: inline-block; will-change: transform; transform-origin: 50% 55%; }
+.flap.is-ticking { animation: flap-tick 70ms linear; }
+@keyframes flap-tick {
+  0% { transform: rotateX(0deg); }
+  49% { transform: rotateX(88deg); }
+  51% { transform: rotateX(-88deg); }
+  100% { transform: rotateX(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flap.is-ticking { animation: none; }
+}
+
+/* native select popups: explicit dark, never white-on-white */
+select option {
+  background-color: oklch(20% 0.03 250);
+  color: oklch(92% 0.01 240);
+}
+
+/* faint grid texture on the hero, drawn in CSS — no assets */
+.hero-grid-bg {
+  background-image:
+    linear-gradient(oklch(94.5% 0.006 90 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(94.5% 0.006 90 / 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 35%, transparent 78%);
+}
+
+/* the light "paper" scoreboard document keeps its own world on the dark page */
+.paper-doc { background: var(--color-paper); color: var(--color-paper-ink); }
+.paper-doc ::selection { background: oklch(80% 0.08 264 / 0.5); }

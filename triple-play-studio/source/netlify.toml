@@ -1,0 +1,8 @@
+# Netlify deployment — connect this folder (or its repo) in the Netlify console.
+# Grants the site what static hosting can't: a real Node function behind the
+# studio board, and real captured submissions for the intake form.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
