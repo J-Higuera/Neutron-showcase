@@ -1,393 +1,293 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="matrix">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Matrix — Adaptive Infrastructure Intelligence</title>
-<meta name="description" content="Matrix is an adaptive operating topology that makes fragmented enterprise systems visible, governable, and movable — strategy, data, security, and automation interlocked in one bounded command field." />
-<meta name="theme-color" content="#020503" />
-<meta property="og:title" content="Matrix — Adaptive Infrastructure Intelligence" />
-<meta property="og:description" content="Where strategy, data, security, and automation interlock. Map the system before you move it." />
+<title>Matrix — The Operating Topology</title>
+<meta name="description" content="Matrix renders strategy, data, security, automation and observability as one living graph — every dependency in your estate mapped, so change is bounded and nothing moves blind." />
+<meta name="theme-color" content="#0a0e0c" />
+<meta property="og:title" content="Matrix — The Operating Topology" />
+<meta property="og:description" content="See the whole system. One living graph of your enterprise — dependencies visible, changes bounded, risk mapped before anything moves." />
 <meta property="og:type" content="website" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1.5' y='1.5' width='29' height='29' rx='7' fill='%23020503' stroke='%2300FF7A' stroke-width='1.4'/%3E%3Cpath d='M16 4.6V12.6 M16 19.4V27.4 M4.6 16H12.6 M19.4 16H27.4' stroke='%23B7FF3C' stroke-width='1.4' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%2300FF7A'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e0c'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%2345f0a1'/%3E%3Ccircle cx='16' cy='6.5' r='1.7' fill='%2345f0a1' opacity='.55'/%3E%3Ccircle cx='25.2' cy='21.5' r='1.7' fill='%2345f0a1' opacity='.55'/%3E%3Ccircle cx='6.8' cy='21.5' r='1.7' fill='%2345f0a1' opacity='.55'/%3E%3Cpath d='M16 12.8V8.2M18.8 17.6l3.8 2.4M13.2 17.6l-3.8 2.4' stroke='%2345f0a1' stroke-width='1.3' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E" />
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+<script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
 </head>
 <body>
-<a class="skip-link" href="#core">Skip to content</a>
+<a class="skip-link" href="#estate">Skip to content</a>
 
-<!-- ================= TOP READOUT NAV ================= -->
-<header class="topbar" role="banner">
-  <div class="topbar__inner">
-    <a class="wordmark" href="#top" aria-label="Matrix home">
-      <span class="wordmark__glyph" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="26" height="26">
-          <rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="none" stroke="var(--matrix)" stroke-width="1.4" opacity="0.7"/>
-          <circle cx="16" cy="16" r="3.4" fill="var(--matrix)"/>
-          <path d="M16 4.6V12.6 M16 19.4V27.4 M4.6 16H12.6 M19.4 16H27.4" stroke="var(--lime)" stroke-width="1.4" stroke-linecap="round"/>
-          <circle cx="16" cy="4.6" r="1.8" fill="var(--cyan)"/>
-          <circle cx="27.4" cy="16" r="1.8" fill="var(--cyan)"/>
-          <circle cx="16" cy="27.4" r="1.8" fill="var(--cyan)"/>
-          <circle cx="4.6" cy="16" r="1.8" fill="var(--cyan)"/>
-        </svg>
-      </span>
-      <span class="wordmark__type">MATRIX</span>
+<!-- The living graph — fixed behind the hero and the platform walkthrough -->
+<canvas id="graph" class="graph" aria-hidden="true"></canvas>
+<div class="graph-labels" aria-hidden="true"></div>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="brand" href="#top" aria-label="Matrix home">
+      <svg class="brand__glyph" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+        <circle cx="16" cy="16" r="3.2" fill="currentColor"/>
+        <circle cx="16" cy="6.5" r="1.7" fill="currentColor" opacity=".55"/>
+        <circle cx="25.2" cy="21.5" r="1.7" fill="currentColor" opacity=".55"/>
+        <circle cx="6.8" cy="21.5" r="1.7" fill="currentColor" opacity=".55"/>
+        <path d="M16 12.8V8.2M18.8 17.6l3.8 2.4M13.2 17.6l-3.8 2.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".8" fill="none"/>
+      </svg>
+      <span class="brand__name">Matrix</span>
     </a>
-    <nav class="readouts" aria-label="System status">
-      <a class="readout" href="#capabilities"><span class="readout__k">field</span><span class="readout__v">capabilities</span></a>
-      <a class="readout" href="#model"><span class="readout__k">model</span><span class="readout__v">operating layer</span></a>
-      <a class="readout" href="#security"><span class="readout__k">posture</span><span class="readout__v">csf.mapped</span></a>
-      <span class="readout readout--live"><span class="readout__k">node</span><span class="readout__v"><i class="dot"></i>online</span></span>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#estate">The estate</a>
+      <a href="#platform">Platform</a>
+      <a href="#security">Security</a>
+      <a href="#proof">Proof</a>
     </nav>
-    <a class="btn btn--wire" href="#access">open terminal</a>
+    <a class="btn btn--solid btn--head" href="#briefing">Request briefing</a>
   </div>
 </header>
 
 <main id="top">
-<!-- ================= HERO / BOUNDED LATTICE ================= -->
+
+<!-- ============ HERO ============ -->
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero__grid">
-    <div class="hero__intro">
-      <p class="eyebrow"><span class="eyebrow__tag">MATRIX_CORE</span> operating topology · v.matrix</p>
-      <h1 id="hero-title" class="hero__title">Adaptive infrastructure <span class="glow">intelligence.</span></h1>
-      <p class="hero__lede">Where strategy, data, security, and automation interlock. Matrix renders fragmented enterprise systems as one live graph — dependencies, controls, and risk paths, visible and movable.</p>
-      <div class="hero__cta">
-        <a class="btn btn--node" href="#access"><span class="btn__brk">[</span> request architecture briefing <span class="btn__brk">]</span></a>
-        <a class="btn btn--ghost" href="#capabilities"><span class="btn__brk">[</span> open assessment terminal <span class="btn__brk">]</span></a>
-      </div>
-      <dl class="hero__coverage" aria-label="Coverage">
-        <div><dt>coverage</dt><dd>identity · endpoints · cloud · data</dd></div>
-        <div><dt>dependency trace</dt><dd><span class="live-tag">live</span></dd></div>
-        <div><dt>controls</dt><dd>governed</dd></div>
-      </dl>
+  <div class="hero__inner">
+    <p class="eyebrow"><span class="eyebrow__idx">Matrix</span>the operating topology</p>
+    <h1 id="hero-title" class="hero__title">See the <em>whole</em> system.</h1>
+    <p class="hero__lede">Strategy, data, security, automation and observability — rendered as one living graph. Matrix maps every dependency in your estate, so change is bounded, controls hold, and nothing moves blind.</p>
+    <div class="hero__cta">
+      <a class="btn btn--solid" href="#briefing">Request an architecture briefing</a>
+      <a class="btn btn--ghost" href="#platform">Explore the platform</a>
     </div>
-
-    <!-- THE LIVING MATRIX LATTICE -->
-    <figure class="lattice" id="core" aria-label="The Living Matrix Lattice: a bounded topology of strategy, data fabric, security posture, automation, and observability converging on Matrix Core.">
-      <div class="lattice__frame">
-        <img class="lattice__substrate" src="assets/server-racks-dark.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" />
-        <div class="lattice__scan" aria-hidden="true"></div>
-        <svg class="lattice__svg" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
-          <defs>
-            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00FF7A" stop-opacity="0.55"/>
-              <stop offset="45%" stop-color="#0b3a24" stop-opacity="0.35"/>
-              <stop offset="100%" stop-color="#020503" stop-opacity="0"/>
-            </radialGradient>
-            <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#38F2D7"/>
-              <stop offset="55%" stop-color="#00FF7A"/>
-              <stop offset="100%" stop-color="#B7FF3C"/>
-            </linearGradient>
-            <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="3.2" />
-            </filter>
-          </defs>
-
-          <!-- core halo -->
-          <circle cx="500" cy="320" r="230" fill="url(#coreGlow)"/>
-
-          <!-- topology rings -->
-          <g class="rings" fill="none" stroke="#143524" stroke-width="1">
-            <circle cx="500" cy="320" r="120" opacity="0.9"/>
-            <circle cx="500" cy="320" r="185" opacity="0.6"/>
-            <circle cx="500" cy="320" r="255" opacity="0.35" stroke-dasharray="2 8"/>
-          </g>
-
-          <!-- routes (drawn by CSS/JS) -->
-          <g class="routes" fill="none" stroke="url(#routeGrad)" stroke-width="1.7" stroke-linecap="round">
-            <path class="route" d="M500 320 L232 150"/>
-            <path class="route" d="M500 320 L792 168"/>
-            <path class="route" d="M500 320 L812 470"/>
-            <path class="route" d="M500 320 L500 556"/>
-            <path class="route" d="M500 320 L196 466"/>
-            <path class="route route--ring" d="M232 150 Q520 60 792 168"/>
-            <path class="route route--ring" d="M792 168 Q900 330 812 470"/>
-            <path class="route route--ring" d="M812 470 Q660 590 500 556"/>
-            <path class="route route--ring" d="M500 556 Q330 590 196 466"/>
-            <path class="route route--ring" d="M196 466 Q120 300 232 150"/>
-          </g>
-
-          <!-- signal pulses (positioned by JS along routes) -->
-          <g class="pulses" fill="#B7FF3C"></g>
-
-          <!-- nodes -->
-          <g class="nodes" font-family="'JetBrains Mono', monospace">
-            <g class="node node--core" data-node="core" transform="translate(500 320)">
-              <circle class="node__halo" r="34"/>
-              <circle class="node__ring" r="26" fill="none" stroke="#00FF7A" stroke-width="1.6"/>
-              <circle class="node__dot" r="9" fill="#B7FF3C"/>
-              <text class="node__label node__label--core" y="58" text-anchor="middle">MATRIX CORE</text>
-              <text class="node__sub" y="74" text-anchor="middle">operating topology</text>
-            </g>
-            <g class="node" data-node="strategy" transform="translate(232 150)">
-              <circle class="node__glow" r="16"/>
-              <circle class="node__dot" r="6" fill="#38F2D7"/>
-              <text class="node__label" y="-16" text-anchor="middle">STRATEGY</text>
-            </g>
-            <g class="node" data-node="data" transform="translate(792 168)">
-              <circle class="node__glow" r="16"/>
-              <circle class="node__dot" r="6" fill="#38F2D7"/>
-              <text class="node__label" y="-16" text-anchor="middle">DATA FABRIC</text>
-            </g>
-            <g class="node" data-node="security" transform="translate(812 470)">
-              <circle class="node__glow" r="16"/>
-              <circle class="node__dot" r="6" fill="#38F2D7"/>
-              <text class="node__label" y="30" text-anchor="middle">SECURITY POSTURE</text>
-            </g>
-            <g class="node" data-node="automation" transform="translate(500 556)">
-              <circle class="node__glow" r="16"/>
-              <circle class="node__dot" r="6" fill="#38F2D7"/>
-              <text class="node__label" y="32" text-anchor="middle">AUTOMATION</text>
-            </g>
-            <g class="node" data-node="observability" transform="translate(196 466)">
-              <circle class="node__glow" r="16"/>
-              <circle class="node__dot" r="6" fill="#38F2D7"/>
-              <text class="node__label" y="30" text-anchor="middle">OBSERVABILITY</text>
-            </g>
-          </g>
-        </svg>
-
-        <!-- embedded command nodes / route annotations -->
-        <span class="lattice__annot lattice__annot--tl">SIGNAL · route drawing</span>
-        <span class="lattice__annot lattice__annot--br">TRACE · dependency live</span>
-        <div class="lattice__coreread" aria-hidden="true">
-          <span class="k">core</span><span class="v" data-ticker="load">0.62</span>
-          <span class="k">routes</span><span class="v" data-ticker="routes">10</span>
-          <span class="k">drift</span><span class="v" data-ticker="drift">low</span>
-        </div>
-      </div>
-      <figcaption class="visually-hidden">The Living Matrix Lattice — a bounded command field where enterprise operating layers converge on Matrix Core.</figcaption>
-    </figure>
   </div>
+  <dl class="hero__stats">
+    <div class="stat"><dt>dependencies mapped, median estate</dt><dd><span data-count="31400">31,400</span></dd></div>
+    <div class="stat"><dt>control functions, one posture</dt><dd><span data-count="6">6</span></dd></div>
+    <div class="stat"><dt>days to a governed map, median</dt><dd><span data-count="83">83</span></dd></div>
+  </dl>
+  <a class="hero__cue" href="#estate" aria-label="Scroll to content"><span></span></a>
 </section>
 
-<!-- ================= CAPABILITY FIELD (non-card topology) ================= -->
-<section class="field" id="capabilities" aria-labelledby="field-title">
-  <img class="field__strip" src="assets/network-switch-cables.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-  <div class="field__head">
-    <p class="eyebrow"><span class="eyebrow__tag">NODE_FIELD</span> capability routes</p>
-    <h2 id="field-title" class="section-title">Six routes on one field. <span class="dim">Not six cards.</span></h2>
-    <p class="section-lede">Each capability attaches to the lattice as a route, ring, or shard — read them as an interconnected system, because that is what they are.</p>
-  </div>
-
-  <div class="field__stage" role="list">
-    <!-- connecting rails -->
-    <svg class="field__rails" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
-      <g fill="none" stroke="url(#routeGrad)" stroke-width="1.4">
-        <path class="frail" d="M120 120 L470 250"/>
-        <path class="frail" d="M470 250 L900 120"/>
-        <path class="frail" d="M470 250 L360 520"/>
-        <path class="frail" d="M470 250 L820 430"/>
-        <path class="frail" d="M820 430 L1060 560"/>
-        <path class="frail" d="M360 520 L720 650"/>
-      </g>
-    </svg>
-
-    <article class="shard shard--a" role="listitem" style="--i:0">
-      <span class="shard__idx">STRATEGY</span>
-      <h3 class="shard__title">Map the system before you move it.</h3>
-      <p class="shard__body">Strategy alignment starts as a graph, not a slide. Matrix models dependencies first so modernization is bounded, not blind.</p>
-      <span class="shard__route">route · strategy → core</span>
-    </article>
-
-    <article class="shard shard--b" role="listitem" style="--i:1">
-      <span class="shard__idx">DATA FABRIC</span>
-      <h3 class="shard__title">Break silos without breaking controls.</h3>
-      <p class="shard__body">A governed data fabric for intelligence — not another dashboard. Lineage, access, and policy travel with the data.</p>
-      <span class="shard__route">route · data → core</span>
-    </article>
-
-    <article class="shard shard--c" role="listitem" style="--i:2">
-      <span class="shard__idx">SECURITY</span>
-      <h3 class="shard__title">Posture across the full function set.</h3>
-      <p class="shard__body">Govern · Identify · Protect · Detect · Respond · Recover — mapped to real identities, services, and controls, not a badge.</p>
-      <span class="shard__route">route · security → core</span>
-    </article>
-
-    <article class="shard shard--d" role="listitem" style="--i:3">
-      <span class="shard__idx">AUTOMATION</span>
-      <h3 class="shard__title">Execute only where risk is understood.</h3>
-      <p class="shard__body">Topology-aware automation with blast-radius control. Actions fire where dependency and approval are known — nowhere else.</p>
-      <span class="shard__route">route · automation → core</span>
-    </article>
-
-    <article class="shard shard--e" role="listitem" style="--i:4">
-      <span class="shard__idx">OBSERVABILITY</span>
-      <h3 class="shard__title">Dependencies, latency, identity — one path.</h3>
-      <p class="shard__body">Service dependencies, latency, identity, and recovery on a single traversable route. Turn fragmented signals into operating clarity.</p>
-      <span class="shard__route">route · observability → core</span>
-    </article>
-
-    <article class="shard shard--f" role="listitem" style="--i:5">
-      <span class="shard__idx">INTELLIGENCE</span>
-      <h3 class="shard__title">From static diagrams to live topology.</h3>
-      <p class="shard__body">The intelligence layer keeps the map alive: state changes propagate, so the picture you govern is the picture that exists.</p>
-      <span class="shard__route">route · core → decision</span>
-    </article>
-  </div>
-
-  <!-- proof embedded on signal paths -->
-  <div class="proofpath" aria-label="Operational proof, pinned to signal paths">
-    <svg class="proofpath__line" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-      <path class="pline" d="M0 90 C 220 20, 420 20, 600 60 S 980 100, 1200 40" fill="none" stroke="url(#routeGrad)" stroke-width="1.6"/>
-    </svg>
-    <ul class="proofpath__reads">
-      <li class="pread" style="--p:0"><span class="pread__k">coverage</span><span class="pread__v">identity / endpoints / cloud / data</span></li>
-      <li class="pread" style="--p:1"><span class="pread__k">dependency trace</span><span class="pread__v pread__v--live">live</span></li>
-      <li class="pread" style="--p:2"><span class="pread__k">risk path</span><span class="pread__v">mapped</span></li>
-      <li class="pread" style="--p:3"><span class="pread__k">controls</span><span class="pread__v">governed</span></li>
-      <li class="pread" style="--p:4"><span class="pread__k">response mode</span><span class="pread__v">recoverable</span></li>
-      <li class="pread" style="--p:5"><span class="pread__k">automation</span><span class="pread__v pread__v--amber">approval-aware</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= OPERATING MODEL / LAYERED SYSTEM MAP ================= -->
-<section class="model" id="model" aria-labelledby="model-title">
-  <div class="model__head">
-    <p class="eyebrow"><span class="eyebrow__tag">MODEL</span> operating layer</p>
-    <h2 id="model-title" class="section-title">How Matrix sits across the enterprise.</h2>
-    <p class="section-lede">Inputs enter as signal; a graph model resolves them into governed structure; controls and automation act inside known blast radius; observability closes the loop into outcomes.</p>
-  </div>
-
-  <div class="flow" aria-hidden="false">
-    <img class="flow__screen" src="assets/cabling-fiber.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-    <div class="flow__bands">
-      <div class="band band--inputs" style="--b:0">
-        <span class="band__label">inputs</span>
-        <ul class="band__chips">
-          <li>cloud</li><li>network</li><li>identity</li><li>data</li><li>apps</li><li>threat intel</li><li>service telemetry</li>
-        </ul>
-      </div>
-      <div class="band band--graph" style="--b:1">
-        <span class="band__label">graph model</span>
-        <p class="band__note">dependency + identity resolved</p>
-      </div>
-      <div class="band band--gov" style="--b:2">
-        <span class="band__label">governance</span>
-        <p class="band__note">policy travels with signal</p>
-      </div>
-      <div class="band band--ctrl" style="--b:3">
-        <span class="band__label">controls</span>
-        <p class="band__note">enforced at the edge of change</p>
-      </div>
-      <div class="band band--auto" style="--b:4">
-        <span class="band__label">automation</span>
-        <p class="band__note">approval + blast-radius aware</p>
-      </div>
-      <div class="band band--obs" style="--b:5">
-        <span class="band__label">observability</span>
-        <p class="band__note">state changes propagate live</p>
-      </div>
-      <div class="band band--out" style="--b:6">
-        <span class="band__label">outcomes</span>
-        <ul class="band__chips band__chips--out">
-          <li>clarity</li><li>controlled modernization</li><li>faster response</li><li>lower operational drift</li>
-        </ul>
-      </div>
-    </div>
-    <svg class="flow__connectors" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 30 H1200" fill="none" stroke="#143524" stroke-width="1"/>
-      <g fill="#00FF7A" class="flow__markers"></g>
-    </svg>
-  </div>
-</section>
-
-<!-- ================= SECURITY / THREAT-INFORMED TOPOLOGY ================= -->
-<section class="security" id="security" aria-labelledby="sec-title">
-  <div class="security__inner">
-    <div class="security__copy">
-      <p class="eyebrow"><span class="eyebrow__tag">POSTURE</span> nist csf · threat-informed</p>
-      <h2 id="sec-title" class="section-title">Security posture as a governed ring.</h2>
-      <p class="section-lede">Threat models mapped against real platforms, identities, services, and controls. Six functions, one continuous posture — quieter, stricter, and always recoverable.</p>
-      <ul class="security__legend" role="list">
-        <li data-fn="govern"><span class="lg-dot"></span>Govern — accountability &amp; risk ownership</li>
-        <li data-fn="identify"><span class="lg-dot"></span>Identify — assets, data, dependencies</li>
-        <li data-fn="protect"><span class="lg-dot"></span>Protect — controls &amp; identity boundaries</li>
-        <li data-fn="detect"><span class="lg-dot"></span>Detect — anomalies on live signal</li>
-        <li data-fn="respond"><span class="lg-dot"></span>Respond — contained, approval-aware</li>
-        <li data-fn="recover"><span class="lg-dot"></span>Recover — restore to known-good state</li>
+<!-- ============ 01 · THE BLIND ESTATE ============ -->
+<section class="estate solid" id="estate" aria-labelledby="estate-title">
+  <div class="estate__inner">
+    <div class="estate__copy">
+      <p class="eyebrow" data-reveal><span class="eyebrow__idx">01</span>the blind estate</p>
+      <h2 id="estate-title" class="section-title" data-reveal>Your estate is already a graph. <span class="dim">Nobody can see it.</span></h2>
+      <p class="section-lede" data-reveal>Every enterprise runs on a web of dependencies — services leaning on identities, identities on directories, pipelines on queues, controls on assumptions. The picture exists only in fragments: a wiki diagram from two re-orgs ago, a spreadsheet of servers, the one engineer who remembers why the firewall rule exists.</p>
+      <ul class="estate__frags" role="list">
+        <li data-reveal><strong>Change is blind.</strong> Every migration begins with archaeology.</li>
+        <li data-reveal><strong>Controls drift.</strong> What is enforced diverges from what is written.</li>
+        <li data-reveal><strong>Risk pools in the seams</strong> — between teams, clouds and eras.</li>
       </ul>
     </div>
-
-    <figure class="wheel" aria-label="Radial diagnostic wheel of the six NIST CSF functions: Govern, Identify, Protect, Detect, Respond, Recover.">
-      <div class="wheel__frame">
-        <svg class="wheel__svg" viewBox="0 0 480 480" role="img" aria-hidden="true">
-          <defs>
-            <radialGradient id="wheelCore" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00FF7A" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#020503" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="240" cy="240" r="235" fill="url(#wheelCore)"/>
-          <g class="wheel__seg" fill="none" stroke-width="26" stroke-linecap="butt"></g>
-          <circle class="wheel__mid" cx="240" cy="240" r="120" fill="none" stroke="#143524" stroke-width="1"/>
-          <circle class="wheel__mid" cx="240" cy="240" r="150" fill="none" stroke="#143524" stroke-width="1" stroke-dasharray="2 7"/>
-          <g class="wheel__hub">
-            <circle cx="240" cy="240" r="58" fill="#020503" stroke="#00FF7A" stroke-width="1.4"/>
-            <text x="240" y="234" text-anchor="middle" class="wheel__hubk">CSF</text>
-            <text x="240" y="256" text-anchor="middle" class="wheel__hubv">GOVERNED</text>
-          </g>
-        </svg>
-        <span class="wheel__annot">ATT&amp;CK-informed · controls verified</span>
-      </div>
+    <figure class="estate__photo" data-reveal>
+      <img src="assets/server-racks-dark.jpg" alt="Dark server racks in a data hall, status lights glowing" loading="lazy" decoding="async" />
+      <figcaption>The estate: real, physical — and undocumented.</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- ================= FINAL CTA / ACCESS TERMINAL ================= -->
-<section class="access" id="access" aria-labelledby="access-title">
-  <div class="access__inner">
-    <div class="access__lead">
-      <p class="eyebrow"><span class="eyebrow__tag">EXECUTE</span> access terminal</p>
-      <h2 id="access-title" class="section-title">Open an architecture briefing.</h2>
-      <p class="section-lede">Bring your environment. Matrix will map the interlocks — dependency risk, control gaps, and the safe order of change.</p>
-    </div>
+<!-- ============ 02 · PLATFORM WALKTHROUGH (the graph is the stage) ============ -->
+<section class="walk" id="platform" aria-labelledby="walk-title">
+  <div class="walk__head solid">
+    <p class="eyebrow" data-reveal><span class="eyebrow__idx">02</span>the platform</p>
+    <h2 id="walk-title" class="section-title" data-reveal>One graph. <span class="dim">Five disciplines on it.</span></h2>
+    <p class="section-lede" data-reveal>The graph behind this page is the product. Each discipline is a lens on the same living topology — not a separate tool. Keep scrolling; the camera will take you around it.</p>
+  </div>
 
-    <div class="terminal" role="group" aria-label="Matrix assessment terminal">
-      <div class="terminal__bar">
-        <span class="terminal__dot"></span><span class="terminal__dot"></span><span class="terminal__dot"></span>
-        <span class="terminal__path">matrix://assessment</span>
+  <div class="walk__steps">
+    <article class="step" data-cluster="0">
+      <div class="step__panel">
+        <p class="step__idx">01 · Strategy</p>
+        <h3 class="step__title">Map before you move.</h3>
+        <p class="step__body">Modernization starts as a graph query, not a slideshow. Matrix models the dependency web first, so sequencing, blast radius and cost are known before the first workload moves.</p>
+        <p class="step__note">Outputs: bounded change plans, dependency-ranked move groups.</p>
       </div>
-      <div class="terminal__body">
-        <pre class="terminal__log" aria-hidden="true"><code><span class="tl"><span class="pr">&gt;</span> map operating layer</span>
-<span class="tl"><span class="pr">&gt;</span> identify dependency risk</span>
-<span class="tl"><span class="pr">&gt;</span> prepare architecture briefing</span>
-<span class="tl tl--type"><span class="pr">&gt;</span> <span class="typed" data-type="awaiting environment_"></span><span class="caret" aria-hidden="true"></span></span></code></pre>
-        <form class="terminal__form" novalidate>
-          <div class="tfield">
-            <label for="f-name">operator</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="name" required />
-          </div>
-          <div class="tfield">
-            <label for="f-email">signal address</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@enterprise.com" required />
-          </div>
-          <div class="tfield tfield--wide">
-            <label for="f-env">environment</label>
-            <input id="f-env" name="env" type="text" placeholder="cloud · identity · data estate — one line" />
-          </div>
-          <button class="btn btn--node btn--exec" type="submit"><span class="btn__brk">[</span> request briefing <span class="btn__brk">]</span></button>
-          <p class="terminal__status" role="status" aria-live="polite"></p>
-        </form>
+    </article>
+    <article class="step" data-cluster="1">
+      <div class="step__panel">
+        <p class="step__idx">02 · Data fabric</p>
+        <h3 class="step__title">Silos broken. Controls intact.</h3>
+        <p class="step__body">A governed fabric threads lineage, access and policy through the data itself — so intelligence travels, and governance travels with it.</p>
+        <p class="step__note">Lineage tracked edge to edge; policy resolves per hop.</p>
+      </div>
+    </article>
+    <article class="step" data-cluster="2">
+      <div class="step__panel">
+        <p class="step__idx">03 · Security</p>
+        <h3 class="step__title">Posture that maps to reality.</h3>
+        <p class="step__body">Six CSF functions pinned to real identities, services and controls on the graph — not to a compliance binder. When the topology changes, posture recalculates.</p>
+        <p class="step__note">ATT&amp;CK-informed paths, recomputed on every change.</p>
+      </div>
+    </article>
+    <article class="step" data-cluster="3">
+      <div class="step__panel">
+        <p class="step__idx">04 · Automation</p>
+        <h3 class="step__title">Action inside a known radius.</h3>
+        <p class="step__body">Runbooks execute only where dependency and approval are both understood. The graph is the interlock: no known radius, no action.</p>
+        <p class="step__note">Every action ships with its blast-radius proof.</p>
+      </div>
+    </article>
+    <article class="step" data-cluster="4">
+      <div class="step__panel">
+        <p class="step__idx">05 · Observability</p>
+        <h3 class="step__title">The map that stays true.</h3>
+        <p class="step__body">Telemetry keeps the graph honest — state changes propagate live, so the picture you govern is the picture that exists.</p>
+        <p class="step__note">Drift between map and reality surfaces in minutes.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 03 · OPERATING MODEL ============ -->
+<section class="model solid" id="model" aria-labelledby="model-title">
+  <div class="model__inner">
+    <p class="eyebrow" data-reveal><span class="eyebrow__idx">03</span>operating model</p>
+    <h2 id="model-title" class="section-title" data-reveal>From raw signal <span class="dim">to governed outcome.</span></h2>
+    <div class="rail" role="list" aria-label="How Matrix processes enterprise signal">
+      <svg class="rail__line" viewBox="0 0 1200 8" preserveAspectRatio="none" aria-hidden="true">
+        <path class="rail__path" d="M4 4 H1196" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Signal</h3>
+        <p class="station__note">Cloud, identity, network, apps — ingested as one stream.</p>
+      </div>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Graph</h3>
+        <p class="station__note">Entities resolved, dependencies drawn.</p>
+      </div>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Governance</h3>
+        <p class="station__note">Policy attaches to nodes and travels with them.</p>
+      </div>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Controls</h3>
+        <p class="station__note">Enforced at the edge of change.</p>
+      </div>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Automation</h3>
+        <p class="station__note">Approval- and radius-aware execution.</p>
+      </div>
+      <div class="station" role="listitem" data-reveal>
+        <span class="station__dot" aria-hidden="true"></span>
+        <h3 class="station__name">Outcome</h3>
+        <p class="station__note">Bounded change, faster response, lower drift.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ 04 · SECURITY POSTURE ============ -->
+<section class="security solid" id="security" aria-labelledby="security-title">
+  <div class="security__inner">
+    <div class="security__copy">
+      <p class="eyebrow" data-reveal><span class="eyebrow__idx">04</span>posture</p>
+      <h2 id="security-title" class="section-title" data-reveal>Six functions. <span class="dim">One continuous posture.</span></h2>
+      <p class="section-lede" data-reveal>Matrix treats security as a property of the graph, not a department. Every function reads from — and writes back to — the same topology.</p>
+      <ul class="security__legend" role="list">
+        <li data-fn="0" data-reveal><strong>Govern</strong> — accountability and risk ownership</li>
+        <li data-fn="1" data-reveal><strong>Identify</strong> — assets, data, dependencies</li>
+        <li data-fn="2" data-reveal><strong>Protect</strong> — controls and identity boundaries</li>
+        <li data-fn="3" data-reveal><strong>Detect</strong> — anomalies on live signal</li>
+        <li data-fn="4" data-reveal><strong>Respond</strong> — contained, approval-aware</li>
+        <li data-fn="5" data-reveal><strong>Recover</strong> — restore to known-good state</li>
+      </ul>
+      <p class="security__annot" data-reveal>Threat-informed: ATT&amp;CK techniques mapped to live paths, not PDFs.</p>
+    </div>
+    <figure class="ring" data-reveal aria-label="Radial diagram of the six NIST CSF functions: Govern, Identify, Protect, Detect, Respond, Recover.">
+      <svg class="ring__svg" viewBox="-32 -32 544 544" aria-hidden="true">
+        <g class="ring__segs" fill="none" stroke-width="22" stroke-linecap="round"></g>
+        <circle cx="240" cy="240" r="130" fill="none" class="ring__guide"/>
+        <g class="ring__labels"></g>
+        <g class="ring__hub">
+          <text x="240" y="232" text-anchor="middle" class="ring__hubk">CSF</text>
+          <text x="240" y="258" text-anchor="middle" class="ring__hubv">governed</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 05 · PROOF ============ -->
+<section class="proof solid" id="proof" aria-labelledby="proof-title">
+  <div class="proof__inner">
+    <p class="eyebrow" data-reveal><span class="eyebrow__idx">05</span>in operation</p>
+    <h2 id="proof-title" class="section-title visually-hidden">Results in operation</h2>
+    <div class="proof__grid">
+      <div class="bignum" data-reveal>
+        <span class="bignum__v">−72%</span>
+        <span class="bignum__k">change-related incidents, year-one median</span>
+      </div>
+      <div class="bignum" data-reveal>
+        <span class="bignum__v">14×</span>
+        <span class="bignum__k">faster dependency discovery than manual survey</span>
+      </div>
+      <div class="bignum" data-reveal>
+        <span class="bignum__v">100%</span>
+        <span class="bignum__k">of automated actions carry blast-radius proof</span>
+      </div>
+    </div>
+    <blockquote class="proof__quote" data-reveal>
+      <p>“The change board stopped arguing about whose diagram was right. There is one map now — and it argues back.”</p>
+      <cite>VP Infrastructure, global logistics group</cite>
+    </blockquote>
+    <div class="proof__strip" aria-hidden="true">
+      <img src="assets/network-switch-cables.jpg" alt="" loading="lazy" decoding="async" />
+      <img src="assets/cabling-fiber.jpg" alt="" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · BRIEFING ============ -->
+<section class="briefing solid" id="briefing" aria-labelledby="briefing-title">
+  <div class="briefing__inner">
+    <div class="briefing__lead">
+      <p class="eyebrow" data-reveal><span class="eyebrow__idx">06</span>begin</p>
+      <h2 id="briefing-title" class="section-title" data-reveal>Open an architecture briefing.</h2>
+      <p class="section-lede" data-reveal>Bring one environment. In forty-five minutes we map its interlocks live — dependency risk, control gaps, and the safe order of change.</p>
+    </div>
+    <form class="briefing__form" novalidate data-reveal>
+      <div class="bfield">
+        <label for="f-name">Operator</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+      </div>
+      <div class="bfield">
+        <label for="f-email">Signal address</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@enterprise.com" required />
+      </div>
+      <div class="bfield bfield--wide">
+        <label for="f-env">Environment</label>
+        <input id="f-env" name="env" type="text" placeholder="Cloud · identity · data estate — one line" />
+      </div>
+      <button class="btn btn--solid btn--submit" type="submit">Request briefing</button>
+      <p class="briefing__status" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 </main>
 
-<footer class="foot" role="contentinfo">
+<footer class="foot solid" role="contentinfo">
   <div class="foot__inner">
-    <span class="foot__mark">MATRIX</span>
-    <p class="foot__line">Adaptive infrastructure intelligence. Map the system before you move it.</p>
-    <p class="foot__meta">© <span data-year></span> Matrix · operating topology · <span class="foot__stat"><i class="dot"></i>all routes governed</span></p>
+    <div class="foot__brand">
+      <span class="foot__mark">Matrix</span>
+      <p class="foot__line">The operating topology. Map the system before you move it.</p>
+    </div>
+    <nav class="foot__nav" aria-label="Footer">
+      <div><h3>Platform</h3><a href="#platform">Disciplines</a><a href="#model">Operating model</a><a href="#estate">The estate</a></div>
+      <div><h3>Security</h3><a href="#security">Posture</a><a href="#proof">In operation</a></div>
+      <div><h3>Company</h3><a href="#briefing">Briefings</a><a href="#top">Top</a></div>
+    </nav>
+    <p class="foot__meta">© <span data-year>2026</span> Matrix · all routes governed</p>
   </div>
 </footer>
 
-<script src="script.js" defer></script>
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
