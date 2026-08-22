@@ -763,4 +763,14 @@ footer {
     margin-top: 2.4rem;
     margin-inline: calc(-1 * clamp(1.1rem, 5vw, 4.5rem));
   }
+
+  /* entrance, PHONE ONLY (owner ruling 2026-08-22: the glide stays fully
+     visible everywhere — no clipping): the parked letters start 1.3× their
+     height below the word and rise through that band; at this width the tag
+     sat inside it. Open the gap so the glide path is empty — 1.5em scales
+     with the word so it clears the parked letters (plus descender) at every
+     phone width. */
+  .entrance-word {
+    margin-bottom: 1.5em;
+  }
 }
