@@ -1660,3 +1660,16 @@ h3 {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ---------- phone layer (mobile pass, 2026-08-22) ----------
+   Invisible at 701px and up. The 2-up shelf grid can leave its last card
+   alone at half width (the featured TODAY'S PULL card spans both columns,
+   so an even child count still fills an odd number of slots). A lone last
+   card spans the full row instead, like the featured card does. */
+@media (max-width: 700px) {
+  .work-grid > .featured-card:first-child ~ .piece-card:last-child:nth-child(even),
+  .work-grid > .piece-card:first-child:not(.featured-card) ~ .piece-card:last-child:nth-child(odd),
+  .work-grid > .piece-card:not(.featured-card):only-child {
+    grid-column: 1 / -1;
+  }
+}
