@@ -54,7 +54,7 @@ export function LedgerlineDemo() {
 
   return (
     <div className="relative overflow-hidden rounded-xl border border-edge-soft bg-[oklch(98.5%_0.004_80)] text-[oklch(26%_0.02_60)] shadow-2xl shadow-black/40">
-      <ClickHint fx={0.62} fy={0.22} />
+      <ClickHint targets={['[data-hint="approve"]']} />
       {/* app header */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[oklch(88%_0.012_75)] px-5 py-3">
         <p className="text-sm font-semibold">
@@ -77,6 +77,7 @@ export function LedgerlineDemo() {
             {!done ? (
               <button
                 type="button"
+                data-hint="approve"
                 onClick={approve}
                 disabled={running}
                 className="rounded-md bg-[oklch(30%_0.02_60)] px-4 py-2 text-xs font-semibold text-[oklch(97%_0.005_80)] transition-transform hover:scale-[1.03] active:scale-[0.99] disabled:opacity-60"

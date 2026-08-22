@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Reveal } from "../lib/fx";
 import { cases } from "../data/fiction";
+import { GardenPlate, LanesPlate, LedgerPlate } from "./Plates";
 import { QuaysideDemo } from "./demos/Quayside";
 import { BrambleDemo } from "./demos/Bramble";
 import { LedgerlineDemo } from "./demos/Ledgerline";
@@ -8,7 +9,7 @@ import { LedgerlineDemo } from "./demos/Ledgerline";
 export function Work() {
   return (
     <section id="work" aria-labelledby="work-title" className="pt-24 sm:pt-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">The work</p>
           <h2 id="work-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
@@ -16,8 +17,8 @@ export function Work() {
             <em className="italic text-cobalt-hot">Don’t read them — use them.</em>
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-mute">
-            Every interface below is the product we shipped, rebuilt here as a working demo.
-            Price a shipment. Tend a garden. Approve a payment run. This is the portfolio.
+            Every interface below is the shipped product, rebuilt as a working demo.
+            Use them — this is the portfolio.
           </p>
         </Reveal>
       </div>
@@ -27,6 +28,7 @@ export function Work() {
         tint="oklch(45% 0.09 238 / 0.12)"
         data={cases.harbor}
         demo={<QuaysideDemo />}
+        plate={<LanesPlate />}
         wide
       />
       <Case
@@ -34,6 +36,7 @@ export function Work() {
         tint="oklch(45% 0.1 152 / 0.1)"
         data={cases.bramble}
         demo={<BrambleDemo />}
+        plate={<GardenPlate />}
         flip
       />
       <Case
@@ -41,6 +44,7 @@ export function Work() {
         tint="oklch(50% 0.1 55 / 0.1)"
         data={cases.ledger}
         demo={<LedgerlineDemo />}
+        plate={<LedgerPlate />}
         wide
       />
     </section>
@@ -54,6 +58,7 @@ function Case({
   data,
   demo,
   tint,
+  plate,
   flip = false,
   wide = false,
 }: {
@@ -61,6 +66,7 @@ function Case({
   data: CaseData;
   demo: ReactNode;
   tint: string;
+  plate?: ReactNode;
   flip?: boolean;
   wide?: boolean;
 }) {
@@ -71,7 +77,8 @@ function Case({
       className="mt-16 border-t border-edge-soft py-16 sm:mt-20 sm:py-20"
       style={{ background: `linear-gradient(180deg, ${tint}, transparent 60%)` }}
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
+        {plate && <Reveal>{plate}</Reveal>}
         <Reveal>
           <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
             <div>

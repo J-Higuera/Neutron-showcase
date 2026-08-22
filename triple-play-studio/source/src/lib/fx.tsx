@@ -161,21 +161,36 @@ export function FlapValue({ value, className }: { value: string; className?: str
   return <SplitFlap text={value} className={className} tick={48} />;
 }
 
-/* ---------- click affordance: one clean pointer, one click, gone ----------
-   Drop inside any position:relative interactive pane. Plays once, only after
-   the pane has actually stayed in view; any real interaction cancels it;
-   reduced motion renders nothing. fx/fy place it as fractions of the pane. */
+/* ---------- click affordance: the ghost cursor OPERATES the pane ----------
+   Drop inside any position:relative interactive pane and pass the ordered
+   CSS selectors of the controls to click. When the pane scrolls into view
+   the ghost glides to each target and fires a REAL click, so the demo
+   produces its real result — then it retires and the visitor drives with
+   their own choices (owner design, 2026-08-22). Plays once; any real
+   pointer input cancels it (programmatic clicks fire no pointer events,
+   so it never cancels itself); reduced motion renders nothing and leaves
+   the demos fully manual. */
 
-export function ClickHint({ fx = 0.5, fy = 0.45 }: { fx?: number; fy?: number }) {
+export function ClickHint({ targets }: { targets: string[] }) {
   const reduced = useReducedMotion();
   const layerRef = useRef<HTMLDivElement>(null);
   const inView = useInView(layerRef, { amount: 0.35 });
   const [ghost, setGhost] = useState({ x: 0, y: 0, shown: false, click: false });
-  const played = useRef(false);
+  const [armed, setArmed] = useState(false);
   const cancelled = useRef(false);
+  // the sequence reads targets through a ref: the prop is a fresh array
+  // every parent render, and the clicks THEMSELVES re-render the parent —
+  // a dep on it would tear down the run mid-flight (frozen ghost, dead
+  // second step; caught by the autopilot probe, 2026-08-22)
+  const targetsRef = useRef(targets);
+  targetsRef.current = targets;
 
   useEffect(() => {
-    if (!inView || reduced || played.current || cancelled.current) return;
+    if (inView && !reduced && !armed) setArmed(true);
+  }, [inView, reduced, armed]);
+
+  useEffect(() => {
+    if (!armed) return;
     const layer = layerRef.current;
     const pane = layer?.parentElement;
     if (!layer || !pane) return;
@@ -184,25 +199,42 @@ export function ClickHint({ fx = 0.5, fy = 0.45 }: { fx?: number; fy?: number })
       setGhost((g) => ({ ...g, shown: false, click: false }));
     };
     pane.addEventListener("pointerdown", cancel);
-    pane.addEventListener("change", cancel);
     const timers: number[] = [];
     const at = (ms: number, fn: () => void) =>
       timers.push(window.setTimeout(() => { if (!cancelled.current) fn(); }, ms));
-    at(800, () => {
-      played.current = true;
-      setGhost({ x: layer.clientWidth * fx, y: layer.clientHeight * fy, shown: true, click: false });
-    });
-    at(1600, () => setGhost((g) => ({ ...g, click: true })));
-    at(2050, () => setGhost((g) => ({ ...g, click: false })));
-    at(2450, () => setGhost((g) => ({ ...g, shown: false })));
+    const centerOf = (el: Element) => {
+      const pr = pane.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      return { x: er.left - pr.left + er.width / 2, y: er.top - pr.top + er.height / 2 };
+    };
+    const step = (i: number) => {
+      // targets resolve fresh per step: an earlier click may have changed
+      // the layout (the configurator's results, a swapped button)
+      const el = pane.querySelector<HTMLElement>(targetsRef.current[i]);
+      if (!el) { at(200, () => setGhost((g) => ({ ...g, shown: false }))); return; }
+      const c = centerOf(el);
+      setGhost({ x: c.x, y: c.y, shown: true, click: false });
+      at(700, () => {
+        const el2 = pane.querySelector<HTMLElement>(targetsRef.current[i]);
+        if (!el2) return;
+        const c2 = centerOf(el2);
+        setGhost({ x: c2.x, y: c2.y, shown: true, click: true });
+        el2.click();
+      });
+      at(1050, () => setGhost((g) => ({ ...g, click: false })));
+      if (i + 1 < targetsRef.current.length) at(1500, () => step(i + 1));
+      else at(1800, () => setGhost((g) => ({ ...g, shown: false })));
+    };
+    at(800, () => step(0));
     return () => {
       timers.forEach(clearTimeout);
       pane.removeEventListener("pointerdown", cancel);
-      pane.removeEventListener("change", cancel);
     };
-  }, [inView, reduced, fx, fy]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [armed]);
 
   if (reduced) return null;
+
   return (
     <div ref={layerRef} aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
       <motion.div

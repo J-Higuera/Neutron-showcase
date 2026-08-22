@@ -34,18 +34,18 @@ export const cases = {
     engagement: "Discovery → 14-week build → retainer",
     shipped: "Quayside, a quote-to-booking platform",
     arrived:
-      "Thirty million dollars a year of freight, quoted out of Excel and a shared inbox. A quote took six days to assemble; by day six the customer had often booked elsewhere. The second-generation CEO knew the business was leaking at the quote stage — he just couldn’t see the leak.",
+      "Thirty million dollars a year of freight, quoted out of Excel. A quote took six days — and by day six the customer had often booked elsewhere.",
     did:
-      "We spent the first two weeks of discovery in their dispatch office, pricing live shipments by hand until we could do it badly ourselves. The build followed the room, not a spec: a rate engine that reads the tariff feeds dispatchers were retyping, a quote builder that composes in minutes, and tracking that customers check themselves instead of calling.",
+      "Two weeks in their dispatch office, then a build that followed the room: a rate engine on live tariff feeds, a quote builder that composes in minutes, tracking customers check themselves.",
     stats: [
       { n: "38 min", label: "quote turnaround, down from 6 days" },
       { n: "61%", label: "win rate on quoted lanes, up from 34%" },
       { n: "$4.1M", label: "booked through Quayside in its first quarter" },
     ],
     quote:
-      "They sat in our dispatch office for two weeks before writing a line of code. The thing they built works the way freight actually works — my father uses it, and he distrusts computers professionally.",
+      "The thing they built works the way freight actually works — my father uses it, and he distrusts computers professionally.",
     attribution: "Marty Halloran — CEO, Harbor & Line",
-    caption: "Quayside’s quote builder — the six-day spreadsheet, rebuilt as a 38-minute screen. Price a lane yourself.",
+    caption: "the six-day spreadsheet, rebuilt as a 38-minute screen.",
   },
   bramble: {
     name: "Bramble",
@@ -53,18 +53,18 @@ export const cases = {
     engagement: "Discovery → 12-week build → launch retainer",
     shipped: "iOS & Android app, deck to launch in 19 weeks",
     arrived:
-      "Casey Munro had left a landscape architecture career with a conviction: garden care fails because advice isn’t tied to your plants and your weather. They had $2.8M in seed funding, an 11,000-person waitlist, a beautiful deck — and nine months of runway. An agency had already burned four of the last twelve on a design system.",
+      "Seed funding, an 11,000-person waitlist, a beautiful deck — and nine months of runway, four already burned by another agency.",
     did:
-      "Discovery killed half the deck and kept the sharpest wedge: a daily care plan built from what you actually grow, where you actually live. A build was in Casey’s hand by week five. We shipped the scan flow in week nine, launched in week nineteen, and stayed on as the launch retainer — reading the instruments, shipping the next thing.",
+      "Discovery kept the sharpest wedge: a daily care plan from what you grow and where you live. A build in hand by week five; launched in week nineteen.",
     stats: [
       { n: "19 wks", label: "from deck to both app stores" },
       { n: "4.8★", label: "across 2,140 ratings" },
       { n: "41%", label: "day-30 retention · Series A eight months later" },
     ],
     quote:
-      "I’d been burned once — four months, no product. Triple Play put a working build in my hand by week five, and the score in my inbox every Friday since. When we raised the A, our lead investor asked who built it. That’s the review that matters.",
+      "A working build in my hand by week five, and the score in my inbox every Friday since. When we raised the A, our lead investor asked who built it.",
     attribution: "Casey Munro — Founder, Bramble",
-    caption: "Bramble’s morning screen — the founder’s deck, made real. Check something off.",
+    caption: "the founder’s deck, made real.",
   },
   ledger: {
     name: "Ledgerline",
@@ -72,18 +72,18 @@ export const cases = {
     engagement: "Discovery → 16-week build → paired handoff",
     shipped: "Ledgerline Contractor — payments & 1099s",
     arrived:
-      "An eleven-year-old payroll company whose customers kept asking for contractor payments — and an internal roadmap with no room to build it. Dana Whitfield, the VP of Product, needed the product and needed her own engineers to own it afterward. Most studios treat that second requirement as an insult. We treat it as a spec.",
+      "A payroll company whose customers kept asking for contractor payments — and whose own engineers had to own the product afterward. We treat that as a spec, not an insult.",
     did:
-      "Sixteen weeks alongside two of her engineers: contractor onboarding that verifies tax details up front, payment runs with full audit trails, and a document center that generates 1099s without a support ticket. The final two weeks were the paired handoff — by the end of them, her team was deploying without us in the room.",
+      "Sixteen weeks alongside two of her engineers: verified onboarding, audited payment runs, self-serve 1099s. The last two weeks were the handoff — they now deploy without us.",
     stats: [
       { n: "$18M", label: "processed in the first nine months" },
       { n: "94%", label: "of contractors self-onboard, no ticket" },
       { n: "100%", label: "of the codebase owned in-house since handoff" },
     ],
     quote:
-      "Their exit was as impressive as their entrance. They built it, instrumented it, paired with my engineers for two weeks, handed over the keys — and actually left. I’ve never seen an agency do that on purpose.",
+      "They built it, paired with my engineers, handed over the keys — and actually left. I’ve never seen an agency do that on purpose.",
     attribution: "Dana Whitfield — VP Product, Ledgerline",
-    caption: "A March payment run in Ledgerline Contractor — built with her engineers, then handed to them. Approve it.",
+    caption: "a March payment run, built with her engineers, then handed over.",
   },
 };
 
@@ -93,41 +93,40 @@ export const shapes = [
     title: "Discovery sprint",
     terms: ["6 weeks · fixed ", "$48,000", ""],
     body:
-      "We take your ambition apart and make the riskiest piece real enough to test. You end with a working prototype, the evidence it produced, and a scoped build plan with a price on it.",
+      "We make the riskiest piece of your idea real enough to test. You leave with a prototype, its evidence, and a priced build plan.",
     who: "both founding partners, twice a week, live.",
-    fine: "If discovery says you shouldn’t build, we say so and stop. It has happened twice. Both founders still send us referrals.",
+    fine: "If discovery says don’t build, we say so and stop. It has happened twice.",
   },
   {
     index: "02",
     title: "The build",
     terms: ["8–16 weeks · scoped from discovery, typically ", "$180k–$420k", ""],
     body:
-      "A senior team of three or four, one accountable partner, production habits from day one. A demo every other Thursday. A scoreboard every Friday. Your repo, your accounts, from the first commit.",
-    who: "your accountable partner — in the standups, at the Thursday demo, and on every Friday scoreboard.",
-    fine: "We run two builds at a time across the whole studio. Never more.",
+      "Three or four senior people, one accountable partner. A demo every other Thursday, a scoreboard every Friday, your repo from the first commit.",
+    who: "your accountable partner, in the standups and on every scoreboard.",
+    fine: "Two builds at a time across the whole studio. Never more.",
   },
   {
     index: "03",
     title: "After launch",
     terms: ["retainer from ", "$9,000/mo", " · or a paired handoff"],
     body:
-      "Either we stay on to read the instruments and ship what they suggest — or we spend two paired weeks handing the whole system to your engineers, the way we did for Ledgerline. Both are first-class exits.",
-    who: "the same people who built it. Nobody new to educate.",
+      "We stay on and ship what the numbers suggest — or hand the whole system to your engineers in two paired weeks. Both are first-class exits.",
+    who: "the same people who built it.",
     fine: "Locked-in clients are a business model. It isn’t ours.",
   },
 ];
 
 export const weekOne = [
-  ["Monday", "A working session on the one metric that decides whether this project succeeded. Everything else gets ranked against it."],
-  ["Tuesday", "Repo, CI, staging, and production accounts exist — in your name. We ship a walking skeleton to production before we design anything."],
-  ["Wednesday", "We talk to the people the software is for. Users, dispatchers, contractors — whoever will live in it."],
-  ["Thursday", "The riskiest assumption gets named and a prototype to test it gets scoped. Risk goes first, not last."],
+  ["Monday", "We agree the one metric that decides whether this project succeeded."],
+  ["Tuesday", "Repo, CI, and production accounts exist — in your name — with a walking skeleton deployed."],
+  ["Wednesday", "We talk to the people who will live in the software."],
+  ["Thursday", "The riskiest assumption gets named, and a test for it gets scoped."],
   ["Friday", "Your first scoreboard arrives. They don’t stop until the work does."],
 ] as const;
 
 export const scoreboardAlways = [
-  "Sent every Friday by 4 p.m., in the same format since 2019.",
-  "Written by a partner on your build — never generated, never delegated.",
+  "Every Friday by 4 p.m., written by a partner on your build.",
   "The budget line comes from our books, not a burndown chart.",
   "If a week goes badly, the scoreboard says so in the first line.",
 ];
@@ -137,46 +136,44 @@ export const sampleScoreboard = {
   week: "Week 07 / 14",
   stamp: "Friday, 3:56 p.m.",
   intro:
-    "Every client gets this document, every Friday, written by a partner — not a dashboard link, not a status theater deck. This one is from week seven of the Harbor & Line build, shared with their permission.",
+    "Every client gets this document every Friday, written by a partner — this one is week seven of the Harbor & Line build, shared with permission.",
   rule: "bad news travels fastest.",
   shipped: [
-    "Rate engine now reads live tariff feeds. The nightly CSV import — and the 6 a.m. retyping ritual — is gone.",
-    "Quote builder works end to end behind a flag. Dispatch has been quoting live freight with it since Wednesday.",
-    "Customs document upload, with scanning and a retention policy your auditor will like.",
+    "Rate engine reads live tariff feeds — the 6 a.m. CSV retyping ritual is gone.",
+    "Quote builder works end to end; dispatch has quoted live freight with it since Wednesday.",
   ],
   slipped: [
-    "Customer-facing tracking page. The carrier’s API sandbox was down Tuesday–Thursday. We’ve stubbed it against recorded traffic and expect to be back on plan by next Wednesday.",
+    "Customer tracking page — the carrier’s sandbox was down three days. Back on plan by Wednesday.",
   ],
   decide: [
-    "Multi-currency quoting: cut it from launch scope, or move launch one week. Our recommendation is attached (cut it — 2 of 214 quotes last quarter were non-USD). We need your call by Tuesday.",
+    "Multi-currency quoting: cut from launch, or move launch a week. We recommend cutting — your call by Tuesday.",
   ],
   budget: { spent: "$171,000", of: "$340,000", pct: 50, note: "on plan at week 7 of 14" },
-  next: ["Tracking page recovery; invoice export; usability round two with the dispatch team."],
   signed: "— Priya, keeper of the score",
 };
 
 export const team = [
-  { initials: "MO", hue: 262, name: "Mara Oyelaran", role: "Founding partner · Product", bio: "Ran product at a freight marketplace before founding the studio. Wrote the week-one memo that became Quayside.", now: "This week: Redbird Provisions, week 9" },
-  { initials: "TR", hue: 210, name: "Tomás Rivera", role: "Founding partner · Engineering", bio: "Two decades of shipping, from embedded firmware to payments. Led the Ledgerline handoff — and insisted it be graded.", now: "This week: October discovery scoping" },
-  { initials: "JP", hue: 150, name: "June Park", role: "Design principal", bio: "Every interface on this page is hers or was reviewed by her. Believes a good empty state is worth two features.", now: "This week: Bramble seasonal release" },
-  { initials: "AO", hue: 32, name: "Adaeze Okafor", role: "Engineering lead · Platform & data", bio: "Built Quayside’s rate engine and the audit trail under Ledgerline’s payment runs. Allergic to clever schemas.", now: "This week: Redbird Provisions, week 9" },
-  { initials: "SB", hue: 300, name: "Silas Beck", role: "Product engineer", bio: "Shipped Bramble’s scan flow in week nine. Prototypes in production code because throwaway code never gets thrown away.", now: "This week: Cartwheel build, week 2" },
-  { initials: "PR", hue: 190, name: "Priya Raghavan", role: "Partner · Delivery", bio: "Writes every Friday scoreboard in the studio. The budget bar is hers, and it has never once been decorative.", now: "This week: two scoreboards, one hard call" },
-  { initials: "NT", hue: 80, name: "Noel Tran", role: "Launch & growth", bio: "Instrumented all three launches on this page. Reads retention curves the way dispatchers read tariff sheets.", now: "This week: Cartwheel instrumentation, week 2" },
+  { initials: "MO", hue: 262, name: "Mara Oyelaran", role: "Founding partner · Product", bio: "Ran product at a freight marketplace; wrote the memo that became Quayside.", now: "This week: Redbird Provisions, week 9" },
+  { initials: "TR", hue: 210, name: "Tomás Rivera", role: "Founding partner · Engineering", bio: "Two decades of shipping, firmware to payments. Led the Ledgerline handoff.", now: "This week: October discovery scoping" },
+  { initials: "JP", hue: 150, name: "June Park", role: "Design principal", bio: "Every interface on this page is hers or passed through her review.", now: "This week: Bramble seasonal release" },
+  { initials: "AO", hue: 32, name: "Adaeze Okafor", role: "Engineering lead · Platform & data", bio: "Built Quayside’s rate engine and Ledgerline’s audit trail.", now: "This week: Redbird Provisions, week 9" },
+  { initials: "SB", hue: 300, name: "Silas Beck", role: "Product engineer", bio: "Shipped Bramble’s scan flow in week nine. Prototypes in production code.", now: "This week: Cartwheel build, week 2" },
+  { initials: "PR", hue: 190, name: "Priya Raghavan", role: "Partner · Delivery", bio: "Writes every Friday scoreboard in the studio. The budget bar is hers.", now: "This week: two scoreboards, one hard call" },
+  { initials: "NT", hue: 80, name: "Noel Tran", role: "Launch & growth", bio: "Instrumented all three launches on this page.", now: "This week: Cartwheel instrumentation, week 2" },
 ];
 
 export const beliefs = [
   {
     title: "Small senior teams beat vendor armies.",
-    body: "Seven people who have shipped together for years will outrun forty who met last month, every time. Coordination is where agency budgets go to die; we carry none.",
+    body: "Seven people who have shipped together for years outrun forty who met last month.",
   },
   {
     title: "No handoffs. One motion.",
-    body: "The person in your first call is in your standups. Strategy, build, and launch are not phases passed between departments — they’re one continuous play, run by the same people. It’s the whole reason for the name.",
+    body: "The person in your first call is in your standups — strategy, build, and launch are one play, run by the same people.",
   },
   {
     title: "The score gets kept out loud.",
-    body: "Shipped, slipped, and burn — in writing, every Friday, signed by a partner. Radical transparency isn’t a virtue we claim; it’s a document we send. Bad news travels fastest here, and that is precisely why our clients sleep.",
+    body: "Shipped, slipped, and burn — in writing, every Friday, signed by a partner. Bad news travels fastest here.",
   },
 ];
 

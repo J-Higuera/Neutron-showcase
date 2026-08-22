@@ -18,7 +18,7 @@ export function Hero() {
       {/* grid texture + glow live on their own masked layers — the mask must never touch content */}
       <div aria-hidden="true" className="hero-grid-bg pointer-events-none absolute inset-0" />
       <div aria-hidden="true" className="pointer-events-none absolute -top-40 left-1/2 h-[34rem] w-[60rem] -translate-x-1/2 rounded-full bg-cobalt-deep/25 blur-[120px]" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[7fr_5fr]">
+      <div className="relative mx-auto grid max-w-[110rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[7fr_5fr]">
         <div>
           <motion.p
             initial={reduced ? false : { opacity: 0 }}
@@ -57,9 +57,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.55 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-bone/90"
           >
-            Triple Play is a seven-person studio in Chicago. We take you from term sheet to
-            launched, instrumented product — strategy, build, and launch as one motion, with
-            the score kept out loud every Friday.
+            A seven-person Chicago studio that takes you from term sheet to launched
+            product — and keeps the score out loud every Friday.
           </motion.p>
 
           <motion.div

@@ -5,7 +5,7 @@ import { sampleScoreboard as sb, scoreboardAlways, shapes, weekOne } from "../da
 export function Method() {
   return (
     <section id="method" aria-labelledby="method-title" className="mt-24 border-t border-edge-soft py-24 sm:mt-28 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">How it works</p>
           <h2 id="method-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
@@ -54,14 +54,15 @@ export function Method() {
           </div>
         </Reveal>
 
-        {/* the Friday scoreboard — the artifact clients receive, on paper */}
-        <div className="mt-20 grid items-start gap-12 lg:grid-cols-[5fr_7fr]">
+        {/* the Friday scoreboard — the artifact clients receive, on paper.
+            items-CENTER, not start: the paper runs taller than the intro
+            column, and centering the pair reads composed instead of the
+            doc overshooting (owner call, 2026-08-22) */}
+        <div className="mt-20 grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:items-center">
           <Reveal>
             <h3 className="font-serif text-[clamp(1.8rem,3vw,2.4rem)]">The Friday scoreboard</h3>
-            <p className="mt-4 text-[15px] leading-relaxed text-mute">{sb.intro}</p>
-            <p className="mt-3 text-[15px] leading-relaxed text-mute">
-              The rule behind it: <em className="italic text-bone">{sb.rule}</em> You will never
-              learn something important about your own project later than we did.
+            <p className="mt-4 text-[15px] leading-relaxed text-mute">
+              {sb.intro} The rule behind it: <em className="italic text-bone">{sb.rule}</em>
             </p>
             <ul className="mt-6 border-t border-edge-soft">
               {scoreboardAlways.map((a) => (
@@ -85,8 +86,8 @@ export function Method() {
 export function ScoreboardDoc() {
   const reduced = useReducedMotion();
   return (
-    <article aria-label="A sample weekly scoreboard document" className="paper-doc rounded-md p-6 shadow-2xl shadow-black/50 sm:p-8">
-      <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-paper-ink pb-5">
+    <article aria-label="A sample weekly scoreboard document" className="paper-doc rounded-md p-5 shadow-2xl shadow-black/50 sm:p-6">
+      <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-paper-ink pb-3.5">
         <div>
           <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-cobalt-deep">Scoreboard</p>
           <h4 className="mt-1.5 font-serif text-2xl leading-tight">{sb.client}</h4>
@@ -100,7 +101,7 @@ export function ScoreboardDoc() {
       <SbSection title="Slipped" items={sb.slipped} accent="warn" />
       <SbSection title="Decision we need from you" items={sb.decide} accent="cobalt" />
 
-      <div className="border-t border-paper-ink/10 py-4">
+      <div className="border-t border-paper-ink/10 py-3">
         <h5 className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-ink/55">Budget</h5>
         <div
           role="img"
@@ -123,9 +124,7 @@ export function ScoreboardDoc() {
         </div>
       </div>
 
-      <SbSection title="Next week" items={sb.next} />
-
-      <footer className="mt-2 border-t border-paper-ink/10 pt-4 font-serif text-base italic">
+      <footer className="mt-2 border-t border-paper-ink/10 pt-3 font-serif text-base italic">
         {sb.signed}
       </footer>
     </article>
@@ -142,11 +141,11 @@ function SbSection({ title, items, accent }: { title: string; items: readonly st
   const titleColor =
     accent === "warn" ? "text-[oklch(50%_0.12_70)]" : accent === "cobalt" ? "text-cobalt-deep" : "text-paper-ink/55";
   return (
-    <div className={"border-t border-paper-ink/10 py-3.5 first-of-type:border-t-0 " + border}>
+    <div className={"border-t border-paper-ink/10 py-2.5 first-of-type:border-t-0 " + border}>
       <h5 className={"font-mono text-[10px] font-semibold uppercase tracking-[0.14em] " + titleColor}>{title}</h5>
       <ul className="mt-2 list-disc space-y-1.5 pl-5">
         {items.map((it) => (
-          <li key={it} className="text-[13.5px] leading-relaxed text-paper-ink/80">{it}</li>
+          <li key={it} className="text-[13px] leading-relaxed text-paper-ink/80">{it}</li>
         ))}
       </ul>
     </div>

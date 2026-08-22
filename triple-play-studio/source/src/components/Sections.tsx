@@ -6,7 +6,7 @@ import { beliefs, faq, team } from "../data/fiction";
 export function Team() {
   return (
     <section id="team" aria-labelledby="team-title" className="mt-24 border-t border-edge-soft py-24 sm:mt-28 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">The team</p>
           <h2 id="team-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
@@ -67,7 +67,7 @@ export function Team() {
 export function Beliefs() {
   return (
     <section id="beliefs" aria-labelledby="beliefs-title" className="mt-24 border-y border-edge-soft bg-pit/60 py-24 sm:mt-28 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">What we believe</p>
           <h2 id="beliefs-title" className="font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
@@ -94,23 +94,28 @@ export function Beliefs() {
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">Founder questions</p>
           <h2 id="faq-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
             Asked by people <em className="italic text-cobalt-hot">betting a company on the answer.</em>
           </h2>
         </Reveal>
-        <dl className="mt-14 grid gap-x-14 gap-y-10 md:grid-cols-2">
+        {/* accordions, not an open wall: eight visible questions, answers
+            on demand — the compact read the owner asked for (2026-08-22) */}
+        <div className="mt-12 grid gap-x-14 md:grid-cols-2">
           {faq.map(([q, a], i) => (
-            <Reveal key={q} delay={(i % 2) * 0.06}>
-              <div className="border-t border-edge-soft pt-5">
-                <dt className="font-serif text-[1.35rem] leading-snug">{q}</dt>
-                <dd className="mt-2.5 text-sm leading-relaxed text-mute">{a}</dd>
-              </div>
+            <Reveal key={q} delay={(i % 2) * 0.04}>
+              <details className="faq-item group border-t border-edge-soft">
+                <summary className="flex cursor-pointer items-baseline justify-between gap-4 py-4 font-serif text-[1.2rem] leading-snug transition-colors hover:text-cobalt-hot">
+                  {q}
+                  <span aria-hidden="true" className="faq-mark font-mono text-base text-cobalt-hot" />
+                </summary>
+                <p className="pb-5 text-sm leading-relaxed text-mute">{a}</p>
+              </details>
             </Reveal>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

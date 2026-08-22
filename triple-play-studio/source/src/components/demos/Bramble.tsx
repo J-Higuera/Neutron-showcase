@@ -27,7 +27,7 @@ export function BrambleDemo() {
 
   return (
     <div className="relative mx-auto w-full max-w-[19rem]">
-      <ClickHint fx={0.5} fy={0.52} />
+      <ClickHint targets={['button[data-hint="task"][aria-pressed="false"]']} />
       <div aria-hidden="true" className="absolute -inset-6 rounded-[3rem] bg-leaf/10 blur-2xl" />
       <div data-phone className="relative rounded-[2.4rem] border border-[oklch(60%_0.05_150/0.4)] bg-[oklch(97%_0.008_135)] p-2 shadow-2xl shadow-black/50">
         <div aria-hidden="true" className="absolute left-1/2 top-4 z-10 h-4 w-20 -translate-x-1/2 rounded-full bg-[oklch(22%_0.01_140)]" />
@@ -65,6 +65,7 @@ export function BrambleDemo() {
                     <li key={t.id} className="border-t border-[oklch(90%_0.015_140)] first:border-t-0">
                       <button
                         type="button"
+                        data-hint="task"
                         onClick={() => toggle(t.id)}
                         aria-pressed={t.done}
                         className="flex w-full items-center gap-2.5 py-2.5 text-left text-[13px]"

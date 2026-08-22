@@ -68,7 +68,7 @@ export function Start() {
 
   return (
     <section id="start" aria-labelledby="start-title" className="border-t border-edge-soft bg-gradient-to-b from-ink to-cobalt-deep/20 py-24 sm:py-28">
-      <div className="mx-auto grid max-w-6xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[5fr_6fr]">
+      <div className="mx-auto grid max-w-[110rem] items-start gap-12 px-5 sm:px-8 lg:grid-cols-[5fr_6fr]">
         <Reveal>
           <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">Start a project</p>
           <h2 id="start-title" className="font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
@@ -76,9 +76,8 @@ export function Start() {
             <em className="italic text-cobalt-hot">So is this form.</em>
           </h2>
           <p className="mt-5 max-w-md text-base leading-relaxed text-mute">
-            Tell us what you’re trying to make true. A founding partner reads every brief —
-            expect a reply within two business days, usually with questions rather than a
-            pitch. If we’re not the right studio, we’ll say so and try to point you at who is.
+            A founding partner reads every brief and replies within two business days —
+            usually with questions, not a pitch.
           </p>
           <p className="mt-4 text-sm text-mute">
             Prefer email?{" "}
@@ -166,7 +165,7 @@ export function Footer() {
   return (
     <footer aria-labelledby="footer-heading" className="border-t border-edge-soft bg-ink">
       <h2 id="footer-heading" className="sr-only">Studio information</h2>
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_0.8fr_0.8fr_1.2fr]">
+      <div className="mx-auto grid max-w-[110rem] gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <p className="flex items-center gap-2.5 font-semibold">
             <svg viewBox="0 0 40 24" aria-hidden="true" className="h-5 w-9">
@@ -205,8 +204,11 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-edge-soft">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2 px-5 py-5 text-xs text-dim sm:px-8">
+        <div className="mx-auto flex max-w-[110rem] flex-wrap justify-between gap-2 px-5 py-5 text-xs text-dim sm:px-8">
           <span>© {new Date().getFullYear()} Triple Play Studio</span>
+          <span className="text-dim">
+            Photography: Trougnouf (CC BY 4.0), USDA, PostGirot archive — Wikimedia Commons
+          </span>
           <span>Strategy · Build · Launch — one motion</span>
         </div>
       </div>

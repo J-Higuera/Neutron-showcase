@@ -88,3 +88,105 @@ select option {
 /* the light "paper" scoreboard document keeps its own world on the dark page */
 .paper-doc { background: var(--color-paper); color: var(--color-paper-ink); }
 .paper-doc ::selection { background: oklch(80% 0.08 264 / 0.5); }
+
+/* ==================== MOBILE LAYER (<640px only) ========================
+   Owner mandate (2026-08-22): the phone must feel designed-first while the
+   desktop does not move a pixel. EVERY rule lives behind this media query;
+   at ≥640px (Tailwind's sm breakpoint) nothing here applies — verified by
+   before/after full-page pixel diffs at 768/1440/1920.
+   Three moves: (1) the section air that stacked into dead bands is halved;
+   (2) card collections (team, engagement shapes) become horizontal snap
+   rails — the phone gesture — instead of nine-screen stacks; (3) micro
+   mono labels lift to legible sizes. No content is removed. */
+@media (max-width: 639px) {
+  /* -- section rhythm -- */
+  #top { padding-top: 7.5rem; padding-bottom: 3rem; }
+  #work { padding-top: 3.25rem; }
+  #work article[id^="case-"] { margin-top: 2.25rem; padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  #method, #team, #beliefs, #configurator { margin-top: 2.25rem; }
+  #method, #team, #beliefs, #configurator, #faq { padding-top: 3.25rem; padding-bottom: 3.25rem; }
+
+  /* -- the work: tighter case internals, legible instrument labels -- */
+  #work .mt-10 { margin-top: 1.5rem; }
+  #work .gap-10 { gap: 1.5rem; }
+  #work .mt-12 { margin-top: 1.75rem; }
+  #work h4, #work dl dt { font-size: 11px; }
+  #work [class*="text-[10px]"], #method [class*="text-[10px]"] { font-size: 10.75px; }
+  #work [class*="text-[10.5px]"], #team [class*="text-[10.5px]"] { font-size: 11px; }
+
+  /* -- method: engagement shapes become a swipe rail; panels tighten -- */
+  #method .mt-14 { margin-top: 2rem; }
+  #method .mt-20 { margin-top: 2.5rem; }
+  #method .gap-12 { gap: 1.75rem; }
+  #method .p-7 { padding: 1.2rem; }
+  #method .paper-doc { padding: 1.1rem; }
+  #method ol li {
+    grid-template-columns: 4.4rem 1fr;
+    gap: 0.8rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+  #method .mt-14.grid.gap-5 {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  #method .mt-14.grid.gap-5::-webkit-scrollbar { display: none; }
+  #method .mt-14.grid.gap-5 > div {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+    display: flex;
+  }
+  #method .mt-14.grid.gap-5 > div > article { width: 100%; }
+
+  /* -- team: nine stacked cards become one swipe rail -- */
+  #team .mt-14 { margin-top: 2rem; }
+  #team ul {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.7rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  #team ul::-webkit-scrollbar { display: none; }
+  #team ul > div {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    display: flex;
+  }
+  #team ul > div > li { width: 100%; }
+  #team .p-6 { padding: 1.15rem; }
+
+  /* -- beliefs / faq: tighter stacks -- */
+  #beliefs .py-9 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  #beliefs .mt-10 { margin-top: 1.5rem; }
+  #faq .mt-14 { margin-top: 2rem; }
+  #faq .gap-y-10 { row-gap: 1.5rem; }
+  #faq .pt-5 { padding-top: 1rem; }
+}
+
+/* ---- the scoreboard fold (configurator, lg+): clipped paper fades out
+   instead of cutting — the CTA footer below it stays pinned ---- */
+@media (min-width: 1024px) {
+  .sb-fold { position: relative; }
+  .sb-fold::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 3.25rem;
+    background: linear-gradient(to bottom, transparent, var(--color-paper));
+    pointer-events: none;
+  }
+}
+
+/* ---- faq accordions ---- */
+.faq-item summary { list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .faq-mark::after { content: "+"; }
+.faq-item[open] .faq-mark::after { content: "−"; }

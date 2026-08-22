@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ClickHint, FlapValue } from "../../lib/fx";
 
@@ -18,12 +18,16 @@ const LOADS = [
   { id: "40rf", label: "40′ reefer", factor: 1.55 },
 ] as const;
 
-type PipelineRow = { route: string; load: string; customer: string; price: number; status: "Priced" | "Sent" | "Won" };
+type PipelineRow = { id: number; route: string; load: string; customer: string; price: number; status: "Priced" | "Sent" | "Won" };
 
+// ids are the React keys: sending the same lane twice used to mint rows
+// with IDENTICAL keys, and AnimatePresence accumulated ghost entries for
+// them — the list grew without bound (owner repro, 2026-08-22)
 const SEED_ROWS: PipelineRow[] = [
-  { route: "Ningbo → Columbus", load: "40′ HC", customer: "Fielder Home", price: 3975, status: "Won" },
-  { route: "Antwerp → Milwaukee", load: "20′", customer: "Kestrel Brewing", price: 2410, status: "Sent" },
-  { route: "Busan → Memphis", load: "40′ reefer", customer: "Pelican Produce", price: 7340, status: "Priced" },
+  { id: 1, route: "Ningbo → Columbus", load: "40′ HC", customer: "Fielder Home", price: 3975, status: "Won" },
+  { id: 2, route: "Antwerp → Milwaukee", load: "20′", customer: "Kestrel Brewing", price: 2410, status: "Sent" },
+  { id: 3, route: "Busan → Memphis", load: "40′ reefer", customer: "Pelican Produce", price: 7340, status: "Priced" },
+  { id: 4, route: "Hamburg → Chicago", load: "40′ HC", customer: "Marquette Paper", price: 4180, status: "Priced" },
 ];
 
 const fmt = (n: number) => "$" + n.toLocaleString("en-US");
@@ -49,9 +53,10 @@ export function QuaysideDemo() {
     return { ocean, rail, fuel, margin, total, win: Math.round(win) };
   }, [lane, load]);
 
+  const nextId = useRef(100);
   const sendQuote = () => {
     setRows((r) =>
-      [{ route: lane.label, load: load.label.replace(" standard", "").replace(" high-cube", " HC"), customer: "Your customer", price: quote.total, status: "Sent" as const }, ...r].slice(0, 4)
+      [{ id: nextId.current++, route: lane.label, load: load.label.replace(" standard", "").replace(" high-cube", " HC"), customer: "Your customer", price: quote.total, status: "Sent" as const }, ...r].slice(0, 4)
     );
     setPriced(false);
     setSentFlash(true);
@@ -60,7 +65,7 @@ export function QuaysideDemo() {
 
   return (
     <div className="relative overflow-hidden rounded-xl border border-edge-soft bg-[oklch(21%_0.035_244)] shadow-2xl shadow-black/40">
-      <ClickHint fx={0.28} fy={0.38} />
+      <ClickHint targets={['[data-hint="price"]']} />
       {/* chrome */}
       <div aria-hidden="true" className="flex items-center gap-1.5 border-b border-white/5 bg-[oklch(26%_0.03_244)] px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
@@ -101,8 +106,9 @@ export function QuaysideDemo() {
           {!priced ? (
             <button
               type="button"
+              data-hint="price"
               onClick={() => setPriced(true)}
-              className="mt-4 w-full rounded-md bg-[oklch(80%_0.09_205)] px-4 py-2.5 text-sm font-semibold text-[oklch(18%_0.03_244)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
+              className="mt-4 w-full rounded-md border border-transparent bg-[oklch(80%_0.09_205)] px-4 py-2.5 text-sm font-semibold text-[oklch(18%_0.03_244)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
             >
               Price it
             </button>
@@ -116,16 +122,19 @@ export function QuaysideDemo() {
             </button>
           )}
 
-          <AnimatePresence mode="wait">
-            {priced && (
-              <motion.dl
-                key={laneId + loadId}
-                initial={reduced ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-4 space-y-1.5 border-t border-white/10 pt-3 font-mono text-xs"
-              >
+          {/* mounted permanently on sm+ so the pane's height is reserved —
+              clicking Price it must not move the container (owner,
+              2026-08-22); phones keep natural flow */}
+          <motion.dl
+            initial={false}
+            animate={{ opacity: priced ? 1 : 0, y: priced ? 0 : 8 }}
+            transition={{ duration: reduced ? 0 : 0.3 }}
+            aria-hidden={!priced}
+            className={
+              "mt-4 space-y-1.5 border-t border-white/10 pt-3 font-mono text-xs " +
+              (priced ? "" : "hidden sm:invisible sm:block")
+            }
+          >
                 {([["Ocean leg", quote.ocean], ["Rail inland", quote.rail], ["Fuel surcharge", quote.fuel], ["Margin", quote.margin]] as const).map(([k, v], i) => (
                   <motion.div
                     key={k}
@@ -144,9 +153,7 @@ export function QuaysideDemo() {
                 <div className="flex justify-between pt-1 text-[10px] uppercase tracking-wider text-[oklch(68%_0.02_240)]">
                   <dt>Win likelihood, this lane</dt><dd className="text-[oklch(80%_0.09_205)]">{quote.win}%</dd>
                 </div>
-              </motion.dl>
-            )}
-          </AnimatePresence>
+          </motion.dl>
         </div>
 
         {/* pipeline */}
@@ -176,16 +183,16 @@ export function QuaysideDemo() {
             ))}
           </div>
 
-          <ul className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-black/20">
+          <ul className="mt-4 max-h-[208px] overflow-hidden rounded-lg border border-white/10 bg-black/20">
             <AnimatePresence initial={false}>
               {rows.map((r) => (
                 <motion.li
-                  key={r.route + r.customer + r.price}
+                  key={r.id}
                   layout
                   initial={reduced ? false : { opacity: 0, y: -14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-between gap-2 border-t border-white/5 px-3.5 py-2.5 text-xs first:border-t-0"
+                  className="flex h-[51px] items-center justify-between gap-2 border-t border-white/5 px-3.5 text-xs first:border-t-0"
                 >
                   <span className="min-w-0">
                     <span className="block truncate font-medium">{r.route}</span>

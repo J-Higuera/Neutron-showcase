@@ -45,7 +45,7 @@ export function Header() {
           (scrolled ? "bg-ink/85 border-b border-edge-soft" : "bg-ink/40 border-b border-transparent")
         }
       >
-        <nav aria-label="Primary" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <nav aria-label="Primary" className="mx-auto flex h-16 max-w-[110rem] items-center justify-between px-5 sm:px-8">
           <a href="#top" aria-label="Triple Play Studio — home" className="flex items-center gap-2.5 font-semibold tracking-tight">
             <svg viewBox="0 0 40 24" aria-hidden="true" className="h-5 w-9">
               <circle cx="8" cy="12" r="6" className="fill-bone" />

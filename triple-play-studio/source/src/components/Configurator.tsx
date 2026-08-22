@@ -63,82 +63,93 @@ export function Configurator() {
 
   return (
     <section id="configurator" aria-labelledby="conf-title" className="mt-24 border-t border-edge-soft bg-pit/40 py-24 sm:mt-28 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal>
-          <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">Interactive</p>
-          <h2 id="conf-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
-            Shape your engagement.<br />
-            <em className="italic text-cobalt-hot">Get your first scoreboard.</em>
-          </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-mute">
-            Answer two questions and the studio board does what it always does — turns
-            ambition into a plan with dates and a price. No email required to see it.
-          </p>
-        </Reveal>
+      <div className="mx-auto max-w-[110rem] px-5 sm:px-8">
+        <div className="grid items-start gap-10 lg:grid-cols-[5fr_7fr]">
+          {/* left rail: title + inputs. The output column stretches beside the
+              WHOLE rail (owner call, 2026-08-22), so the plan pane also gets
+              the vertical room the title occupies — the row's height is set
+              by this rail alone and stays state-independent. */}
+          <div>
+            <Reveal>
+              <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cobalt-hot">Interactive</p>
+              <h2 id="conf-title" className="max-w-3xl font-serif text-[clamp(2.4rem,5vw,3.9rem)] leading-[1.05]">
+                Shape your engagement.<br />
+                <em className="italic text-cobalt-hot">Get your first scoreboard.</em>
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-mute">
+                Two questions in, a dated and priced plan out. No email required.
+              </p>
+            </Reveal>
 
-        <div className="mt-12 grid items-start gap-10 lg:grid-cols-[5fr_7fr]">
-          {/* inputs */}
-          <Reveal>
-            <div className="relative rounded-2xl border border-edge-soft bg-pit/80 p-6 sm:p-7">
-              <ClickHint fx={0.5} fy={0.42} />
-              <label className="block text-sm font-medium text-mute">
-                What are you building? <span className="text-dim">(optional)</span>
-                <input
-                  value={project}
-                  onChange={(e) => setProject(e.target.value.slice(0, 32))}
-                  placeholder="e.g. Brightpath"
-                  className="mt-2 w-full rounded-lg border border-edge-soft bg-ink px-3.5 py-2.5 text-sm text-bone placeholder-dim outline-none transition-colors focus:border-cobalt"
-                />
-              </label>
+            {/* inputs */}
+            <Reveal>
+              <div className="relative mt-10 rounded-2xl border border-edge-soft bg-pit/80 p-6 sm:p-7">
+                <ClickHint targets={['[data-hint="stage-proto"]', '[data-hint="budget-b2"]']} />
+                <label className="block text-sm font-medium text-mute">
+                  What are you building? <span className="text-dim">(optional)</span>
+                  <input
+                    value={project}
+                    onChange={(e) => setProject(e.target.value.slice(0, 32))}
+                    placeholder="e.g. Brightpath"
+                    className="mt-2 w-full rounded-lg border border-edge-soft bg-ink px-3.5 py-2.5 text-sm text-bone placeholder-dim outline-none transition-colors focus:border-cobalt"
+                  />
+                </label>
 
-              <fieldset className="mt-6">
-                <legend className="text-sm font-medium text-mute">Where are you today?</legend>
-                <div className="mt-2.5 grid gap-2">
-                  {STAGES.map((s) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => setStage(s.id)}
-                      aria-pressed={stage === s.id}
-                      className={
-                        "rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors " +
-                        (stage === s.id
-                          ? "border-cobalt bg-cobalt-deep/25 text-bone"
-                          : "border-edge-soft text-mute hover:border-edge hover:text-bone")
-                      }
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
+                <fieldset className="mt-6">
+                  <legend className="text-sm font-medium text-mute">Where are you today?</legend>
+                  <div className="mt-2.5 grid gap-2">
+                    {STAGES.map((s) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        data-hint={"stage-" + s.id}
+                        onClick={() => setStage(s.id)}
+                        aria-pressed={stage === s.id}
+                        className={
+                          "rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors " +
+                          (stage === s.id
+                            ? "border-cobalt bg-cobalt-deep/25 text-bone"
+                            : "border-edge-soft text-mute hover:border-edge hover:text-bone")
+                        }
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
 
-              <fieldset className="mt-6">
-                <legend className="text-sm font-medium text-mute">Budget you’re working with</legend>
-                <div className="mt-2.5 flex flex-wrap gap-2">
-                  {BUDGETS.map((b) => (
-                    <button
-                      key={b.id}
-                      type="button"
-                      onClick={() => setBudget(b.id)}
-                      aria-pressed={budget === b.id}
-                      className={
-                        "rounded-full border px-3.5 py-2 text-xs font-medium transition-colors " +
-                        (budget === b.id
-                          ? "border-cobalt bg-cobalt-deep/25 text-bone"
-                          : "border-edge-soft text-mute hover:border-edge hover:text-bone")
-                      }
-                    >
-                      {b.label}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
-            </div>
-          </Reveal>
+                <fieldset className="mt-6">
+                  <legend className="text-sm font-medium text-mute">Budget you’re working with</legend>
+                  <div className="mt-2.5 flex flex-wrap gap-2">
+                    {BUDGETS.map((b) => (
+                      <button
+                        key={b.id}
+                        type="button"
+                        data-hint={"budget-" + b.id}
+                        onClick={() => setBudget(b.id)}
+                        aria-pressed={budget === b.id}
+                        className={
+                          "rounded-full border px-3.5 py-2 text-xs font-medium transition-colors " +
+                          (budget === b.id
+                            ? "border-cobalt bg-cobalt-deep/25 text-bone"
+                            : "border-edge-soft text-mute hover:border-edge hover:text-bone")
+                        }
+                      >
+                        {b.label}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              </div>
+            </Reveal>
+          </div>
 
-          {/* output */}
-          <div aria-live="polite" className="min-w-0">
+          {/* output — HEIGHT-LOCKED on lg (owner call, 2026-08-22): the
+              wrapper is relative and the result absolute-filled, so the row
+              is sized by the left rail (title + inputs) alone; anything
+              longer still folds under a fade with the CTA pinned. Below lg
+              it flows naturally. */}
+          <div aria-live="polite" className="min-w-0 lg:relative lg:self-stretch lg:min-h-[30rem]">
             <AnimatePresence mode="wait">
               {!ready ? (
                 <motion.div
@@ -146,11 +157,10 @@ export function Configurator() {
                   initial={reduced ? false : { opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="flex min-h-[22rem] items-center justify-center rounded-2xl border border-dashed border-edge-soft p-10 text-center"
+                  className="flex min-h-[22rem] items-center justify-center rounded-2xl border border-dashed border-edge-soft p-10 text-center lg:absolute lg:inset-0 lg:min-h-0"
                 >
                   <p className="max-w-xs text-sm leading-relaxed text-dim">
-                    The plan and your week-01 scoreboard assemble here — pick a stage and a
-                    budget on the left.
+                    Pick a stage and a budget — your plan assembles here.
                   </p>
                 </motion.div>
               ) : (
@@ -160,19 +170,19 @@ export function Configurator() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={reduced ? undefined : { opacity: 0, y: -8 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="lg:absolute lg:inset-0 lg:flex lg:flex-col"
                 >
                   {/* recommended path */}
-                  <div className="relative rounded-2xl border border-edge-soft bg-pit/80 p-6 sm:p-7">
-              <ClickHint fx={0.5} fy={0.42} />
+                  <div className="relative rounded-2xl border border-edge-soft bg-pit/80 p-6 sm:p-7 lg:p-5">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-serif text-2xl">The recommended path</h3>
+                      <h3 className="font-serif text-2xl lg:text-xl">The recommended path</h3>
                       {totalWeeks > 0 && (
                         <p className="font-mono text-xs text-cobalt-hot">
                           <SplitFlap text={`~${totalWeeks} WEEKS TO LAUNCH`} tick={40} />
                         </p>
                       )}
                     </div>
-                    <ol className="mt-5 flex flex-wrap gap-2.5">
+                    <ol className="mt-5 flex flex-wrap gap-2.5 lg:mt-3.5 lg:gap-2">
                       {p!.steps.map((s, i) => (
                         <motion.li
                           key={s.name}
@@ -181,7 +191,7 @@ export function Configurator() {
                           transition={{ delay: reduced ? 0 : 0.12 * i, duration: 0.3 }}
                           className="flex items-center gap-2.5"
                         >
-                          <span className="rounded-lg border border-edge-soft bg-ink px-3.5 py-2.5">
+                          <span className="rounded-lg border border-edge-soft bg-ink px-3.5 py-2.5 lg:px-3 lg:py-2">
                             <span className="block text-sm font-semibold">{s.name}</span>
                             <span className="block text-[11px] text-dim">
                               {s.weeks > 0 ? `${s.weeks} weeks · ` : ""}{s.note}
@@ -191,12 +201,13 @@ export function Configurator() {
                         </motion.li>
                       ))}
                     </ol>
-                    <p className="mt-4 text-sm leading-relaxed text-mute">{p!.say}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-mute lg:mt-3">{p!.say}</p>
                   </div>
 
-                  {/* the personalized week-01 scoreboard */}
-                  <div className="paper-doc mt-6 rounded-md p-6 shadow-2xl shadow-black/50 sm:p-8">
-                    <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-paper-ink pb-4">
+                  {/* the personalized week-01 scoreboard — on lg it fills the
+                      locked row: body folds under a fade, footer stays pinned */}
+                  <div className="paper-doc mt-6 rounded-md p-6 shadow-2xl shadow-black/50 sm:p-8 lg:mt-5 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:overflow-hidden lg:p-6">
+                    <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-paper-ink pb-4 lg:pb-2.5">
                       <div>
                         <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-cobalt-deep">Scoreboard · preview</p>
                         <h4 className="mt-1 font-serif text-xl leading-tight">
@@ -207,25 +218,25 @@ export function Configurator() {
                         Week 01 / {totalWeeks || "—"}<br />your first Friday
                       </p>
                     </header>
-                    <div className="py-4">
+                    <div className="sb-fold py-4 lg:min-h-0 lg:flex-1 lg:overflow-hidden lg:py-2.5">
                       <h5 className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-ink/55">
                         Shipped this week — the plan
                       </h5>
-                      <ul className="mt-2 list-disc space-y-1.5 pl-5">
+                      <ul className="mt-2 list-disc space-y-1.5 pl-5 lg:mt-1.5 lg:space-y-1">
                         {sb!.shipped.map((it, i) => (
                           <motion.li
                             key={it}
                             initial={reduced ? false : { opacity: 0, x: -6 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: reduced ? 0 : 0.15 + i * 0.1 }}
-                            className="text-[13px] leading-relaxed text-paper-ink/80"
+                            className="text-[13px] leading-relaxed text-paper-ink/80 lg:text-[12.5px]"
                           >
                             {it}
                           </motion.li>
                         ))}
                       </ul>
                     </div>
-                    <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-paper-ink/10 pt-4">
+                    <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-paper-ink/10 pt-4 lg:pt-3">
                       <p className="font-serif text-sm italic text-paper-ink/80">— the real one arrives every Friday by 4 p.m.</p>
                       <a
                         href="#start"
