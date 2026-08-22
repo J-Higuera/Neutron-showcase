@@ -26,7 +26,7 @@ export function Entrance({ glReady }: { glReady: boolean }) {
         </h1>
         <p className="entrance-sub">Museum of Dimensional Craft</p>
         <p className="entrance-lede">
-          Six works on view. Every still is printed from the museum's own files —
+          Seven works on view. Every still is printed from the museum's own files —
           and Inspect hangs the work itself, live in your browser at full
           fidelity. Admission is free, and the museum accepts loans: bring a work
           of your own.

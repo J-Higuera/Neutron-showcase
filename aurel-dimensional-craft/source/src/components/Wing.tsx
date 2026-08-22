@@ -156,7 +156,16 @@ export function Wing({ hasWebGL }: { hasWebGL: boolean }) {
       }, 900);
       const pad = parseFloat(getComputedStyle(deck).scrollPaddingInlineStart) || 0;
       const max = deck.scrollWidth - deck.clientWidth;
-      const end = Math.max(0, Math.min(target.offsetLeft - pad, max));
+      // Rect-based, NOT offsetLeft: the slides' offsetParent is the wing, so
+      // once the deck is narrower than the wing and centered (≥1560px
+      // viewports) offsetLeft carries the centering margin — the glide then
+      // lands past the real snap point and mandatory snap jerks it back on
+      // arrival (the wide-screen "pane flashes then vanishes" bug).
+      const rawEnd =
+        deck.scrollLeft +
+        (target.getBoundingClientRect().left - deck.getBoundingClientRect().left) -
+        pad;
+      const end = Math.max(0, Math.min(rawEnd, max));
       stopGlide(false);
       if (reducedRef.current) {
         deck.style.scrollSnapType = "";

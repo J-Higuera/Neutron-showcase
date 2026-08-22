@@ -159,6 +159,25 @@ export const COLLECTION: Exhibit[] = [
     spin: 0.18,
     camera: { position: [0.2, 0.2, 4.5], fov: 31 },
   },
+  {
+    id: "trevita-ccxr",
+    num: "007",
+    title: "Koenigsegg Trevita CCXR",
+    maker: "Koenigsegg Automotive · commercial digitization",
+    year: "2010",
+    medium: "PBR hard-surface — clearcoat white carbon, chrome brightwork, tinted glazing",
+    license: "Licensed edition · private collection",
+    acquisition: "The founder's acquisition 2026 · first machine in the collection",
+    story:
+      "The rarest thing in the building is also the fastest: a production run you can count on one hand, bodied in carbon coated to read silver-white — a weave that glitters instead of hiding. The museum's first machine arrives at real scale, calipers red, livery intact. Walk the light around it; the weave answers.",
+    src: "models/trevita-ccxr.glb",
+    mood: "studio",
+    hue: 165,
+    fitRadius: 1.42,
+    yLift: 0.04,
+    spin: 0.12,
+    camera: { position: [1.3, 0.42, 3.9], fov: 33 },
+  },
 ];
 
 export const ALL_EXHIBITS: Exhibit[] = [FOUNDING, ...COLLECTION];
