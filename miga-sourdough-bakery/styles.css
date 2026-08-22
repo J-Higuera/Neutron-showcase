@@ -749,3 +749,18 @@ footer {
   .step { opacity: 1; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- phone layer (mobile pass, 2026-08-22) ----------
+   Invisible at 641px and up. On phones the hero's content outgrows its
+   100svh minimum, which pushed the absolutely-anchored marquee band's
+   lower half below the first screen (clipped). Flow the band after the
+   hero content instead — full-bleed via the hero's own inline padding. */
+@media (max-width: 640px) {
+  .hero { padding-bottom: 5vh; }
+  .marquee {
+    position: static;
+    align-self: stretch;
+    margin-top: 2.4rem;
+    margin-inline: calc(-1 * clamp(1.1rem, 5vw, 4.5rem));
+  }
+}
