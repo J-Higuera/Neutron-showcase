@@ -1,1 +1,0 @@
-import{n as e,r as t,t as n}from"./gl-PJbY3Q1t.js";import{t as r}from"./stats-Bnb8jXAR.js";async function i(i){let a=await i.arrayBuffer(),o=new t,s=new e;s.setDecoderPath(`./draco/`),o.setDRACOLoader(s),o.setMeshoptDecoder(n);try{let e=await o.parseAsync(a,``),t=e.scene??e.scenes[0];return{object:t,stats:r(t)}}finally{s.dispose()}}export{i as parseModel};
