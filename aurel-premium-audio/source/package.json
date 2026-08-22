@@ -1,19 +1,32 @@
 {
-  "name": "aurel-v2",
-  "version": "2.0.0",
-  "description": "AUREL — reference headphone storefront (React + three.js rebuild)",
+  "name": "aurel-v3",
+  "version": "3.0.0",
+  "description": "AUREL — Museum of Dimensional Craft (React Three Fiber museum for high-fidelity 3D objects)",
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0"
   },
   "license": "ISC",
   "dependencies": {
-    "@vitejs/plugin-react": "^6.0.5",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/postprocessing": "^3.0.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "three": "^0.179.1",
+    "three": "^0.185.0"
+  },
+  "devDependencies": {
+    "@gltf-transform/cli": "^4.2.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.185.0",
+    "@vitejs/plugin-react": "^6.0.5",
+    "draco3dgltf": "^1.5.7",
+    "sharp": "^0.34.3",
+    "typescript": "^5.9.2",
     "vite": "^8.2.0"
   }
 }

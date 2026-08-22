@@ -1,23 +1,98 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AUREL — Reference Headphones</title>
-    <meta name="description" content="Aurel builds reference-grade planar headphones and matched audio hardware, assembled in small runs. Explore the Reference in full 3D, choose a finish, and order direct from the studio.">
-    <meta property="og:title" content="AUREL — Reference Headphones">
-    <meta property="og:description" content="Reference-grade planar headphones, assembled in small runs. Built for the space between signal and silence.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23191817'/><path d='M20 46 L32 18 L44 46' fill='none' stroke='%23E9E2D4' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='32' cy='40' r='3.4' fill='%23B4784B'/></svg>">
-    <script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.classList.add("anim");setTimeout(function(){d.classList.remove("anim")},3000)}}catch(e){}</script>
-    <link rel="preload" href="./assets/fonts/fraunces-11.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/work-sans-2.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./assets/fonts/fonts.css">
-    <script type="module" crossorigin src="./assets/index-C7w1AdVr.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/three-Bbkyt42O.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-DHxR4ot_.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUREL — Museum of Dimensional Craft</title>
+    <meta
+      name="description"
+      content="A museum for high-fidelity digital objects. Six works on view, rendered live in your browser — and the museum accepts loans: bring your own."
+    />
+    <meta name="theme-color" content="#08090c" />
+    <meta property="og:title" content="AUREL — Museum of Dimensional Craft" />
+    <meta
+      property="og:description"
+      content="A museum for high-fidelity digital objects. Six works on view, rendered live in your browser."
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2308090c'/%3E%3Cpath d='M18 48 L32 14 L46 48' stroke='%234f6bff' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='41' r='3.4' fill='%23eef1f7'/%3E%3C/svg%3E"
+    />
+    <!-- latin subsets used above the fold; the veil waits on these -->
+    <link rel="preload" href="./fonts/work-sans-2.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/work-sans-8.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/ibm-plex-mono-4.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/ibm-plex-mono-9.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- the hero's work starts downloading at t=0 so its stage wakes with
+         bytes already local (crossorigin matches the loader's cors +
+         same-origin-credentials fetch — else double-fetch). Rooms are
+         printed stills; their models load on Inspect. -->
+    <link rel="preload" href="./models/antique-camera.glb" as="fetch" crossorigin />
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+    <script type="module" crossorigin src="./assets/index-UiLWQLGP.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-hePW80VL.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-D48Lzm2I.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-y95weLVY.css">
   </head>
   <body>
+    <!-- Static veil painted before React parses: no blank flash while the
+         galleries compile. React removes it once fonts + shell are ready. -->
+    <div
+      id="veil"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        background: #08090c;
+        color: #eef1f7;
+        font-family: system-ui, sans-serif;
+        transition: opacity 0.6s ease;
+      "
+    >
+      <div style="letter-spacing: 0.42em; font-size: 15px; font-weight: 600; padding-left: 0.42em">A U R E L</div>
+      <div
+        style="
+          font-family: ui-monospace, monospace;
+          font-size: 10px;
+          letter-spacing: 0.28em;
+          color: #93a5ff;
+          text-transform: uppercase;
+          padding-left: 0.28em;
+        "
+      >
+        Preparing the galleries
+      </div>
+    </div>
+    <noscript>
+      <div
+        style="
+          position: fixed;
+          inset: 0;
+          z-index: 99;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #08090c;
+          color: #eef1f7;
+          font-family: system-ui, sans-serif;
+          text-align: center;
+          padding: 2rem;
+          line-height: 1.6;
+        "
+      >
+        <p style="max-width: 34em">
+          <span style="letter-spacing: 0.4em">A U R E L</span><br /><br />
+          The museum renders every work live, in your browser — which requires JavaScript.
+          Nothing here is a photograph; with scripts off there is nothing to hang.
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
