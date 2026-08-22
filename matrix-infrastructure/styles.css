@@ -534,3 +534,23 @@ html.no-webgl .walk__steps {
   .hero__cue span { animation: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- phone layer (mobile pass, 2026-08-22) ----------
+   Everything here is invisible at 561px and up — desktop and tablet
+   keep the full-viewport graph journey untouched. */
+@media (max-width: 560px) {
+  /* section air: 6rem top+bottom stacked into dead bands at 390px */
+  :root { --space-section: 3.5rem; }
+
+  /* the walkthrough gave every step a full viewport so the camera had
+     room; on a phone that is one card and a screen of empty topology.
+     Keep a band of graph above each card instead of a whole screen. */
+  .walk__head { padding-bottom: 2rem; }
+  .step { min-height: 62svh; padding-bottom: 2rem; }
+
+  /* the one projected cluster chip left at this width clips at the
+     viewport edge; the step card already carries the discipline name */
+  .graph-label.is-active { display: none; }
+
+  .foot { padding-top: 2.5rem; }
+}
