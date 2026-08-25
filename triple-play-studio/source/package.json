@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "build": "tsc -b && vite build && npm run verify:triple-play",
+    "preview": "vite preview --host 0.0.0.0",
+    "verify:triple-play": "node scripts/verify-triple-play.mjs"
   },
   "license": "ISC",
   "dependencies": {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ClickHint } from "../../lib/fx";
+import { formatTodayLabel } from "../../lib/date";
 
 /* Bramble — the shipped app, operable. Check tasks off, switch tabs,
    dismiss the frost alert; the streak keeps honest count. */
@@ -36,7 +37,7 @@ export function BrambleDemo() {
           {tab === "today" ? (
             <>
               <div>
-                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[oklch(52%_0.05_145)]">Tuesday, April 14</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[oklch(52%_0.05_145)]">{formatTodayLabel()}</p>
                 <p className="text-lg font-semibold">Good morning, Sam.</p>
               </div>
 
