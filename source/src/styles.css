@@ -258,7 +258,9 @@ body.reveal-armed [data-reveal].revealed {
 
 /* ————————————————————————————————— system ————————————————————————————————— */
 .system {
-  padding-bottom: clamp(5rem, 10vh, 8rem);
+  /* keep the system→collection junction near the site's ~1-section rhythm:
+     this stacks with .worlds' own top padding, so big values doubled the air */
+  padding-bottom: clamp(2rem, 4vh, 3rem);
   background:
     radial-gradient(50% 30% at 85% 10%, rgba(179, 157, 255, 0.05), transparent 70%);
 }
@@ -671,6 +673,23 @@ body.reveal-armed [data-reveal].revealed {
 }
 
 @media (max-width: 640px) {
+  /* the WebGL carousel is desktop-only — the orbit list below carries the
+     full navigation on phones (JS also skips mounting it at this width) */
+  .ring {
+    display: none;
+  }
+
+  /* the stat counter band is desktop-only (owner call, 2026-08-22) */
+  .stat-band {
+    display: none;
+  }
+
+  /* the chain's 5rem bottom margin existed to separate it from the stat
+     band — with the band hidden here it fed pure empty space */
+  .agent-chain {
+    margin-bottom: 0;
+  }
+
   .agent-card:nth-child(2),
   .agent-card:nth-child(3) {
     margin-left: 0;

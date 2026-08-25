@@ -55,26 +55,48 @@ function findChromium() {
 const worlds = readDeployArtifacts();
 fs.mkdirSync(OUT_DIR, { recursive: true });
 const server = await serveClone();
-const browser = await chromium.launch({ executablePath: findChromium() });
+// Software WebGL so 3D heroes (aurel) capture the real model, not the
+// no-WebGL photo fallback — same flag the behavioral probes use on this box.
+const browser = await chromium.launch({ executablePath: findChromium(), args: ['--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: VIEWPORT, deviceScaleFactor: 1 });
 
 let ok = 0;
+// Content-hashed filenames (2026-08-19): unhashed thumb URLs ride the Pages
+// CDN cache ~10 min after every redeploy — bit us on kiln (08-09) and twice
+// today. A hash in the name makes each regeneration a URL no cache has ever
+// seen. The plain <folder>.jpg is refreshed too so HTML cached from before
+// the manifest still shows current art while its own cache drains.
+import { createHash } from 'node:crypto';
+const manifest = {};
 for (const world of worlds) {
   const url = `http://127.0.0.1:${PORT}/${world.folder}/`;
-  const out = path.join(OUT_DIR, `${world.folder}.jpg`);
   try {
     await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 }).catch(() =>
       page.goto(url, { waitUntil: 'load', timeout: 30000 }));
     await page.waitForTimeout(3600); // let intro animations (and pre-paint gates with 3s dead-man switches) settle
-    await page.screenshot({ path: out, type: 'jpeg', quality: 78 });
+    const shot = await page.screenshot({ type: 'jpeg', quality: 78 });
+    const hash = createHash('md5').update(shot).digest('hex').slice(0, 8);
+    const hashedName = `${world.folder}.${hash}.jpg`;
+    for (const existing of fs.readdirSync(OUT_DIR)) {
+      if (existing.startsWith(`${world.folder}.`) && existing.endsWith('.jpg')
+          && existing !== `${world.folder}.jpg` && existing !== hashedName) {
+        fs.unlinkSync(path.join(OUT_DIR, existing));
+      }
+    }
+    fs.writeFileSync(path.join(OUT_DIR, hashedName), shot);
+    fs.writeFileSync(path.join(OUT_DIR, `${world.folder}.jpg`), shot);
+    manifest[world.folder] = hashedName;
     ok += 1;
-    console.log(`thumb ok  ${world.folder}`);
+    console.log(`thumb ok  ${world.folder} -> ${hashedName}`);
   } catch (err) {
     console.error(`thumb FAIL ${world.folder}: ${err.message}`);
   }
 }
 
+fs.writeFileSync(path.resolve('src/thumbs-manifest.json'),
+  JSON.stringify(manifest, null, 2) + '\n');
+
 await browser.close();
 server.close();
-console.log(`${ok}/${worlds.length} thumbnails written to ${OUT_DIR}`);
+console.log(`${ok}/${worlds.length} thumbnails written to ${OUT_DIR} (+ src/thumbs-manifest.json)`);
 if (ok !== worlds.length) process.exitCode = 1;

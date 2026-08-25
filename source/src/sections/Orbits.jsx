@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import roster from '../generated-showcase-roster.json';
+import thumbsManifest from '../thumbs-manifest.json';
 import CircularGallery from '../components/reactbits/CircularGallery.jsx';
 import TiltedCard from '../components/reactbits/TiltedCard.jsx';
 import StarBorder from '../components/reactbits/StarBorder.jsx';
@@ -8,15 +9,24 @@ import Magnet from '../components/reactbits/Magnet.jsx';
 const ORBIT_ORDER = [
   'Systems & tools',
   'Art & culture',
+  'Gallery',
   'Game worlds',
   'Food & craft',
   'Commerce',
   'Workbench',
 ];
 
-const shortName = entry => entry.name.split('|')[0].trim();
-const subName = entry => (entry.name.split('|')[1] ?? '').trim();
-const thumb = entry => `thumbs/${entry.folder}.jpg`;
+// Roster names carry the deployed page title, which uses either "Name | Descriptor"
+// or "Name — Descriptor". The card shows the NAME; the descriptor moves to the
+// subname line. Titles are raw HTML text, so &amp; must be decoded — React and the
+// WebGL canvas both render the entity literally otherwise.
+const decodeEntities = s => s.replace(/&amp;/g, '&');
+const shortName = entry => decodeEntities(entry.name.split(/\s*[|—]\s*/)[0].trim());
+const subName = entry =>
+  decodeEntities(entry.name.split(/\s*[|—]\s*/).slice(1).join(' ').trim());
+// Hashed filename from the manifest — a fresh URL per regeneration, so no
+// CDN or browser cache can ever pin an old card. Plain name is the fallback.
+const thumb = entry => `thumbs/${thumbsManifest[entry.folder] ?? `${entry.folder}.jpg`}`;
 
 function WorldRow({ entry, index, flip }) {
   return (
@@ -87,7 +97,11 @@ export default function Orbits() {
     if (!el) return undefined;
     const io = new IntersectionObserver(
       observed => {
+        // The ring is desktop-only (CSS hides it at phone width): don't pay the
+        // WebGL init on phones. Not disconnecting on the skip means a rotate to
+        // a wider viewport can still mount it on a later intersection.
         if (observed[0].isIntersecting) {
+          if (window.matchMedia('(max-width: 640px)').matches) return;
           setRingMounted(true);
           io.disconnect();
         }
@@ -119,7 +133,7 @@ export default function Orbits() {
         SEVEN WORLDS
       </h2>
       <p className="worlds-lead">
-        Three orbits, seven bodies. Every one is a complete, deployed site —
+        Four orbits, seven bodies. Every one is a complete, deployed site —
         follow any of them in.
       </p>
 

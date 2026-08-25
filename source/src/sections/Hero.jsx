@@ -75,7 +75,7 @@ export default function Hero() {
           SCROLL
           <i />
         </span>
-        <span>7 BODIES · 3 ORBITS</span>
+        <span>7 BODIES · 4 ORBITS</span>
       </div>
     </header>
   );

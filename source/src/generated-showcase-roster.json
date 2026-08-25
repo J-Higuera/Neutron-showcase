@@ -4,7 +4,7 @@
     "deployRoot": "/home/neutron/state/deploy/J-Higuera__Neutron-showcase",
     "publicBaseUrl": "https://j-higuera.github.io/Neutron-showcase",
     "generationCommand": "npm run generate:roster",
-    "generatedAt": "2026-08-14T01:40:42.045Z",
+    "generatedAt": "2026-08-25T01:40:52.927Z",
     "preservedFields": [
       "name",
       "title",
@@ -51,8 +51,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Chewa | Electronics With Proof Beside the Price",
-      "title": "Chewa | Electronics With Proof Beside the Price",
+      "name": "Chewa Electronics | Proof Beside the Price",
+      "title": "Chewa Electronics | Proof Beside the Price",
       "slug": "chewa-electronics",
       "folder": "chewa-electronics",
       "href": "https://j-higuera.github.io/Neutron-showcase/chewa-electronics/",
@@ -65,8 +65,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Triple Play Studio | Strategy, Build, Launch",
-      "title": "Triple Play Studio | Strategy, Build, Launch",
+      "name": "Triple Play Studio — Strategy, build, launch. One motion.",
+      "title": "Triple Play Studio — Strategy, build, launch. One motion.",
       "slug": "triple-play-studio",
       "folder": "triple-play-studio",
       "href": "https://j-higuera.github.io/Neutron-showcase/triple-play-studio/",
@@ -79,16 +79,16 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "AUREL — Reference Headphones",
-      "title": "AUREL — Reference Headphones",
-      "slug": "aurel-premium-audio",
-      "folder": "aurel-premium-audio",
-      "href": "https://j-higuera.github.io/Neutron-showcase/aurel-premium-audio/",
-      "category": "Commerce",
-      "premise": "A premium audio hardware surface centered on listening paths and material detail.",
-      "mood": "Measured signal, heirloom finish, and quiet listening-room control.",
-      "motif": "sound",
-      "shape": "soundwave",
+      "name": "AUREL — Museum of Dimensional Craft",
+      "title": "AUREL — Museum of Dimensional Craft",
+      "slug": "aurel-dimensional-craft",
+      "folder": "aurel-dimensional-craft",
+      "href": "https://j-higuera.github.io/Neutron-showcase/aurel-dimensional-craft/",
+      "category": "Gallery",
+      "premise": "A museum for high-fidelity digital objects — six works on view, printed stills, a live inspection room.",
+      "mood": "Graphite halls, Klein-blue wayfinding, plaques measured from the files themselves.",
+      "motif": "vitrine",
+      "shape": "plinth",
       "state": "Public deploy",
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
@@ -107,8 +107,8 @@
       "proofNote": "Title and URL verified from the deployed showcase clone."
     },
     {
-      "name": "Matrix — Adaptive Infrastructure Intelligence",
-      "title": "Matrix — Adaptive Infrastructure Intelligence",
+      "name": "Matrix — The Operating Topology",
+      "title": "Matrix — The Operating Topology",
       "slug": "matrix-infrastructure",
       "folder": "matrix-infrastructure",
       "href": "https://j-higuera.github.io/Neutron-showcase/matrix-infrastructure/",

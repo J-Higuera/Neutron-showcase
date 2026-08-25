@@ -23,36 +23,39 @@ const AGENTS = [
 
 const STATS = [
   { value: 7, label: 'WORLDS DEPLOYED' },
-  { value: 3, label: 'ORBITS' },
+  { value: 4, label: 'ORBITS' },
   { value: 3, label: 'AGENTS' },
   { value: 0, label: 'TEMPLATES USED' },
 ];
 
 function Stat({ value, label }) {
   const ref = useRef(null);
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(value);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (value === 0 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setShown(value);
       return undefined;
     }
+
     let raf = 0;
     const io = new IntersectionObserver(
       entries => {
         if (!entries[0].isIntersecting) return;
         io.disconnect();
+
         const start = performance.now();
         const tick = now => {
           const k = Math.min(1, (now - start) / 1100);
           setShown(Math.round(value * (1 - Math.pow(1 - k, 3))));
           if (k < 1) raf = requestAnimationFrame(tick);
         };
+        setShown(0);
         raf = requestAnimationFrame(tick);
       },
-      { threshold: 0.6 }
+      { threshold: 0.05, rootMargin: '140px 0px' }
     );
     io.observe(el);
     return () => {
@@ -62,7 +65,7 @@ function Stat({ value, label }) {
   }, [value]);
 
   return (
-    <div className="stat" ref={ref}>
+    <div className="stat" ref={ref} aria-label={`${value} ${label.toLowerCase()}`}>
       <span className="stat-value">{shown}</span>
       <span className="stat-label mono">{label}</span>
     </div>
