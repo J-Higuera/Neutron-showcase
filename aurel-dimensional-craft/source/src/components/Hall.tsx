@@ -58,10 +58,16 @@ export const Hall = memo(function Hall({
         <img
           className={`hall-still${imgReady ? " is-ready" : ""}`}
           src={`stills/au-${exhibit.num}.webp`}
-          alt=""
+          alt={`Baked still of AU ${exhibit.num}: ${exhibit.title}`}
           width="1668"
           height="1140"
+          // NOT lazy: the wing is a horizontally-scrolled deck, so off-screen
+          // rooms never enter the viewport on their own — a lazy still never
+          // loads, its `is-ready` never fires, and the .stage-loading ring is
+          // left standing (probe-proven, 2026-08-25). fetchPriority still
+          // front-loads the first room.
           loading="eager"
+          fetchPriority={index === 0 ? "high" : "auto"}
           decoding="async"
           onLoad={() => setImgReady(true)}
           ref={(el) => {

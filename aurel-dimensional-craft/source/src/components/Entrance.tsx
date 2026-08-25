@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState } from "react";
 import type { CSSProperties } from "react";
-import { FEATURED } from "../data/collection";
+import { ALL_EXHIBITS, FEATURED } from "../data/collection";
 import { useMuseum } from "../lib/store";
 
 // The entrance presents ONE work beside the title — never the founding
@@ -11,6 +11,15 @@ import { useMuseum } from "../lib/store";
 // turntable.
 
 const FeatureView = lazy(() => import("../gl/FeatureView"));
+
+// The lede SPELLS the count ("Seven works on view") — the museum's voice, and how
+// it has always read. It is still DERIVED, because the bug this replaced was a
+// hardcoded count drifting from the collection (the plaque said 006 after a seventh
+// work was hung). Past the list it falls back to the numeral rather than inventing
+// a word, which is the only way this can be wrong and is visibly wrong when it is.
+const COUNT_WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+                     "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+const countInWords = (n: number) => COUNT_WORDS[n] ?? String(n);
 
 export function Entrance({ glReady }: { glReady: boolean }) {
   const { reduced } = useMuseum();
@@ -26,7 +35,7 @@ export function Entrance({ glReady }: { glReady: boolean }) {
         </h1>
         <p className="entrance-sub">Museum of Dimensional Craft</p>
         <p className="entrance-lede">
-          Seven works on view. Every still is printed from the museum's own files —
+          {countInWords(ALL_EXHIBITS.length)} works on view. Every still is printed from the museum's own files —
           and Inspect hangs the work itself, live in your browser at full
           fidelity. Admission is free, and the museum accepts loans: bring a work
           of your own.
@@ -42,7 +51,7 @@ export function Entrance({ glReady }: { glReady: boolean }) {
         <dl className="entrance-facts" aria-label="The museum at a glance">
           <div>
             <dt>Works on view</dt>
-            <dd>006</dd>
+            <dd>{String(ALL_EXHIBITS.length).padStart(3, "0")}</dd>
           </div>
           <div>
             <dt>Rendered</dt>
@@ -78,7 +87,7 @@ export function Entrance({ glReady }: { glReady: boolean }) {
           <img
             className={live ? "is-live" : undefined}
             src="thumbs/feature.webp"
-            alt=""
+            alt={`Baked still of AU ${FEATURED.num}: ${FEATURED.title}`}
             width="1645"
             height="1353"
             loading="eager"
