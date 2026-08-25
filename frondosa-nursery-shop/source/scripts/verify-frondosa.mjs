@@ -15,6 +15,45 @@ async function newPage(width, height) {
   return page;
 }
 
+await expect('catalog primary image provenance and botanical mapping', async () => {
+  const page = await newPage(1440, 1000);
+  await page.goto(base + '/', { waitUntil: 'networkidle' });
+  const cards = await page.locator('.product-card').evaluateAll((nodes) => nodes.map((card) => {
+    const title = card.querySelector('h2')?.textContent?.trim() ?? '';
+    const img = card.querySelector('.photo-button img');
+    return { title, alt: img?.getAttribute('alt') ?? '', src: img?.getAttribute('src') ?? '' };
+  }));
+  await page.close();
+  if (cards.length !== 28) throw new Error(`expected 28 catalog cards, saw ${cards.length}`);
+  const unique = new Set(cards.map((card) => card.src));
+  if (unique.size < 26) throw new Error(`catalog primary images still over-reused: ${unique.size}/28 unique`);
+  const byTitle = new Map(cards.map((card) => [card.title, card.src]));
+  const required = {
+    'ZZ Plant': 'zz-zamioculcas',
+    'Parlor Palm': 'parlorPalm-',
+    'Burgundy Rubber Tree': 'rubber-ficus-elastica',
+    'String of Hearts': 'stringHearts-',
+    'Bird Nest Fern': 'birdNestFern-',
+    'Jade Plant': 'jade-',
+    'Hoya Carnosa': 'hoya-hoya-carnosa',
+    'Chinese Money Plant': 'pilea-',
+    'Mini Phalaenopsis Orchid': 'orchid-',
+    'Aloe Vera': 'aloe-',
+    'Mist Ceramic Cachepot': 'cachepot-',
+    'Terracotta Saucer Kit': 'terracottaSaucer-',
+  };
+  for (const [title, token] of Object.entries(required)) {
+    const src = byTitle.get(title) ?? '';
+    if (!src.includes(token)) throw new Error(`${title} image is not mapped to ${token}: ${src}`);
+  }
+  const allowedShared = cards.filter((card) => card.src.includes('greenhouse-benches')).map((card) => card.title).sort();
+  for (const [src, count] of [...cards.reduce((map, card) => map.set(card.src, (map.get(card.src) ?? 0) + 1), new Map())]) {
+    if (count > 1 && !src.includes('greenhouse-benches')) throw new Error(`non-bundle image reused ${count}x: ${src}`);
+  }
+  if (!allowedShared.every((title) => title.includes('Bundle'))) throw new Error(`greenhouse group shot reused outside bundles: ${allowedShared.join(', ')}`);
+  return `${cards.length} cards, ${unique.size} unique primary images, greenhouse reuse limited to ${allowedShared.length} bundles`;
+});
+
 await expect('desktop catalog/filter/search', async () => {
   const page = await newPage(1920, 1080);
   await page.goto(base + '/', { waitUntil: 'networkidle' });

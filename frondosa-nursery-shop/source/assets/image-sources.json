@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-08-25T02:44:13Z",
+  "source": "Wikimedia Commons API imageinfo; chosen to replace repeated/misidentified Frondosa catalog primary images.",
+  "images": {
+    "birdNestFern": {
+      "query": "Asplenium nidus",
+      "filename": "birdNestFern-bird-s-nest-fern-asplenium-nidus-leaves-1.jpg",
+      "commonsTitle": "File:Bird's-nest Fern Asplenium nidus Leaves 1.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Bird%27s-nest_Fern_Asplenium_nidus_Leaves_1.jpg",
+      "width": 3264,
+      "height": 4488,
+      "bytes": 506921,
+      "artist": "Photo by and (c)2014 Derek Ramsey (Ram-Man)",
+      "licenseShortName": "GFDL 1.2",
+      "usageTerms": "GNU Free Documentation License 1.2"
+    },
+    "jade": {
+      "query": "Crassula ovata jade plant potted",
+      "filename": "jade-among-the-branches-of-a-potted-jade-plant.jpg",
+      "commonsTitle": "File:Among the branches of a potted jade plant.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Among_the_branches_of_a_potted_jade_plant.jpg",
+      "width": 4265,
+      "height": 3094,
+      "bytes": 301823,
+      "artist": "W.carter",
+      "licenseShortName": "CC0",
+      "usageTerms": "Creative Commons Zero, Public Domain Dedication"
+    },
+    "pilea": {
+      "query": "Pilea peperomioides potted plant",
+      "filename": "pilea-pilea-peperomioides-chinese-money-plant.jpg",
+      "commonsTitle": "File:Pilea peperomioides Chinese money plant.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Pilea_peperomioides_Chinese_money_plant.jpg",
+      "width": 2946,
+      "height": 3928,
+      "bytes": 392050,
+      "artist": "Husky",
+      "licenseShortName": "CC0",
+      "usageTerms": "Creative Commons Zero, Public Domain Dedication"
+    },
+    "orchid": {
+      "query": "Phalaenopsis orchid potted flower",
+      "filename": "orchid-phalaenopsis-orchid-and-hydrangea.jpg",
+      "commonsTitle": "File:Phalaenopsis Orchid and Hydrangea.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Phalaenopsis_Orchid_and_Hydrangea.jpg",
+      "width": 3456,
+      "height": 4608,
+      "bytes": 295570,
+      "artist": "Vimukthi",
+      "licenseShortName": "CC BY-SA 3.0",
+      "usageTerms": "Creative Commons Attribution-Share Alike 3.0"
+    },
+    "aloe": {
+      "query": "Aloe vera potted plant",
+      "filename": "aloe-a-potted-aloe-vera-plant.jpg",
+      "commonsTitle": "File:A potted aloe vera plant.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:A_potted_aloe_vera_plant.jpg",
+      "width": 1872,
+      "height": 3328,
+      "bytes": 669160,
+      "artist": "Lionsleeps23",
+      "licenseShortName": "CC BY-SA 4.0",
+      "usageTerms": "Creative Commons Attribution-Share Alike 4.0"
+    },
+    "cachepot": {
+      "query": "ceramic cachepot flower pot",
+      "filename": "cachepot-bourg-la-reine-factory-french-cachepot-1962-374-2-cleveland-museum-of-art.jpg",
+      "commonsTitle": "File:Bourg-la-Reine Factory (French) - Cachepot - 1962.374.2 - Cleveland Museum of Art.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Bourg-la-Reine_Factory_(French)_-_Cachepot_-_1962.374.2_-_Cleveland_Museum_of_Art.jpg",
+      "width": 3400,
+      "height": 3050,
+      "bytes": 151074,
+      "artist": "",
+      "licenseShortName": "CC0",
+      "usageTerms": "Creative Commons Zero, Public Domain Dedication"
+    },
+    "terracottaSaucer": {
+      "query": "flowerpot terracotta",
+      "filename": "terracottaSaucer-flowerpot-1.jpg",
+      "commonsTitle": "File:Flowerpot 1.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Flowerpot_1.jpg",
+      "width": 1408,
+      "height": 1857,
+      "bytes": 51605,
+      "artist": "Adriaen Coorte",
+      "licenseShortName": "Public domain",
+      "usageTerms": "Public domain"
+    },
+    "zz": {
+      "query": "Zamioculcas zamiifolia potted plant",
+      "filename": "zz-zamioculcas-zamiifolia-lodd-engl-am-ak331827-1.jpg",
+      "commonsTitle": "File:Zamioculcas zamiifolia (Lodd.) Engl. (AM AK331827-1).jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Zamioculcas_zamiifolia_(Lodd.)_Engl._(AM_AK331827-1).jpg",
+      "bytes": 219336
+    },
+    "parlorPalm": {
+      "query": "Chamaedorea elegans potted plant",
+      "filename": "parlorPalm-starr-070906-9076-chamaedorea-elegans.jpg",
+      "commonsTitle": "File:Starr-070906-9076-Chamaedorea elegans.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Starr-070906-9076-Chamaedorea_elegans.jpg",
+      "bytes": 2850615
+    },
+    "rubber": {
+      "query": "Ficus elastica potted",
+      "filename": "rubber-ficus-elastica-9zz.jpg",
+      "commonsTitle": "File:Ficus elastica 9zz.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Ficus_elastica_9zz.jpg",
+      "bytes": 3763148
+    },
+    "stringHearts": {
+      "query": "Ceropegia woodii String of Hearts hanging plant",
+      "filename": "stringHearts-starr-100411-4407-ceropegia-woodii-fruiting-hanging-habit-ulana-st-makawao-maui-249098.jpg",
+      "commonsTitle": "File:Starr-100411-4407-Ceropegia woodii-fruiting hanging habit-Ulana St Makawao-Maui.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Starr-100411-4407-Ceropegia_woodii-fruiting_hanging_habit-Ulana_St_Makawao-Maui_(24909832562).jpg",
+      "bytes": 2844842
+    },
+    "hoya": {
+      "query": "Hoya carnosa",
+      "filename": "hoya-hoya-carnosa-1.jpg",
+      "commonsTitle": "File:Hoya carnosa 1.jpg",
+      "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Hoya_carnosa_1.jpg",
+      "bytes": 117633
+    }
+  }
+}
