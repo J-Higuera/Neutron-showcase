@@ -5,6 +5,7 @@
   const mobileNav = document.getElementById("mobile-nav");
   const searchForm = document.querySelector(".search");
   const cartCounts = document.querySelectorAll("[data-cart-count]");
+  const addSelectors = ["[data-add-item]", "[data-add-shortlist]"].join(",");
   let cartCount = 0;
 
   const specContent = {
@@ -202,7 +203,7 @@
   }
 
   document.addEventListener("click", (event) => {
-    const addButton = event.target.closest("[data-add-item]");
+    const addButton = event.target.closest(addSelectors);
     if (!addButton) return;
     cartCount += 1;
     updateCart();
