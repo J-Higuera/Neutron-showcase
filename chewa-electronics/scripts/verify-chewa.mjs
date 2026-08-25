@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
 import { once } from "node:events";
+import { readFileSync } from "node:fs";
 import puppeteer from "puppeteer-core";
 
 const liveBase = process.env.CHEWA_BASE_URL;
@@ -46,6 +47,58 @@ try {
   const page = await browser.newPage();
   await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
   await page.goto(baseUrl, { waitUntil: "networkidle0" });
+
+  const sourceText = readFileSync("index.html", "utf8") + readFileSync("script.js", "utf8");
+  const staleClaims = ["Tue, Aug 18", "Aug 18", "Tue delivery / pickup today", "Pickup today / Tue delivery", "Thu delivery / store pickup varies"];
+  const foundStale = staleClaims.filter((claim) => sourceText.includes(claim));
+  if (foundStale.length) throw new Error(`stale delivery claims remain in source: ${foundStale.join(", ")}`);
+
+  const delivery = await page.evaluate(() => {
+    const formatter = new Intl.DateTimeFormat(undefined, { weekday: "short", month: "short", day: "numeric" });
+    const addDays = (date, days) => {
+      const next = new Date(date);
+      next.setDate(next.getDate() + days);
+      return next;
+    };
+    const nextBusinessDate = (minimumDaysOut) => {
+      const candidate = addDays(new Date(), minimumDaysOut);
+      while (candidate.getDay() === 0 || candidate.getDay() === 6) candidate.setDate(candidate.getDate() + 1);
+      return candidate;
+    };
+    const expected = {
+      aeroDay: `${formatter.format(nextBusinessDate(2))} delivery`,
+      aeroWindow: `Pickup today / ${formatter.format(nextBusinessDate(2))} delivery`,
+      aeroDateZip: `${formatter.format(nextBusinessDate(2))} to 94107`,
+      studioDay: `${formatter.format(nextBusinessDate(3))} delivery`,
+      studioWindow: `${formatter.format(nextBusinessDate(3))} delivery / store pickup varies`,
+      meshWindow: `Ships today / ${formatter.format(nextBusinessDate(1))} delivery available`
+    };
+    const texts = Array.from(document.querySelectorAll("[data-delivery]")).map((node) => ({
+      kind: node.getAttribute("data-delivery"),
+      text: node.textContent?.trim()
+    }));
+    return { expected, texts, body: document.body.innerText };
+  });
+  const expectedByKind = {
+    "aero-day": delivery.expected.aeroDay,
+    "aero-window": delivery.expected.aeroWindow,
+    "aero-date-zip": delivery.expected.aeroDateZip,
+    "studio-day": delivery.expected.studioDay,
+    "studio-window": delivery.expected.studioWindow,
+    "mesh-window": delivery.expected.meshWindow
+  };
+  const wrongDelivery = delivery.texts.filter(({ kind, text }) => expectedByKind[kind] && text !== expectedByKind[kind]);
+  if (wrongDelivery.length) throw new Error(`dynamic delivery copy mismatch: ${JSON.stringify(wrongDelivery)}`);
+  if (/Tue, Aug 18|Aug 18/.test(delivery.body)) throw new Error("stale Aug 18 delivery copy rendered");
+
+  await page.click('[data-spec="delivery"]');
+  await page.waitForFunction(() => document.querySelector("[data-spec-panel]")?.innerText.includes("ZIP 94107"));
+  const deliveryTabText = await page.$eval("[data-spec-panel]", (el) => el.innerText);
+  if (!deliveryTabText.includes(delivery.expected.aeroDay) || /Aug 18/.test(deliveryTabText)) {
+    throw new Error(`delivery tab did not render live future copy: ${deliveryTabText}`);
+  }
+  console.log(`PASS Chewa delivery dates hydrate from load date (${delivery.expected.aeroWindow})`);
+  console.log("PASS Chewa source and rendered page contain no stale Aug 18 delivery claim");
 
   const before = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
   await page.$eval("#featured [data-add-item], #featured [data-add-shortlist]", (button) => button.scrollIntoView({ block: "center" }));

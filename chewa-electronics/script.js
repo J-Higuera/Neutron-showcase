@@ -8,6 +8,48 @@
   const addSelectors = ["[data-add-item]", "[data-add-shortlist]"].join(",");
   let cartCount = 0;
 
+  const deliveryFormatter = new Intl.DateTimeFormat(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  });
+
+  function addDays(date, days) {
+    const next = new Date(date);
+    next.setDate(next.getDate() + days);
+    return next;
+  }
+
+  function nextBusinessDate(minimumDaysOut) {
+    const candidate = addDays(new Date(), minimumDaysOut);
+    while (candidate.getDay() === 0 || candidate.getDay() === 6) {
+      candidate.setDate(candidate.getDate() + 1);
+    }
+    return candidate;
+  }
+
+  function deliveryCopy(kind) {
+    const aeroDate = deliveryFormatter.format(nextBusinessDate(2));
+    const studioDate = deliveryFormatter.format(nextBusinessDate(3));
+    const meshDate = deliveryFormatter.format(nextBusinessDate(1));
+    const copy = {
+      "aero-day": `${aeroDate} delivery`,
+      "aero-window": `Pickup today / ${aeroDate} delivery`,
+      "aero-date-zip": `${aeroDate} to 94107`,
+      "studio-day": `${studioDate} delivery`,
+      "studio-window": `${studioDate} delivery / store pickup varies`,
+      "mesh-window": `Ships today / ${meshDate} delivery available`
+    };
+    return copy[kind] || "Delivery window updates at load";
+  }
+
+  function hydrateDeliveryDates() {
+    document.querySelectorAll("[data-delivery]").forEach((node) => {
+      const kind = node.getAttribute("data-delivery");
+      node.textContent = deliveryCopy(kind);
+    });
+  }
+
   const specContent = {
     display: {
       label: "DISPLAY PROOF",
@@ -25,7 +67,7 @@
       label: "FULFILLMENT WINDOW",
       title: "Pickup and delivery dates are resolved before payment.",
       text:
-        "For ZIP 94107, AeroBook Pro 14 is available for pickup today or Tue, Aug 18 delivery. Store transfer and signature requirements are listed in the cart."
+        `For ZIP 94107, AeroBook Pro 14 is available for pickup today or ${deliveryCopy("aero-day")}. Store transfer and signature requirements are listed in the cart.`
     },
     protection: {
       label: "PROTECTION TERMS",
@@ -116,6 +158,7 @@
 
   setHeaderState();
   setHeaderHeight();
+  hydrateDeliveryDates();
   renderRecommendations("laptops");
 
   window.addEventListener("scroll", setHeaderState, { passive: true });

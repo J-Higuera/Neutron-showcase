@@ -55,7 +55,7 @@
           <button class="utility-chip menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">
             Menu
           </button>
-          <button class="utility-chip" type="button">ZIP 94107 <span>Tue delivery</span></button>
+          <button class="utility-chip" type="button">ZIP 94107 <span data-delivery="aero-day">next delivery</span></button>
           <a class="utility-chip" href="#support">Expert online</a>
           <a class="cart-chip" href="#checkout" aria-label="Shortlist contains 0 items">
             <span class="cart-led" aria-hidden="true"></span>
@@ -119,7 +119,7 @@
                 <div class="buy-row">
                   <strong>$1,449</strong>
                   <span class="status positive">In stock</span>
-                  <span>Tue delivery / pickup today</span>
+                  <span data-delivery="aero-window">Pickup today / next eligible delivery</span>
                 </div>
               </div>
             </article>
@@ -133,7 +133,7 @@
                 <span class="mono">MONITOR</span>
                 <h3>StudioView 5K Dock</h3>
                 <p>5K panel, 96W USB-C PD, HDR600, built-in hub.</p>
-                <div class="buy-row"><strong>$799</strong><span>Thu delivery</span></div>
+                <div class="buy-row"><strong>$799</strong><span data-delivery="studio-day">next delivery</span></div>
               </div>
             </article>
 
@@ -161,7 +161,7 @@
               <div><dt>Battery</dt><dd>18h rated / monitor powers laptop</dd></div>
               <div><dt>Ports</dt><dd>TB4, HDMI, SD, USB-C 96W</dd></div>
               <div><dt>Protection</dt><dd>Eligible terms surfaced</dd></div>
-              <div><dt>Delivery</dt><dd>Pickup today / Tue delivery</dd></div>
+              <div><dt>Delivery</dt><dd data-delivery="aero-window">Pickup today / next eligible delivery</dd></div>
             </dl>
           </aside>
 
@@ -240,7 +240,7 @@
             <div class="price-big">$1,449</div>
             <dl>
               <div><dt>Stock</dt><dd>Available for pickup today</dd></div>
-              <div><dt>Delivery</dt><dd>Tue, Aug 18 to 94107</dd></div>
+              <div><dt>Delivery</dt><dd data-delivery="aero-date-zip">Next eligible delivery to 94107</dd></div>
               <div><dt>Returns</dt><dd>30 days, reset checklist included</dd></div>
               <div><dt>Warranty</dt><dd>1-year maker warranty visible</dd></div>
               <div><dt>Protection</dt><dd>2-year accidental plan eligible</dd></div>
@@ -360,9 +360,9 @@
               </tr>
               <tr>
                 <th scope="row">Delivery window</th>
-                <td>Pickup today / Tue delivery</td>
-                <td>Thu delivery / store pickup varies</td>
-                <td>Ships today / next-day available</td>
+                <td data-delivery="aero-window">Pickup today / next eligible delivery</td>
+                <td data-delivery="studio-window">Next delivery / store pickup varies</td>
+                <td data-delivery="mesh-window">Ships today / next-day available</td>
               </tr>
               <tr>
                 <th scope="row">Warranty/protection</th>
@@ -398,7 +398,7 @@
               <div class="diff"><dt>Performance / standard</dt><dd>M-series-class 10-core chip</dd></div>
               <div class="diff"><dt>Display or signal quality</dt><dd>14 inch OLED, HDR, P3 color</dd></div>
               <div class="diff"><dt>Ports / compatibility</dt><dd>2x Thunderbolt, HDMI, SD, MagSafe-class charge</dd></div>
-              <div><dt>Delivery window</dt><dd>Pickup today / Tue delivery</dd></div>
+              <div><dt>Delivery window</dt><dd data-delivery="aero-window">Pickup today / next eligible delivery</dd></div>
               <div><dt>Warranty/protection</dt><dd>1-year warranty, 2-year accidental eligible</dd></div>
               <div class="diff"><dt>Return risk note</dt><dd>Check HDMI/SD needs before choosing ultralight models</dd></div>
               <div><dt>Support path</dt><dd>Pre-purchase chat, setup checklist, repair routing</dd></div>
@@ -409,14 +409,14 @@
             <summary class="mobile-card-head">
               <span class="mono">DEVICE 02</span>
               <h3>StudioView 5K Dock Monitor</h3>
-              <p>$799 / 5K dock / Thu delivery</p>
+              <p>$799 / 5K dock / <span data-delivery="studio-day">next delivery</span></p>
             </summary>
             <dl>
               <div class="diff"><dt>Best for</dt><dd>One-cable desk, color work, multitasking</dd></div>
               <div class="diff"><dt>Performance / standard</dt><dd>5K 60Hz panel with dock controller</dd></div>
               <div class="diff"><dt>Display or signal quality</dt><dd>27 inch 5K IPS, HDR600, matte option</dd></div>
               <div class="diff"><dt>Ports / compatibility</dt><dd>USB-C 96W PD, HDMI, Ethernet, 3x USB</dd></div>
-              <div><dt>Delivery window</dt><dd>Thu delivery / store pickup varies</dd></div>
+              <div><dt>Delivery window</dt><dd data-delivery="studio-window">Next delivery / store pickup varies</dd></div>
               <div><dt>Warranty/protection</dt><dd>3-year panel coverage eligible</dd></div>
               <div class="diff"><dt>Return risk note</dt><dd>Verify desk depth and laptop charging wattage</dd></div>
               <div><dt>Support path</dt><dd>Desk compatibility review and cable validation</dd></div>
@@ -434,7 +434,7 @@
               <div class="diff"><dt>Performance / standard</dt><dd>Wi-Fi 7 tri-band mesh with MLO</dd></div>
               <div class="diff"><dt>Display or signal quality</dt><dd>320 MHz channels where supported</dd></div>
               <div class="diff"><dt>Ports / compatibility</dt><dd>2.5GbE WAN/LAN, wired backhaul</dd></div>
-              <div><dt>Delivery window</dt><dd>Ships today / next-day available</dd></div>
+              <div><dt>Delivery window</dt><dd data-delivery="mesh-window">Ships today / next delivery available</dd></div>
               <div><dt>Warranty/protection</dt><dd>2-year replacement plan eligible</dd></div>
               <div class="diff"><dt>Return risk note</dt><dd>Map wall materials and wired backhaul needs</dd></div>
               <div><dt>Support path</dt><dd>Coverage planning and node placement guide</dd></div>
@@ -516,7 +516,7 @@
           <div class="bundle-line"><strong>USB-C 96W certified cable</strong><span>$39</span></div>
           <div class="bundle-line"><strong>MeshCore Wi-Fi 7 Kit</strong><span>$349</span></div>
           <dl>
-            <div><dt>Estimated delivery</dt><dd>Pickup today / Tue delivery</dd></div>
+            <div><dt>Estimated delivery</dt><dd data-delivery="aero-window">Pickup today / next eligible delivery</dd></div>
             <div><dt>Protection</dt><dd>Eligible items marked before payment</dd></div>
             <div><dt>Return window</dt><dd>30 days from delivery</dd></div>
             <div><dt>Support</dt><dd>Online now</dd></div>
