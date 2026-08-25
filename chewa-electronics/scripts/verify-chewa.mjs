@@ -2,9 +2,10 @@ import { spawn } from "node:child_process";
 import { once } from "node:events";
 import puppeteer from "puppeteer-core";
 
+const liveBase = process.env.CHEWA_BASE_URL;
 const port = 4321 + Math.floor(Math.random() * 1000);
-const baseUrl = `http://127.0.0.1:${port}/`;
-const server = spawn(process.execPath, ["-e", `
+const baseUrl = liveBase || `http://127.0.0.1:${port}/`;
+const server = liveBase ? null : spawn(process.execPath, ["-e", `
   const http = require('http');
   const fs = require('fs');
   const path = require('path');
@@ -23,13 +24,14 @@ const server = spawn(process.execPath, ["-e", `
 `], { cwd: process.cwd(), stdio: ["ignore", "pipe", "pipe"] });
 
 const cleanup = async () => {
-  if (!server.killed) server.kill("SIGTERM");
+  if (server && !server.killed) server.kill("SIGTERM");
 };
 process.on("exit", cleanup);
 process.on("SIGINT", () => { cleanup(); process.exit(130); });
 
 let ready = false;
-server.stdout.on("data", (buf) => {
+if (liveBase) ready = true;
+server?.stdout.on("data", (buf) => {
   if (buf.toString().includes("ready")) ready = true;
 });
 for (let i = 0; i < 40 && !ready; i += 1) await new Promise((r) => setTimeout(r, 50));
@@ -65,5 +67,5 @@ try {
 } finally {
   await browser.close();
   await cleanup();
-  await once(server, "exit").catch(() => {});
+  if (server) await once(server, "exit").catch(() => {});
 }
