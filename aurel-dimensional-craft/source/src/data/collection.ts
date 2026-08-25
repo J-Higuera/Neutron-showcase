@@ -42,7 +42,7 @@ export const MOOD_LABELS: Record<Mood, string> = {
   night: "Night",
 };
 
-/** Exhibit 001 greets visitors in the entrance hall; 002–006 hang in the wings. */
+/** Exhibit 001 greets visitors in the entrance hall; the rest hang in the wings. */
 export const FOUNDING: Exhibit = {
   id: "reference-one",
   num: "001",

@@ -11,7 +11,7 @@ import { Hall } from "./Hall";
 // arrows, keyboard, drag, and deep links. Rooms are printed stills —
 // weightless to page through; Inspect hangs the real model. The page
 // stays four sections tall no matter how the collection grows. The walk
-// runs 002→006 and closes on 001 — the founding piece ends the tour
+// runs through the collection and closes on 001 — the founding piece ends the tour
 // rather than opening the page.
 
 export function Wing({ hasWebGL }: { hasWebGL: boolean }) {

@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc --noEmit && vite build",
+    "sync:metadata": "node scripts/sync-metadata.mjs",
+    "verify:aurel": "node scripts/verify-aurel.mjs",
+    "build": "npm run sync:metadata && tsc --noEmit && vite build && npm run verify:aurel",
     "preview": "vite preview --host 0.0.0.0"
   },
   "license": "ISC",
