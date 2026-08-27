@@ -28,17 +28,38 @@
     return candidate;
   }
 
+  function isBusinessDay(date = new Date()) {
+    return date.getDay() !== 0 && date.getDay() !== 6;
+  }
+
+  function fulfillmentCopy(action, variant = "full") {
+    if (isBusinessDay()) {
+      if (action === "pickup") return variant === "short" ? "pickup today" : "Available for pickup today";
+      if (action === "ship") return variant === "short" ? "ships today" : "Ships today";
+    }
+    const next = deliveryFormatter.format(nextBusinessDate(0));
+    if (action === "pickup") return variant === "short" ? `pickup ${next}` : `Available for pickup ${next}`;
+    if (action === "ship") return variant === "short" ? `ships ${next}` : `Ships ${next}`;
+    return "Next eligible fulfillment";
+  }
+
   function deliveryCopy(kind) {
     const aeroDate = deliveryFormatter.format(nextBusinessDate(2));
     const studioDate = deliveryFormatter.format(nextBusinessDate(3));
     const meshDate = deliveryFormatter.format(nextBusinessDate(1));
+    const aeroPickup = fulfillmentCopy("pickup");
+    const meshShip = fulfillmentCopy("ship");
     const copy = {
       "aero-day": `${aeroDate} delivery`,
-      "aero-window": `Pickup today / ${aeroDate} delivery`,
+      "aero-window": `${aeroPickup} / ${aeroDate} delivery`,
       "aero-date-zip": `${aeroDate} to 94107`,
+      "aero-pickup-day": aeroPickup,
+      "aero-pickup-day-short": fulfillmentCopy("pickup", "short"),
       "studio-day": `${studioDate} delivery`,
       "studio-window": `${studioDate} delivery / store pickup varies`,
-      "mesh-window": `Ships today / ${meshDate} delivery available`
+      "mesh-ship-day": meshShip,
+      "mesh-ship-day-short": fulfillmentCopy("ship", "short"),
+      "mesh-window": `${meshShip} / ${meshDate} delivery available`
     };
     return copy[kind] || "Delivery window updates at load";
   }
@@ -67,7 +88,7 @@
       label: "FULFILLMENT WINDOW",
       title: "Pickup and delivery dates are resolved before payment.",
       text:
-        `For ZIP 94107, AeroBook Pro 14 is available for pickup today or ${deliveryCopy("aero-day")}. Store transfer and signature requirements are listed in the cart.`
+        `For ZIP 94107, AeroBook Pro 14 is ${fulfillmentCopy("pickup").replace(/^Available /, "available ")} or ${deliveryCopy("aero-day")}. Store transfer and signature requirements are listed in the cart.`
     },
     protection: {
       label: "PROTECTION TERMS",

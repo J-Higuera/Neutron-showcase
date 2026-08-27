@@ -30,6 +30,151 @@ const cleanup = async () => {
 process.on("exit", cleanup);
 process.on("SIGINT", () => { cleanup(); process.exit(130); });
 
+function addDays(date, days) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+function nextBusinessDate(now, minimumDaysOut) {
+  const candidate = addDays(now, minimumDaysOut);
+  while (candidate.getDay() === 0 || candidate.getDay() === 6) candidate.setDate(candidate.getDate() + 1);
+  return candidate;
+}
+
+function isBusinessDay(date) {
+  return date.getDay() !== 0 && date.getDay() !== 6;
+}
+
+function expectedDelivery(now) {
+  const formatter = new Intl.DateTimeFormat(undefined, { weekday: "short", month: "short", day: "numeric" });
+  const fmt = (minimumDaysOut) => formatter.format(nextBusinessDate(now, minimumDaysOut));
+  const fulfillment = (action, variant = "full") => {
+    if (isBusinessDay(now)) {
+      if (action === "pickup") return variant === "short" ? "pickup today" : "Available for pickup today";
+      if (action === "ship") return variant === "short" ? "ships today" : "Ships today";
+    }
+    const next = fmt(0);
+    if (action === "pickup") return variant === "short" ? `pickup ${next}` : `Available for pickup ${next}`;
+    if (action === "ship") return variant === "short" ? `ships ${next}` : `Ships ${next}`;
+    return "Next eligible fulfillment";
+  };
+  const aeroDate = fmt(2);
+  const studioDate = fmt(3);
+  const meshDate = fmt(1);
+  const aeroPickup = fulfillment("pickup");
+  const meshShip = fulfillment("ship");
+  return {
+    "aero-day": `${aeroDate} delivery`,
+    "aero-window": `${aeroPickup} / ${aeroDate} delivery`,
+    "aero-date-zip": `${aeroDate} to 94107`,
+    "aero-pickup-day": aeroPickup,
+    "aero-pickup-day-short": fulfillment("pickup", "short"),
+    "studio-day": `${studioDate} delivery`,
+    "studio-window": `${studioDate} delivery / store pickup varies`,
+    "mesh-ship-day": meshShip,
+    "mesh-ship-day-short": fulfillment("ship", "short"),
+    "mesh-window": `${meshShip} / ${meshDate} delivery available`
+  };
+}
+
+function validateSource(indexText, scriptText) {
+  const staleDateClaims = ["Tue, Aug 18", "Aug 18", "Tue delivery / pickup today", "Pickup today / Tue delivery", "Thu delivery / store pickup varies"];
+  const foundStaleDates = staleDateClaims.filter((claim) => (indexText + scriptText).includes(claim));
+  if (foundStaleDates.length) throw new Error(`stale delivery date claims remain in source: ${foundStaleDates.join(", ")}`);
+
+  const staticSameDay = indexText.match(/\b(Ships today|ships today|pickup today|Available for pickup today)\b/g) || [];
+  if (staticSameDay.length) throw new Error(`static same-day fulfillment claims remain in HTML: ${staticSameDay.join(", ")}`);
+
+  const requiredHooks = [
+    "aero-window",
+    "aero-date-zip",
+    "aero-pickup-day",
+    "aero-pickup-day-short",
+    "studio-day",
+    "studio-window",
+    "mesh-ship-day",
+    "mesh-ship-day-short",
+    "mesh-window"
+  ];
+  const missingHooks = requiredHooks.filter((hook) => !indexText.includes(`data-delivery="${hook}"`));
+  if (missingHooks.length) throw new Error(`delivery hooks missing from HTML: ${missingHooks.join(", ")}`);
+
+  for (const snippet of ["function isBusinessDay", "function fulfillmentCopy", "mesh-ship-day", "aero-pickup-day"]) {
+    if (!scriptText.includes(snippet)) throw new Error(`script missing dynamic fulfillment support: ${snippet}`);
+  }
+}
+
+async function installMockDate(page, isoNoon) {
+  await page.evaluateOnNewDocument((iso) => {
+    const fixed = new Date(iso).getTime();
+    const RealDate = Date;
+    class MockDate extends RealDate {
+      constructor(...args) {
+        super(...(args.length ? args : [fixed]));
+      }
+      static now() { return fixed; }
+      static parse(value) { return RealDate.parse(value); }
+      static UTC(...args) { return RealDate.UTC(...args); }
+    }
+    Object.setPrototypeOf(MockDate, RealDate);
+    Date = MockDate;
+  }, isoNoon);
+}
+
+async function verifyScenario(browser, label, isoNoon) {
+  const page = await browser.newPage();
+  await installMockDate(page, isoNoon);
+  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
+  await page.goto(baseUrl, { waitUntil: "networkidle0" });
+
+  const now = new Date(isoNoon);
+  const expected = expectedDelivery(now);
+  const delivery = await page.evaluate(() => ({
+    texts: Array.from(document.querySelectorAll("[data-delivery]")).map((node) => ({
+      kind: node.getAttribute("data-delivery"),
+      text: node.textContent?.trim()
+    })),
+    body: document.body.innerText
+  }));
+  const wrongDelivery = delivery.texts.filter(({ kind, text }) => expected[kind] && text !== expected[kind]);
+  if (wrongDelivery.length) throw new Error(`${label}: dynamic delivery copy mismatch: ${JSON.stringify(wrongDelivery)}`);
+  if (!isBusinessDay(now) && /\b(Available for pickup today|pickup today|Ships today|ships today)\b/.test(delivery.body)) {
+    throw new Error(`${label}: weekend rendered same-day fulfillment copy`);
+  }
+
+  await page.click('[data-spec="delivery"]');
+  await page.waitForFunction(() => document.querySelector("[data-spec-panel]")?.innerText.includes("ZIP 94107"));
+  const deliveryTabText = await page.$eval("[data-spec-panel]", (el) => el.innerText);
+  if (!deliveryTabText.includes(expected["aero-day"]) || /Aug 18/.test(deliveryTabText)) {
+    throw new Error(`${label}: delivery tab did not render live future copy: ${deliveryTabText}`);
+  }
+  if (!isBusinessDay(now) && /\b(Available for pickup today|pickup today)\b/.test(deliveryTabText)) {
+    throw new Error(`${label}: delivery tab rendered weekend pickup-today copy: ${deliveryTabText}`);
+  }
+
+  if (label === "business-day") {
+    const before = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
+    await page.$eval("#featured [data-add-item], #featured [data-add-shortlist]", (button) => button.scrollIntoView({ block: "center" }));
+    await page.click("#featured [data-add-item], #featured [data-add-shortlist]");
+    await page.waitForFunction(() => document.querySelector("[data-cart-count]")?.textContent?.trim() === "1");
+    const afterFeatured = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
+    const aria = await page.$eval(".cart-chip", (el) => el.getAttribute("aria-label"));
+
+    await page.$eval("[data-rec-list] [data-add-item]", (button) => button.scrollIntoView({ block: "center" }));
+    await page.click("[data-rec-list] [data-add-item]");
+    await page.waitForFunction(() => document.querySelector("[data-cart-count]")?.textContent?.trim() === "2");
+    const afterRecommendation = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
+
+    if (before !== "0" || afterFeatured !== "1" || afterRecommendation !== "2" || !aria?.includes("1 items")) {
+      throw new Error(`unexpected shortlist state: before=${before} featured=${afterFeatured} rec=${afterRecommendation} aria=${aria}`);
+    }
+  }
+
+  await page.close();
+  console.log(`PASS ${label} delivery hydration (${expected["aero-window"]}; ${expected["mesh-window"]})`);
+}
+
 let ready = false;
 if (liveBase) ready = true;
 server?.stdout.on("data", (buf) => {
@@ -38,85 +183,27 @@ server?.stdout.on("data", (buf) => {
 for (let i = 0; i < 40 && !ready; i += 1) await new Promise((r) => setTimeout(r, 50));
 if (!ready) throw new Error("local static server did not start");
 
+const indexText = readFileSync("index.html", "utf8");
+const scriptText = readFileSync("script.js", "utf8");
+validateSource(indexText, scriptText);
+try {
+  validateSource(indexText.replace("Next eligible shipping", "Ships today"), scriptText);
+  throw new Error("red proof failed: static same-day claim was not caught");
+} catch (error) {
+  if (!String(error.message).includes("static same-day fulfillment claims")) throw error;
+  console.log("PASS verifier red-proof catches reintroduced static same-day fulfillment claim");
+}
+
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_BIN || "/usr/bin/chromium",
   headless: "new",
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 try {
-  const page = await browser.newPage();
-  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
-  await page.goto(baseUrl, { waitUntil: "networkidle0" });
-
-  const sourceText = readFileSync("index.html", "utf8") + readFileSync("script.js", "utf8");
-  const staleClaims = ["Tue, Aug 18", "Aug 18", "Tue delivery / pickup today", "Pickup today / Tue delivery", "Thu delivery / store pickup varies"];
-  const foundStale = staleClaims.filter((claim) => sourceText.includes(claim));
-  if (foundStale.length) throw new Error(`stale delivery claims remain in source: ${foundStale.join(", ")}`);
-
-  const delivery = await page.evaluate(() => {
-    const formatter = new Intl.DateTimeFormat(undefined, { weekday: "short", month: "short", day: "numeric" });
-    const addDays = (date, days) => {
-      const next = new Date(date);
-      next.setDate(next.getDate() + days);
-      return next;
-    };
-    const nextBusinessDate = (minimumDaysOut) => {
-      const candidate = addDays(new Date(), minimumDaysOut);
-      while (candidate.getDay() === 0 || candidate.getDay() === 6) candidate.setDate(candidate.getDate() + 1);
-      return candidate;
-    };
-    const expected = {
-      aeroDay: `${formatter.format(nextBusinessDate(2))} delivery`,
-      aeroWindow: `Pickup today / ${formatter.format(nextBusinessDate(2))} delivery`,
-      aeroDateZip: `${formatter.format(nextBusinessDate(2))} to 94107`,
-      studioDay: `${formatter.format(nextBusinessDate(3))} delivery`,
-      studioWindow: `${formatter.format(nextBusinessDate(3))} delivery / store pickup varies`,
-      meshWindow: `Ships today / ${formatter.format(nextBusinessDate(1))} delivery available`
-    };
-    const texts = Array.from(document.querySelectorAll("[data-delivery]")).map((node) => ({
-      kind: node.getAttribute("data-delivery"),
-      text: node.textContent?.trim()
-    }));
-    return { expected, texts, body: document.body.innerText };
-  });
-  const expectedByKind = {
-    "aero-day": delivery.expected.aeroDay,
-    "aero-window": delivery.expected.aeroWindow,
-    "aero-date-zip": delivery.expected.aeroDateZip,
-    "studio-day": delivery.expected.studioDay,
-    "studio-window": delivery.expected.studioWindow,
-    "mesh-window": delivery.expected.meshWindow
-  };
-  const wrongDelivery = delivery.texts.filter(({ kind, text }) => expectedByKind[kind] && text !== expectedByKind[kind]);
-  if (wrongDelivery.length) throw new Error(`dynamic delivery copy mismatch: ${JSON.stringify(wrongDelivery)}`);
-  if (/Tue, Aug 18|Aug 18/.test(delivery.body)) throw new Error("stale Aug 18 delivery copy rendered");
-
-  await page.click('[data-spec="delivery"]');
-  await page.waitForFunction(() => document.querySelector("[data-spec-panel]")?.innerText.includes("ZIP 94107"));
-  const deliveryTabText = await page.$eval("[data-spec-panel]", (el) => el.innerText);
-  if (!deliveryTabText.includes(delivery.expected.aeroDay) || /Aug 18/.test(deliveryTabText)) {
-    throw new Error(`delivery tab did not render live future copy: ${deliveryTabText}`);
-  }
-  console.log(`PASS Chewa delivery dates hydrate from load date (${delivery.expected.aeroWindow})`);
-  console.log("PASS Chewa source and rendered page contain no stale Aug 18 delivery claim");
-
-  const before = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
-  await page.$eval("#featured [data-add-item], #featured [data-add-shortlist]", (button) => button.scrollIntoView({ block: "center" }));
-  await page.click("#featured [data-add-item], #featured [data-add-shortlist]");
-  await page.waitForFunction(() => document.querySelector("[data-cart-count]")?.textContent?.trim() === "1");
-  const afterFeatured = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
-  const aria = await page.$eval(".cart-chip", (el) => el.getAttribute("aria-label"));
-
-  await page.$eval("[data-rec-list] [data-add-item]", (button) => button.scrollIntoView({ block: "center" }));
-  await page.click("[data-rec-list] [data-add-item]");
-  await page.waitForFunction(() => document.querySelector("[data-cart-count]")?.textContent?.trim() === "2");
-  const afterRecommendation = await page.$eval("[data-cart-count]", (el) => el.textContent?.trim());
-
-  if (before !== "0" || afterFeatured !== "1" || afterRecommendation !== "2" || !aria?.includes("1 items")) {
-    throw new Error(`unexpected shortlist state: before=${before} featured=${afterFeatured} rec=${afterRecommendation} aria=${aria}`);
-  }
-  console.log("PASS Chewa featured Add to shortlist updates Shortlist count");
-  console.log("PASS Chewa recommendation Add still updates Shortlist count");
+  await verifyScenario(browser, "business-day", "2026-08-27T12:00:00");
+  await verifyScenario(browser, "weekend", "2026-08-29T12:00:00");
+  console.log("PASS Chewa source and rendered page contain no stale fixed delivery dates");
+  console.log("PASS Chewa featured and recommendation Add controls update Shortlist count");
 } finally {
   await browser.close();
   await cleanup();
